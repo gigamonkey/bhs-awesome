@@ -507,14 +507,14 @@ if __name__ == "__main__":
         "-c", "--config", default=None, help="Path to JSON config file"
     )
     parser.add_argument(
-        "-f", "--format", action="store_true",
+        "-f", "--format-code", action="store_true",
         help="Enable external code formatting via configured formatters"
     )
     parser.add_argument("files", nargs="*", help="Files to reformat")
 
     args = parser.parse_args()
     cfg = load_config(args.config)
-    cfg["_format_enabled"] = args.format
+    cfg["_format_enabled"] = args.format_code
 
     for filename in args.files:
         if not args.quiet:
