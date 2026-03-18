@@ -4,12 +4,13 @@
 
 You can work on items in this section in the current branch.
 
+# To implement
 
-# Organizing
+Items in this section should be of the form `Implement
+[plan_name](plans/plan_name.md).` where `plan_name.md` is a file in the `plans/`
+directory.
 
-You can do work in this section in the current branch.
-
-
+- [ ] Implement [extend-format-xml](plans/extend-format-xml.md).
 
 ## Done
 
