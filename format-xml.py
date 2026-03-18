@@ -5,8 +5,8 @@ General-purpose XML formatter.
 
 Formats XML files with consistent indentation, text wrapping, and optional
 CDATA sections for code elements. Element categories (inline, code,
-preserve_whitespace, compact) are specified via a JSON config file; anything
-not listed is treated as a block element.
+preserve_whitespace, one_line, compact) are specified via a JSON config file;
+anything not listed is treated as a block element.
 
 Config JSON example:
 {
@@ -15,12 +15,30 @@ Config JSON example:
   "inline": ["em", "c", "url"],
   "code": ["code"],
   "preserve_whitespace": ["pre"],
-  "compact": ["item"]
+  "one_line": ["cline"],
+  "compact": ["item"],
+  "compound_code": {
+    "program": {
+      "code_children": ["preamble", "code", "postamble"]
+    }
+  },
+  "rules": [
+    {
+      "tag": "pre",
+      "parent": "datafile",
+      "without_attr": "source",
+      "treat_as": "code"
+    }
+  ],
+  "formatters": {
+    "code": ["java", "-jar", "google-java-format.jar", "-a", "-"]
+  }
 }
 """
 
 import json
 import re
+import subprocess
 from argparse import ArgumentParser
 from sys import stderr, stdout
 from textwrap import fill, dedent, indent
@@ -34,10 +52,14 @@ from xml.sax.saxutils import escape, quoteattr
 DEFAULT_CONFIG = {
     "indent": 2,
     "width": 80,
-    "inline": [],
-    "code": [],
-    "preserve_whitespace": [],
-    "compact": [],
+    "inline": set(),
+    "code": set(),
+    "preserve_whitespace": set(),
+    "one_line": set(),
+    "compact": set(),
+    "compound_code": {},
+    "rules": [],
+    "formatters": {},
 }
 
 DEFAULT_NS = {"xml": "http://www.w3.org/XML/1998/namespace"}
@@ -45,14 +67,21 @@ DEFAULT_NS = {"xml": "http://www.w3.org/XML/1998/namespace"}
 
 def load_config(path):
     if path is None:
-        return DEFAULT_CONFIG
+        return dict(DEFAULT_CONFIG)
     with open(path) as f:
         user = json.load(f)
     cfg = dict(DEFAULT_CONFIG)
     cfg.update(user)
     # Ensure list fields are sets for fast lookup.
-    for key in ("inline", "code", "preserve_whitespace", "compact"):
+    for key in ("inline", "code", "preserve_whitespace", "one_line", "compact"):
         cfg[key] = set(cfg[key])
+    # Ensure dict/list fields have correct types.
+    if not isinstance(cfg["compound_code"], dict):
+        cfg["compound_code"] = {}
+    if not isinstance(cfg["rules"], list):
+        cfg["rules"] = []
+    if not isinstance(cfg["formatters"], dict):
+        cfg["formatters"] = {}
     return cfg
 
 
@@ -126,8 +155,16 @@ def preserve_whitespace(elem, cfg):
     return elem.tag in cfg["preserve_whitespace"]
 
 
+def is_oneline(elem, cfg):
+    return elem.tag in cfg["one_line"]
+
+
 def is_compact(elem, cfg):
     return elem.tag in cfg["compact"]
+
+
+def is_compound_code(elem, cfg):
+    return elem.tag in cfg["compound_code"]
 
 
 def empty_text(x):
@@ -142,6 +179,27 @@ def wrappable(elem, cfg):
     return not preserve_whitespace(elem, cfg) and (
         is_inline(elem, cfg) or all(is_inline(e, cfg) for e in elem)
     )
+
+
+# ── Conditional classification rules ────────────────────────────────────────
+
+def apply_rules(elem, cfg):
+    """Check conditional rules and return the overridden category, or None."""
+    for rule in cfg["rules"]:
+        if rule.get("tag") and rule["tag"] != elem.tag:
+            continue
+        if rule.get("parent"):
+            parent = elem.getparent()
+            if parent is None or parent.tag != rule["parent"]:
+                continue
+        if rule.get("has_attr"):
+            if rule["has_attr"] not in elem.attrib:
+                continue
+        if rule.get("without_attr"):
+            if rule["without_attr"] in elem.attrib:
+                continue
+        return rule.get("treat_as")
+    return None
 
 
 # ── Dedentation utilities ───────────────────────────────────────────────────
@@ -164,6 +222,32 @@ def dedent_by(text, amount):
     return "\n".join(
         line[amount:] if len(line) > 0 else line for line in text.split("\n")
     )
+
+
+# ── Formatter plugins ───────────────────────────────────────────────────────
+
+def maybe_formatted(text, elem, cfg):
+    """Pipe text through an external formatter if one is configured."""
+    formatters = cfg.get("formatters", {})
+    if not formatters or not cfg.get("_format_enabled"):
+        return text
+
+    # Look up formatter by tag name first, then by category "code".
+    cmd = formatters.get(elem.tag) or formatters.get("code")
+    if not cmd:
+        return text
+
+    result = subprocess.run(
+        cmd,
+        capture_output=True,
+        input=text,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        print(f"Couldn't format\n{text}\n", file=stderr)
+        return text
+    return result.stdout
 
 
 # ── Renderers ────────────────────────────────────────────────────────────────
@@ -189,15 +273,20 @@ def render_inline(elem, ns, cfg):
     return s
 
 
-def render_code(elem, ns, level, cfg):
-    """Render a code element: dedent its text and wrap in CDATA if needed."""
+def render_verbatim_text(elem, ns, level, cfg, dedentation=None):
+    """Render a code/verbatim element: dedent, optionally format, wrap in CDATA
+    if needed."""
     indent1 = indentation(level, cfg)
     indent2 = indentation(level + 1, cfg)
 
     text = re.sub(
         r"^(\s*\n)*",
         "",
-        dedent_by(to_text(elem), None).rstrip(),
+        maybe_formatted(
+            dedent_by(to_text(elem), dedentation).rstrip(),
+            elem,
+            cfg,
+        ),
     )
     needs_cdata = any(e in text for e in "&<>")
 
@@ -212,6 +301,35 @@ def render_code(elem, ns, level, cfg):
         content += f"\n{indent2}]]>"
 
     content += f"\n{indent1}{close_tag(elem, ns)}\n"
+    return content
+
+
+def render_compound_code(elem, ns, level, cfg):
+    """Render a compound code element whose children share common
+    dedentation."""
+    compound_cfg = cfg["compound_code"][elem.tag]
+    code_child_tags = set(compound_cfg.get("code_children", []))
+
+    if is_just_text(elem):
+        # Simple element that directly contains text.
+        return render_verbatim_text(elem, ns, level, cfg)
+
+    content = f"\n{indentation(level, cfg)}{open_tag(elem, ns)}\n"
+
+    # Separate code children from other children.
+    code_children = [c for c in elem if c.tag in code_child_tags]
+    other_children = [c for c in elem if c.tag not in code_child_tags]
+
+    if code_children:
+        d = common_indentation(to_text(x).rstrip() for x in code_children)
+        for c in code_children:
+            content += render_verbatim_text(c, ns, level + 1, cfg, d)
+
+    if other_children:
+        for o in other_children:
+            content += render_verbatim_text(o, ns, level + 1, cfg)
+
+    content += f"\n{indentation(level, cfg)}{close_tag(elem, ns)}\n"
     return content
 
 
@@ -272,9 +390,15 @@ def render_with_whitespace(elem, ns, level, cfg):
             s += child.tail
 
     s = s.rstrip()
-    s += f"\n{indentation(level, cfg)}"
+
+    if not is_oneline(elem, cfg):
+        s += f"\n{indentation(level, cfg)}"
+
     s += close_tag(elem, ns)
-    s += "\n"
+
+    if not is_oneline(elem, cfg):
+        s += "\n"
+
     return s
 
 
@@ -312,10 +436,29 @@ def fill_with_indent(text, i, width):
 def serialize_element(elem, ns=DEFAULT_NS, level=0, cfg=DEFAULT_CONFIG):
     if not isinstance(elem.tag, str):
         return render_comment(elem, level, cfg)
-    elif is_inline(elem, cfg):
+
+    # Check conditional rules for category override.
+    override = apply_rules(elem, cfg)
+
+    if override == "inline":
         return render_inline(elem, ns, cfg)
+    elif override == "code":
+        return render_verbatim_text(elem, ns, level, cfg)
+    elif override == "preserve_whitespace":
+        return render_with_whitespace(elem, ns, level, cfg)
+    elif override == "block":
+        return render_block(elem, ns, level, cfg)
+    elif override is not None:
+        # Unknown override; treat as block.
+        return render_block(elem, ns, level, cfg)
+
+    # Normal tag-based dispatch.
+    if is_inline(elem, cfg):
+        return render_inline(elem, ns, cfg)
+    elif is_compound_code(elem, cfg) and not is_just_text(elem):
+        return render_compound_code(elem, ns, level, cfg)
     elif is_code(elem, cfg):
-        return render_code(elem, ns, level, cfg)
+        return render_verbatim_text(elem, ns, level, cfg)
     elif preserve_whitespace(elem, cfg):
         return render_with_whitespace(elem, ns, level, cfg)
     else:
@@ -363,10 +506,15 @@ if __name__ == "__main__":
     parser.add_argument(
         "-c", "--config", default=None, help="Path to JSON config file"
     )
+    parser.add_argument(
+        "-f", "--format-code", action="store_true",
+        help="Enable external code formatting via configured formatters"
+    )
     parser.add_argument("files", nargs="*", help="Files to reformat")
 
     args = parser.parse_args()
     cfg = load_config(args.config)
+    cfg["_format_enabled"] = args.format_code
 
     for filename in args.files:
         if not args.quiet:
