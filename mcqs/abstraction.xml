@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mcqs>
+  <mcq uuid="197fabc1-872a-4393-885e-0899eb160baf">
+    <title>Definition of abstraction</title>
+
+    <question>
+      <p>
+        Which of the following best describes the concept of abstraction in
+        programming?
+      </p>
+    </question>
+
+    <answers>
+      <item>
+        Writing code that runs as fast as possible by removing unnecessary lines
+      </item>
+
+      <item correct="true">
+        Reducing complexity by focusing on the main idea and hiding irrelevant
+        details
+      </item>
+
+      <item>
+        Making all variables and methods public so they can be accessed from
+        anywhere
+      </item>
+
+      <item>Converting code from one programming language to another</item>
+    </answers>
+  </mcq>
+
+  <mcq uuid="aab02848-09b7-42a9-a588-4a5d60071864">
+    <title>Variable as abstraction over possible values</title>
+
+    <question>
+      <p>Consider the following variable declaration.</p>
+
+      <code>int total = 0;</code>
+
+      <p>In what sense is this variable an example of abstraction?</p>
+    </question>
+
+    <answers>
+      <item>It hides the fact that the variable is stored in memory</item>
+
+      <item>It represents a single concrete value that never changes</item>
+
+      <item correct="true">
+        It abstracts over all the possible values the variable could take on
+      </item>
+
+      <item>
+        It prevents other parts of the program from accessing the value
+      </item>
+    </answers>
+  </mcq>
+
+  <mcq uuid="435e59ac-f153-42aa-9516-398bff692f25">
+    <title>Int type hiding bits as data abstraction</title>
+
+    <question>
+      <p>Which of the following is the best example of data abstraction?</p>
+    </question>
+
+    <answers>
+      <item>Using a for loop to iterate through an array</item>
+
+      <item correct="true">
+        Using Java's int type to do arithmetic without thinking about the
+        underlying bits
+      </item>
+
+      <item>Writing a main method that calls other methods</item>
+
+      <item>Using System.out.println to display output</item>
+    </answers>
+  </mcq>
+
+  <mcq uuid="cb096fa4-d688-46a9-9d61-b454a903a54c">
+    <title>String class as data abstraction</title>
+
+    <question>
+      <p>
+        A programmer uses Java's String class to store and manipulate text
+        without knowing how the class internally represents the characters. This
+        is an example of which type of abstraction?
+      </p>
+    </question>
+
+    <answers>
+      <item>Procedural abstraction</item>
+
+      <item correct="true">Data abstraction</item>
+
+      <item>Method decomposition</item>
+
+      <item>Loop abstraction</item>
+    </answers>
+  </mcq>
+
+  <mcq uuid="700d928c-535d-4950-9972-afd8b8ff9764">
+    <title>Square method as procedural abstraction</title>
+
+    <question>
+      <p>Consider the following methods.</p>
+
+      <code>
+        public double hypotenuse(double a, double b) { return
+        Math.sqrt(square(a) + square(b)); } public double square(double n) {
+        return n * n; }
+      </code>
+
+      <p>The square method is an example of which of the following?</p>
+    </question>
+
+    <answers>
+      <item>Data abstraction</item>
+
+      <item>Class abstraction</item>
+
+      <item correct="true">Procedural abstraction</item>
+
+      <item>Variable abstraction</item>
+    </answers>
+  </mcq>
+
+  <mcq uuid="45b3ada8-a460-45b6-ab49-66fd017e3f37">
+    <title>Decomposition does not guarantee bug-free code</title>
+
+    <question>
+      <p>Which of the following is NOT a benefit of method decomposition?</p>
+    </question>
+
+    <answers>
+      <item>Avoiding repetition of code</item>
+
+      <item>Reducing the complexity of individual methods</item>
+
+      <item>Making code easier to maintain and change</item>
+
+      <item correct="true">Guaranteeing that the program has no bugs</item>
+    </answers>
+  </mcq>
+
+  <mcq uuid="a762a646-eb22-4fc0-8954-a17687400767">
+    <title>Nouns become classes in OO design</title>
+
+    <question>
+      <p>
+        When designing an object-oriented program, a programmer writes the
+        following description: "Students enroll in courses and receive grades.
+        Teachers assign grades and create assignments."
+      </p>
+
+      <p>
+        Using the noun-verb approach to class design, which of the following
+        would most likely be classes in the program?
+      </p>
+    </question>
+
+    <answers>
+      <item>Enroll, Assign, Create, Receive</item>
+
+      <item correct="true">Student, Course, Teacher, Assignment</item>
+
+      <item>Grade, Enroll, Student, Create</item>
+
+      <item>Student, Enroll, Course, Assign</item>
+    </answers>
+  </mcq>
+
+  <mcq uuid="48ae469a-b919-4ca6-91d8-6f8f4e7d15de">
+    <title>UML minus and plus access notation</title>
+
+    <question>
+      <p>
+        In a UML class diagram, what do the symbols - and + indicate when placed
+        before attributes and methods?
+      </p>
+    </question>
+
+    <answers>
+      <item>
+        - indicates a static member and + indicates an instance member
+      </item>
+
+      <item>- indicates a method and + indicates a constructor</item>
+
+      <item correct="true">
+        - indicates a private member and + indicates a public member
+      </item>
+
+      <item>- indicates a data type and + indicates a return type</item>
+    </answers>
+  </mcq>
+
+  <mcq uuid="2fb9eaa0-497d-421a-a022-de1ba89e7661">
+    <title>Changing method internals without affecting callers</title>
+
+    <question>
+      <p>
+        A programmer changes the internal implementation of a method to make it
+        faster, but does not change the method signature or what the method
+        returns. Which of the following is true?
+      </p>
+    </question>
+
+    <answers>
+      <item>
+        All code that calls the method must be updated to match the new
+        implementation
+      </item>
+
+      <item>
+        The change will cause a compile-time error in classes that use the
+        method
+      </item>
+
+      <item correct="true">
+        Code that calls the method does not need to change because of procedural
+        abstraction
+      </item>
+
+      <item>
+        The method must be renamed to indicate that its implementation has
+        changed
+      </item>
+    </answers>
+  </mcq>
+
+  <mcq uuid="6221abe1-b283-4314-8526-afd13ef5d638">
+    <title>Integer overflow breaks int abstraction</title>
+
+    <question>
+      <p>
+        No abstraction is perfect. Which of the following illustrates a case
+        where Java's int data abstraction breaks down?
+      </p>
+    </question>
+
+    <answers>
+      <item>Dividing an int by zero causes an ArithmeticException</item>
+
+      <item correct="true">
+        Adding 1 to Integer.MAX_VALUE produces a negative number instead of a
+        larger positive number
+      </item>
+
+      <item>
+        Declaring an int variable without initializing it causes a compile-time
+        error
+      </item>
+
+      <item>Assigning a double value to an int variable requires a cast</item>
+    </answers>
+  </mcq>
+</mcqs>

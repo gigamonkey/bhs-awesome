@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <mcqs>
-  <mcq number="1">
+  <mcq>
+    <title>Casting double division to int</title>
+
     <question>
       <p>Consider the following code segment.</p>
 
@@ -29,7 +31,9 @@
     </answers>
   </mcq>
 
-  <mcq number="2">
+  <mcq>
+    <title>Math.random range calculation</title>
+
     <question>
       <p>Consider the following code segment.</p>
 
@@ -56,7 +60,9 @@
     </answers>
   </mcq>
 
-  <mcq number="3">
+  <mcq>
+    <title>Date constructor matching parameter types</title>
+
     <question>
       <p>Consider the following Date class.</p>
 
@@ -109,7 +115,9 @@
     </answers>
   </mcq>
 
-  <mcq number="4">
+  <mcq>
+    <title>String substring and concatenation</title>
+
     <question>
       <p>Consider the following code segment.</p>
 
@@ -133,7 +141,9 @@
     </answers>
   </mcq>
 
-  <mcq number="5">
+  <mcq>
+    <title>If-else-if year categorization logic</title>
+
     <question>
       <p>
         The following method is intended to return "Renaissance" for years from
@@ -236,7 +246,9 @@
     </answers>
   </mcq>
 
-  <mcq number="6">
+  <mcq>
+    <title>De Morgan's law boolean equivalence</title>
+
     <question>
       <p>
         Assume that x, y, and z are boolean variables that have been properly
@@ -279,7 +291,9 @@
     </answers>
   </mcq>
 
-  <mcq number="7">
+  <mcq>
+    <title>Nested loop decreasing row length</title>
+
     <question>
       <p>Consider the following code segment.</p>
 
@@ -346,7 +360,9 @@
     </answers>
   </mcq>
 
-  <mcq number="8">
+  <mcq>
+    <title>While-for nested loop iteration count</title>
+
     <question>
       <p>Consider the following code segment.</p>
 
@@ -381,7 +397,9 @@
     </answers>
   </mcq>
 
-  <mcq number="9">
+  <mcq>
+    <title>Movie class diagram private fields public getters</title>
+
     <question>
       <p>
         A programmer is creating a Movie class that will contain attributes for
@@ -455,7 +473,9 @@
     </answers>
   </mcq>
 
-  <mcq number="10">
+  <mcq>
+    <title>Open source for intellectual property sharing</title>
+
     <question>
       <p>
         A programmer developed a method and wants to allow other programmers to
@@ -478,7 +498,9 @@
     </answers>
   </mcq>
 
-  <mcq number="11">
+  <mcq>
+    <title>Public vs private method access across classes</title>
+
     <question>
       <p>
         The following class declarations are used to represent information about
@@ -547,7 +569,9 @@
     </answers>
   </mcq>
 
-  <mcq number="12">
+  <mcq>
+    <title>Point isEquiv using getters for comparison</title>
+
     <question>
       <p>Consider the following class declaration.</p>
 
@@ -625,7 +649,9 @@
     </answers>
   </mcq>
 
-  <mcq number="13">
+  <mcq>
+    <title>Combining data sets for age-group downloads</title>
+
     <question>
       <p>
         A researcher wants to investigate which age group (under 18 years old,
@@ -676,7 +702,9 @@
     </answers>
   </mcq>
 
-  <mcq number="14">
+  <mcq>
+    <title>findMaxValue init to first element fix</title>
+
     <question>
       <p>
         Consider the following method, which is intended to return the maximum
@@ -736,7 +764,9 @@
     </answers>
   </mcq>
 
-  <mcq number="15">
+  <mcq>
+    <title>Scanner split to build usernames from roster</title>
+
     <question>
       <p>
         A text file named roster.txt has the following contents. Assume that the
@@ -821,7 +851,9 @@
     </answers>
   </mcq>
 
-  <mcq number="16">
+  <mcq>
+    <title>ArrayList increment odd values</title>
+
     <question>
       <p>Consider the following method.</p>
 
@@ -859,7 +891,9 @@
     </answers>
   </mcq>
 
-  <mcq number="17">
+  <mcq>
+    <title>2D array column 2 sum equals 3</title>
+
     <question>
       <p>Consider the following code segment.</p>
 
@@ -919,7 +953,9 @@
     </answers>
   </mcq>
 
-  <mcq number="18">
+  <mcq>
+    <title>2D array product of positive elements</title>
+
     <question>
       <p>Consider the following code segment.</p>
 
@@ -959,7 +995,9 @@
     </answers>
   </mcq>
 
-  <mcq number="19">
+  <mcq>
+    <title>Selection sort state after three iterations</title>
+
     <question>
       <p>
         The following method is a correct implementation of the selection sort
@@ -1016,7 +1054,9 @@
     </answers>
   </mcq>
 
-  <mcq number="20">
+  <mcq>
+    <title>Recursive mystery method print order</title>
+
     <question>
       <p>Consider the following method.</p>
 
