@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <mcqs>
+
+  <title>MCQs from the CED</title>
+
+  <instructions>
+    <p>Practice problems from the AP CSA Course and Exam Description</p>
+  </instructions>
+
   <mcq>
     <title>Casting double division to int</title>
 

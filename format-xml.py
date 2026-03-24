@@ -37,6 +37,7 @@ Config JSON example:
 """
 
 import json
+import os
 import re
 import subprocess
 from argparse import ArgumentParser
@@ -513,10 +514,19 @@ if __name__ == "__main__":
     parser.add_argument("files", nargs="*", help="Files to reformat")
 
     args = parser.parse_args()
-    cfg = load_config(args.config)
-    cfg["_format_enabled"] = args.format_code
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    formats_dir = os.path.join(script_dir, ".xml-formats")
 
     for filename in args.files:
+        if args.config:
+            cfg = load_config(args.config)
+        else:
+            ext = os.path.splitext(filename)[1].lstrip(".")
+            auto_config = os.path.join(formats_dir, f"{ext}.json")
+            cfg = load_config(auto_config if os.path.exists(auto_config) else None)
+        cfg["_format_enabled"] = args.format_code
+
         if not args.quiet:
             print(f"{filename} ... ", file=stderr, end="")
         reformat(filename, args.inplace, cfg)

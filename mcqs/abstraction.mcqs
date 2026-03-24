@@ -1,5 +1,12 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <mcqs>
+  <title>Abstraction</title>
+
+  <instructions>
+    <p>Checking how much you got out of your reading of 13.1</p>
+  </instructions>
+
   <mcq uuid="197fabc1-872a-4393-885e-0899eb160baf">
     <title>Definition of abstraction</title>
 
@@ -35,7 +42,9 @@
     <question>
       <p>Consider the following variable declaration.</p>
 
-      <code>int total = 0;</code>
+      <code>
+        int total = 0;
+      </code>
 
       <p>In what sense is this variable an example of abstraction?</p>
     </question>
@@ -63,16 +72,16 @@
     </question>
 
     <answers>
-      <item>Using a for loop to iterate through an array</item>
+      <item>Using a <c>for</c> loop to iterate through an array</item>
 
       <item correct="true">
-        Using Java's int type to do arithmetic without thinking about the
+        Using Java's <c>int</c> type to do arithmetic without thinking about the
         underlying bits
       </item>
 
-      <item>Writing a main method that calls other methods</item>
+      <item>Writing a <c>main</c> method that calls other methods</item>
 
-      <item>Using System.out.println to display output</item>
+      <item>Using System.out.<c>println</c> to display output</item>
     </answers>
   </mcq>
 
@@ -81,9 +90,9 @@
 
     <question>
       <p>
-        A programmer uses Java's String class to store and manipulate text
-        without knowing how the class internally represents the characters. This
-        is an example of which type of abstraction?
+        A programmer uses Java's <c>String</c> class to store and manipulate
+        text without knowing how the class internally represents the characters.
+        This is an example of which type of abstraction?
       </p>
     </question>
 
@@ -105,9 +114,13 @@
       <p>Consider the following methods.</p>
 
       <code>
-        public double hypotenuse(double a, double b) { return
-        Math.sqrt(square(a) + square(b)); } public double square(double n) {
-        return n * n; }
+        public double hypotenuse(double a, double b) {
+          return Math.sqrt(square(a) + square(b));
+        }
+
+        public double square(double n) {
+          return n * n;
+        }
       </code>
 
       <p>The square method is an example of which of the following?</p>
@@ -128,10 +141,10 @@
     <title>Decomposition does not guarantee bug-free code</title>
 
     <question>
-      <p>Which of the following is NOT a benefit of method decomposition?</p>
+      <p>Which of the following is a benefit of method decomposition?</p>
     </question>
 
-    <answers>
+    <answers kind="multiple">
       <item>Avoiding repetition of code</item>
 
       <item>Reducing the complexity of individual methods</item>
@@ -174,23 +187,29 @@
 
     <question>
       <p>
-        In a UML class diagram, what do the symbols - and + indicate when placed
-        before attributes and methods?
+        In a UML class diagram, what do the symbols <c>-</c> and <c>+</c>
+        indicate when placed before attributes and methods?
       </p>
     </question>
 
     <answers>
       <item>
-        - indicates a static member and + indicates an instance member
+        <c>-</c> indicates a static member and <c>+</c> indicates an instance
+        member
       </item>
 
-      <item>- indicates a method and + indicates a constructor</item>
+      <item>
+        <c>-</c> indicates a method and <c>+</c> indicates a constructor
+      </item>
 
       <item correct="true">
-        - indicates a private member and + indicates a public member
+        <c>-</c> indicates a private member and <c>+</c> indicates a public
+        member
       </item>
 
-      <item>- indicates a data type and + indicates a return type</item>
+      <item>
+        <c>-</c> indicates a data type and <c>+</c> indicates a return type
+      </item>
     </answers>
   </mcq>
 
@@ -234,24 +253,30 @@
     <question>
       <p>
         No abstraction is perfect. Which of the following illustrates a case
-        where Java's int data abstraction breaks down?
+        where Java's <c>int</c> data abstraction of mathematical integers breaks
+        down?
       </p>
     </question>
 
     <answers>
-      <item>Dividing an int by zero causes an ArithmeticException</item>
+      <item>
+        Dividing an <c>int</c> by zero causes an <c>ArithmeticException</c>
+      </item>
 
       <item correct="true">
-        Adding 1 to Integer.MAX_VALUE produces a negative number instead of a
-        larger positive number
+        Adding 1 to <c>Integer.MAX_VALUE</c> produces a negative number instead
+        of a larger positive number
       </item>
 
       <item>
-        Declaring an int variable without initializing it causes a compile-time
-        error
+        Declaring an <c>int</c> variable without initializing it causes a
+        compile-time error
       </item>
 
-      <item>Assigning a double value to an int variable requires a cast</item>
+      <item>
+        Assigning a <c>double</c> value to an <c>int</c> variable requires a
+        cast
+      </item>
     </answers>
   </mcq>
 </mcqs>
