@@ -44,6 +44,7 @@ if __name__ == "__main__":
     )
     parser.add_argument("-f", "--full", action="store_true", help="Full paths")
     parser.add_argument("-r", "--relative", action="store_true", help="Relative to current directory")
+    parser.add_argument("-c", "--contains", metavar="XPATH", help="Only list files containing elements matching this XPath expression")
     parser.add_argument("root", help="Root file")
 
     args = parser.parse_args()
@@ -51,6 +52,11 @@ if __name__ == "__main__":
     top = os.path.dirname(os.path.abspath(args.root))
 
     for source in process_xml(args.root):
+        if args.contains:
+            tree = etree.parse(source)
+            if not tree.xpath(args.contains):
+                continue
+
         if args.full:
             print(os.path.realpath(source))
         elif args.relative:
