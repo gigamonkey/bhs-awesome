@@ -145,13 +145,13 @@
     </question>
 
     <answers kind="multiple">
-      <item>Avoiding repetition of code</item>
+      <item correct="true">Avoiding repetition of code</item>
 
-      <item>Reducing the complexity of individual methods</item>
+      <item correct="true">Reducing the complexity of individual methods</item>
 
-      <item>Making code easier to maintain and change</item>
+      <item correct="true">Making code easier to maintain and change</item>
 
-      <item correct="true">Guaranteeing that the program has no bugs</item>
+      <item>Guaranteeing that the program has no bugs</item>
     </answers>
   </mcq>
 
