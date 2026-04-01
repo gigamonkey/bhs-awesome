@@ -26,7 +26,6 @@ from lxml import etree
 from jaccard import similarity as jaccard_similarity
 from extract_activities import extract_activities, write_groups
 
-DEFAULT_THRESHOLD = 0.95
 DEFAULT_SHINGLE_SIZE = 6
 
 
@@ -49,12 +48,8 @@ def sha1(s):
     return hashlib.sha1(s.encode()).hexdigest()
 
 
-def match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b, shingle_size=DEFAULT_SHINGLE_SIZE):
-    """Match activities of one type between the two sides, writing to paired_f.
-
-    Populates pairings_a and pairings_b with {uuid: (other_uuid, sim)} for
-    every activity on each side.
-    """
+def match_type(atype, acts_a, acts_b, paired_f, shingle_size=DEFAULT_SHINGLE_SIZE):
+    """Match activities of one type between the two sides, writing to paired_f."""
     items_a = [(act.get("uuid"), normalize(act)) for act in acts_a]
     items_b = [(act.get("uuid"), normalize(act)) for act in acts_b]
 
@@ -69,8 +64,6 @@ def match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b, shingle_
         if bucket:
             uid_b, _ = bucket.popleft()
             paired_f.write(f"{atype}\t{uid_a}\t{uid_b}\t1.0\n")
-            pairings_a[uid_a] = (uid_b, 1.0)
-            pairings_b[uid_b] = (uid_a, 1.0)
         else:
             unmatched_a.append((uid_a, norm_a))
 
@@ -82,10 +75,8 @@ def match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b, shingle_
     if not unmatched_a or not unmatched_b:
         for uid_a, _ in unmatched_a:
             paired_f.write(f"{atype}\t{uid_a}\t-\t0.0\n")
-            pairings_a[uid_a] = ("-", 0.0)
         for uid_b, _ in unmatched_b:
             paired_f.write(f"{atype}\t-\t{uid_b}\t0.0\n")
-            pairings_b[uid_b] = ("-", 0.0)
         return
 
     # --- Fuzzy-match pass ---
@@ -94,15 +85,9 @@ def match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b, shingle_
     if a_is_smaller:
         smaller, larger = unmatched_a, unmatched_b
         def make_row(uid_s, uid_l, sim): return f"{atype}\t{uid_s}\t{uid_l}\t{sim}\n"
-        def record(uid_s, uid_l, sim): pairings_a[uid_s] = (uid_l, sim); pairings_b[uid_l] = (uid_s, sim)
-        def record_unmatched_small(uid_s): pairings_a[uid_s] = ("-", 0.0)
-        def record_unmatched_large(uid_l): pairings_b[uid_l] = ("-", 0.0)
     else:
         smaller, larger = unmatched_b, unmatched_a
         def make_row(uid_s, uid_l, sim): return f"{atype}\t{uid_l}\t{uid_s}\t{sim}\n"
-        def record(uid_s, uid_l, sim): pairings_b[uid_s] = (uid_l, sim); pairings_a[uid_l] = (uid_s, sim)
-        def record_unmatched_small(uid_s): pairings_b[uid_s] = ("-", 0.0)
-        def record_unmatched_large(uid_l): pairings_a[uid_l] = ("-", 0.0)
 
     print(
         f"  {len(unmatched_a)} unmatched in A, {len(unmatched_b)} unmatched in B "
@@ -129,10 +114,8 @@ def match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b, shingle_
             uid_large, _ = available[best_idx]
             available[best_idx] = None
             paired_f.write(make_row(uid_small, uid_large, f"{best_sim:.6f}"))
-            record(uid_small, uid_large, best_sim)
         else:
             paired_f.write(make_row(uid_small, "-", "0.0"))
-            record_unmatched_small(uid_small)
 
         if i % 10 == 0 or i == len(smaller):
             print(f"  {i}/{len(smaller)} matched", file=sys.stderr)
@@ -141,45 +124,9 @@ def match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b, shingle_
         if entry is not None:
             uid_large, _ = entry
             paired_f.write(make_row("-", uid_large, "0.0"))
-            record_unmatched_large(uid_large)
 
 
-def write_unused(groups, pairings, threshold, outdir):
-    """Write activities not paired above threshold to outdir.
-
-    Each activity gets pair= and similarity= attributes reflecting its best match.
-    Sections with no unused activities are omitted.
-    """
-    filtered = {}
-    for atype, chapter in groups.items():
-        new_chapter = etree.Element("chapter")
-        for section in chapter:
-            new_section = etree.Element("section")
-            for attr, val in section.attrib.items():
-                new_section.set(attr, val)
-            unused = []
-            for child in section:
-                if child.tag != "activity":
-                    new_section.append(deepcopy(child))
-                else:
-                    uid = child.get("uuid")
-                    other_uid, sim = pairings.get(uid, ("-", 0.0))
-                    if sim < threshold:
-                        act = deepcopy(child)
-                        act.set("pair", other_uid)
-                        act.set("similarity", f"{sim:.6f}")
-                        unused.append(act)
-            if unused:
-                for act in unused:
-                    new_section.append(act)
-                new_chapter.append(new_section)
-        if len(new_chapter):
-            filtered[atype] = new_chapter
-
-    write_groups(filtered, outdir)
-
-
-def compare_activities(root_a, root_b, outdir, threshold=DEFAULT_THRESHOLD, shingle_size=DEFAULT_SHINGLE_SIZE):
+def compare_activities(root_a, root_b, outdir, shingle_size=DEFAULT_SHINGLE_SIZE):
     print("Extracting activities from root A...", file=sys.stderr)
     groups_a = extract_activities(root_a)
     print("Extracting activities from root B...", file=sys.stderr)
@@ -205,35 +152,23 @@ def compare_activities(root_a, root_b, outdir, threshold=DEFAULT_THRESHOLD, shin
     if only_b:
         print(f"Types only in B: {', '.join(sorted(only_b))}", file=sys.stderr)
 
-    pairings_a = {}
-    pairings_b = {}
-
     paired_path = os.path.join(outdir, "paired.tsv")
 
     with open(paired_path, "w", buffering=1) as paired_f:
         for atype in sorted(only_a):
             for act in groups_a[atype].xpath(".//activity"):
-                uid = act.get("uuid")
-                paired_f.write(f"{atype}\t{uid}\t-\t0.0\n")
-                pairings_a[uid] = ("-", 0.0)
+                paired_f.write(f"{atype}\t{act.get('uuid')}\t-\t0.0\n")
         for atype in sorted(only_b):
             for act in groups_b[atype].xpath(".//activity"):
-                uid = act.get("uuid")
-                paired_f.write(f"{atype}\t-\t{uid}\t0.0\n")
-                pairings_b[uid] = ("-", 0.0)
+                paired_f.write(f"{atype}\t-\t{act.get('uuid')}\t0.0\n")
 
         for atype in sorted(types_a & types_b):
             acts_a = groups_a[atype].xpath(".//activity")
             acts_b = groups_b[atype].xpath(".//activity")
             print(f"\nType '{atype}': {len(acts_a)} in A, {len(acts_b)} in B", file=sys.stderr)
-            match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b, shingle_size)
+            match_type(atype, acts_a, acts_b, paired_f, shingle_size)
 
     print(f"\nWrote {paired_path}", file=sys.stderr)
-
-    print(f"Writing unused A-side activities to {outdir}/unused-a/ ...", file=sys.stderr)
-    write_unused(groups_a, pairings_a, threshold, os.path.join(outdir, "unused-a"))
-    print(f"Writing unused B-side activities to {outdir}/unused-b/ ...", file=sys.stderr)
-    write_unused(groups_b, pairings_b, threshold, os.path.join(outdir, "unused-b"))
 
 
 if __name__ == "__main__":
@@ -249,14 +184,10 @@ if __name__ == "__main__":
     parser.add_argument("root_b", help="Second root PreTeXt file")
     parser.add_argument("outdir", help="Output directory")
     parser.add_argument(
-        "-t", "--threshold", type=float, default=DEFAULT_THRESHOLD,
-        help=f"Minimum similarity to consider an activity paired (default: {DEFAULT_THRESHOLD})",
-    )
-    parser.add_argument(
         "-s", "--shingle-size", type=int, default=DEFAULT_SHINGLE_SIZE,
         help=f"Character k-gram size for Jaccard similarity (default: {DEFAULT_SHINGLE_SIZE})",
     )
 
     args = parser.parse_args()
 
-    compare_activities(args.root_a, args.root_b, args.outdir, args.threshold, args.shingle_size)
+    compare_activities(args.root_a, args.root_b, args.outdir, args.shingle_size)
