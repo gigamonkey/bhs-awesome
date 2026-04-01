@@ -26,10 +26,8 @@ from lxml import etree
 from jaccard import similarity as jaccard_similarity
 from extract_activities import extract_activities, write_groups
 
-# shingle size for jaccard similarity
-k = 6
-
 DEFAULT_THRESHOLD = 0.95
+DEFAULT_SHINGLE_SIZE = 6
 
 
 def assign_uuids(chapter):
@@ -51,7 +49,7 @@ def sha1(s):
     return hashlib.sha1(s.encode()).hexdigest()
 
 
-def match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b):
+def match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b, shingle_size=DEFAULT_SHINGLE_SIZE):
     """Match activities of one type between the two sides, writing to paired_f.
 
     Populates pairings_a and pairings_b with {uuid: (other_uuid, sim)} for
@@ -122,7 +120,7 @@ def match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b):
             if entry is None:
                 continue
             uid_large, norm_large = entry
-            sim = jaccard_similarity(norm_small, norm_large, k)["total"]
+            sim = jaccard_similarity(norm_small, norm_large, shingle_size)["total"]
             if sim > best_sim:
                 best_sim = sim
                 best_idx = idx
@@ -181,7 +179,7 @@ def write_unused(groups, pairings, threshold, outdir):
     write_groups(filtered, outdir)
 
 
-def compare_activities(root_a, root_b, outdir, threshold=DEFAULT_THRESHOLD):
+def compare_activities(root_a, root_b, outdir, threshold=DEFAULT_THRESHOLD, shingle_size=DEFAULT_SHINGLE_SIZE):
     print("Extracting activities from root A...", file=sys.stderr)
     groups_a = extract_activities(root_a)
     print("Extracting activities from root B...", file=sys.stderr)
@@ -228,7 +226,7 @@ def compare_activities(root_a, root_b, outdir, threshold=DEFAULT_THRESHOLD):
             acts_a = groups_a[atype].xpath(".//activity")
             acts_b = groups_b[atype].xpath(".//activity")
             print(f"\nType '{atype}': {len(acts_a)} in A, {len(acts_b)} in B", file=sys.stderr)
-            match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b)
+            match_type(atype, acts_a, acts_b, paired_f, pairings_a, pairings_b, shingle_size)
 
     print(f"\nWrote {paired_path}", file=sys.stderr)
 
@@ -254,7 +252,11 @@ if __name__ == "__main__":
         "--threshold", type=float, default=DEFAULT_THRESHOLD,
         help=f"Minimum similarity to consider an activity paired (default: {DEFAULT_THRESHOLD})",
     )
+    parser.add_argument(
+        "-s", "--shingle-size", type=int, default=DEFAULT_SHINGLE_SIZE,
+        help=f"Character k-gram size for Jaccard similarity (default: {DEFAULT_SHINGLE_SIZE})",
+    )
 
     args = parser.parse_args()
 
-    compare_activities(args.root_a, args.root_b, args.outdir, args.threshold)
+    compare_activities(args.root_a, args.root_b, args.outdir, args.threshold, args.shingle_size)
