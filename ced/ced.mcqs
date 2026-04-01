@@ -1037,7 +1037,7 @@
       </code>
 
       <p>
-        Assume selectionSort has been called with an int[] argument that has
+        Assume selectionSort has been called with an <c>int[]</c> argument that has
         been initialized with the following contents.
       </p>
 
