@@ -249,7 +249,7 @@ if __name__ == "__main__":
     parser.add_argument("root_b", help="Second root PreTeXt file")
     parser.add_argument("outdir", help="Output directory")
     parser.add_argument(
-        "--threshold", type=float, default=DEFAULT_THRESHOLD,
+        "-t", "--threshold", type=float, default=DEFAULT_THRESHOLD,
         help=f"Minimum similarity to consider an activity paired (default: {DEFAULT_THRESHOLD})",
     )
     parser.add_argument(
