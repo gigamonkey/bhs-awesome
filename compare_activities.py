@@ -14,7 +14,6 @@ emitted with '-' in the missing UUID column and 0.0 as the score.
 """
 
 import hashlib
-import importlib.util
 import os
 import re
 import sys
@@ -26,23 +25,10 @@ from copy import deepcopy
 from lxml import etree
 
 from jaccard import similarity as jaccard_similarity
+from extract_activities import extract_activities
 
 # shingle size for jaccard similarity
 k = 6
-
-# Load extract-activities.py (hyphenated filename requires importlib)
-def _load_module(name, filename):
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    spec = importlib.util.spec_from_file_location(
-        name, os.path.join(script_dir, filename)
-    )
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
-
-
-_ea = _load_module("extract_activities_mod", "extract-activities.py")
-extract_activities = _ea.extract_activities
 
 
 def assign_uuids(chapter):
@@ -206,7 +192,7 @@ def compare_activities(root_a, root_b, outdir):
 
 if __name__ == "__main__":
     parser = ArgumentParser(
-        prog="compare-activities",
+        prog="compare_activities",
         description=(
             "Find identical or similar activities between two PreTeXt root files. "
             "Extracts activities to <outdir>/a/ and <outdir>/b/, then writes "

@@ -13,7 +13,7 @@ cd pretext
 rm -rf "$SCRIPT_DIR"/just-book
 mkdir -p "$SCRIPT_DIR"/just-book
 
-"$SCRIPT_DIR"/list-files.py main.ptx | while read -r f; do
+"$SCRIPT_DIR"/list_files.py main.ptx | while read -r f; do
     cp --parents "$f" "$SCRIPT_DIR"/just-book/;
 done
 

@@ -89,7 +89,7 @@ def extract_activities(root_file):
 
 if __name__ == "__main__":
     parser = ArgumentParser(
-        prog="extract-activities",
+        prog="extract_activities",
         description="Extract activity elements from book files, organized by type into separate files.",
     )
     parser.add_argument("root", help="Root file")

@@ -35,7 +35,7 @@ def text(e):
 
 
 if __name__ == "__main__":
-    parser = ArgumentParser(prog="extract-key", description=__doc__)
+    parser = ArgumentParser(prog="extract_key", description=__doc__)
 
     parser.add_argument("file", help="MCQ file")
 

@@ -39,7 +39,7 @@ if __name__ == "__main__":
     import sys
 
     parser = ArgumentParser(
-        prog="list-files",
+        prog="list_files",
         description="List book files in topological order.",
     )
     parser.add_argument("-f", "--full", action="store_true", help="Full paths")

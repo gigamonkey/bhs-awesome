@@ -494,7 +494,7 @@ def reformat(filename, inplace, cfg):
 
 if __name__ == "__main__":
     parser = ArgumentParser(
-        prog="format-xml",
+        prog="format_xml",
         description="General-purpose XML formatter with configurable element categories.",
     )
 

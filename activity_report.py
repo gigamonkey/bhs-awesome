@@ -211,7 +211,7 @@ def display_tree(items, remaining_depth, indent=0, min_trunc=2, verbose=False, e
 
 if __name__ == "__main__":
     parser = ArgumentParser(
-        prog="activity-report",
+        prog="activity_report",
         description="Report on the different structures of activity elements.",
     )
     parser.add_argument("root", help="Root file")
