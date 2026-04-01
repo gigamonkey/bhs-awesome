@@ -23,8 +23,8 @@ from copy import deepcopy
 
 from lxml import etree
 
-import jaccard as jaccard_mod
-import lcs as lcs_mod
+import jaccard
+import lcs
 from extract_activities import extract_activities, write_groups
 
 DEFAULT_SHINGLE_SIZE = 6
@@ -108,11 +108,11 @@ def match_type(atype, acts_a, acts_b, paired_f, similarity=DEFAULT_SIMILARITY, s
                 continue
             uid_large, norm_large = entry
             if similarity == "lcs":
-                sim = lcs_mod.similarity(norm_small, norm_large)["total"]
+                sim = lcs.similarity(norm_small, norm_large)["total"]
             elif similarity == "jaccard-weighted":
-                sim = jaccard_mod.weighted_similarity(norm_small, norm_large, shingle_size)["total"]
+                sim = jaccard.weighted_similarity(norm_small, norm_large, shingle_size)["total"]
             else:
-                sim = jaccard_mod.similarity(norm_small, norm_large, shingle_size)["total"]
+                sim = jaccard.similarity(norm_small, norm_large, shingle_size)["total"]
             if sim > best_sim:
                 best_sim = sim
                 best_idx = idx
