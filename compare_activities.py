@@ -23,10 +23,12 @@ from copy import deepcopy
 
 from lxml import etree
 
-from jaccard import similarity as jaccard_similarity
+import jaccard as jaccard_mod
+import lcs as lcs_mod
 from extract_activities import extract_activities, write_groups
 
 DEFAULT_SHINGLE_SIZE = 6
+DEFAULT_SIMILARITY = "jaccard"
 
 
 def assign_uuids(chapter):
@@ -48,7 +50,7 @@ def sha1(s):
     return hashlib.sha1(s.encode()).hexdigest()
 
 
-def match_type(atype, acts_a, acts_b, paired_f, shingle_size=DEFAULT_SHINGLE_SIZE):
+def match_type(atype, acts_a, acts_b, paired_f, similarity=DEFAULT_SIMILARITY, shingle_size=DEFAULT_SHINGLE_SIZE):
     """Match activities of one type between the two sides, writing to paired_f."""
     items_a = [(act.get("uuid"), normalize(act)) for act in acts_a]
     items_b = [(act.get("uuid"), normalize(act)) for act in acts_b]
@@ -105,7 +107,10 @@ def match_type(atype, acts_a, acts_b, paired_f, shingle_size=DEFAULT_SHINGLE_SIZ
             if entry is None:
                 continue
             uid_large, norm_large = entry
-            sim = jaccard_similarity(norm_small, norm_large, shingle_size)["total"]
+            if similarity == "lcs":
+                sim = lcs_mod.similarity(norm_small, norm_large)["total"]
+            else:
+                sim = jaccard_mod.similarity(norm_small, norm_large, shingle_size)["total"]
             if sim > best_sim:
                 best_sim = sim
                 best_idx = idx
@@ -126,7 +131,7 @@ def match_type(atype, acts_a, acts_b, paired_f, shingle_size=DEFAULT_SHINGLE_SIZ
             paired_f.write(make_row("-", uid_large, "0.0"))
 
 
-def compare_activities(root_a, root_b, outdir, shingle_size=DEFAULT_SHINGLE_SIZE):
+def compare_activities(root_a, root_b, outdir, similarity=DEFAULT_SIMILARITY, shingle_size=DEFAULT_SHINGLE_SIZE):
     print("Extracting activities from root A...", file=sys.stderr)
     groups_a = extract_activities(root_a)
     print("Extracting activities from root B...", file=sys.stderr)
@@ -166,7 +171,7 @@ def compare_activities(root_a, root_b, outdir, shingle_size=DEFAULT_SHINGLE_SIZE
             acts_a = groups_a[atype].xpath(".//activity")
             acts_b = groups_b[atype].xpath(".//activity")
             print(f"\nType '{atype}': {len(acts_a)} in A, {len(acts_b)} in B", file=sys.stderr)
-            match_type(atype, acts_a, acts_b, paired_f, shingle_size)
+            match_type(atype, acts_a, acts_b, paired_f, similarity, shingle_size)
 
     print(f"\nWrote {paired_path}", file=sys.stderr)
 
@@ -184,10 +189,14 @@ if __name__ == "__main__":
     parser.add_argument("root_b", help="Second root PreTeXt file")
     parser.add_argument("outdir", help="Output directory")
     parser.add_argument(
+        "--similarity", choices=["jaccard", "lcs"], default=DEFAULT_SIMILARITY,
+        help=f"Similarity metric to use (default: {DEFAULT_SIMILARITY})",
+    )
+    parser.add_argument(
         "-s", "--shingle-size", type=int, default=DEFAULT_SHINGLE_SIZE,
         help=f"Character k-gram size for Jaccard similarity (default: {DEFAULT_SHINGLE_SIZE})",
     )
 
     args = parser.parse_args()
 
-    compare_activities(args.root_a, args.root_b, args.outdir, args.shingle_size)
+    compare_activities(args.root_a, args.root_b, args.outdir, args.similarity, args.shingle_size)
