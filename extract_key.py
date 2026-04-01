@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-"""Extract a json key from a MCQs file"""
+"""Extract a JSON answer key from a .quiz file"""
 
-import re
 import json
+import re
 from argparse import ArgumentParser
-from sys import stderr, stdout
+from sys import stdout
 
 from lxml import etree
 
@@ -14,7 +14,7 @@ def process_file(filename):
     answers = []
 
     tree = etree.parse(filename)
-    qs = tree.xpath('/mcqs/mcq')
+    qs = tree.xpath('/quiz/q')
 
     for q in qs:
         correct = q.xpath('answers/item[@correct="true"]')
@@ -37,7 +37,7 @@ def text(e):
 if __name__ == "__main__":
     parser = ArgumentParser(prog="extract_key", description=__doc__)
 
-    parser.add_argument("file", help="MCQ file")
+    parser.add_argument("file", help="Quiz file")
 
     args = parser.parse_args()
 
