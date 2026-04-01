@@ -40,20 +40,22 @@ def walk(elem, base_dir):
             yield from walk(child, base_dir)
 
 
-def signature(activity, deep=False, prune=None):
+def signature(activity, deep=False, prune=None, ignore=None):
     """Return a hashable representation of an activity's structure.
 
     With deep=False, returns a tuple of direct child tag names.
     With deep=True, returns a nested tuple representing the full tree
     structure down to the leaves.
     prune is an optional set of element names to not descend into.
+    ignore is an optional set of element names to omit entirely.
     """
+    ignore = ignore or set()
     if deep:
-        return _deep_sig(activity, prune=prune or set())
-    return tuple(c.tag for c in activity if isinstance(c.tag, str))
+        return _deep_sig(activity, prune=prune or set(), ignore=ignore)
+    return tuple(c.tag for c in activity if isinstance(c.tag, str) and c.tag not in ignore)
 
 
-def _deep_sig(elem, prune):
+def _deep_sig(elem, prune, ignore):
     """Recursively build a nested tuple of (tag, children...) for each element.
 
     When all children have the same tag, collapse them into a single
@@ -62,7 +64,11 @@ def _deep_sig(elem, prune):
     """
     if elem.tag in prune:
         return (elem.tag,)
-    children = [_deep_sig(c, prune) for c in elem if isinstance(c.tag, str)]
+    children = [
+        _deep_sig(c, prune, ignore)
+        for c in elem
+        if isinstance(c.tag, str) and c.tag not in ignore
+    ]
     if not children:
         return (elem.tag,)
     return (elem.tag, *_collapse_children(children))
@@ -222,6 +228,10 @@ if __name__ == "__main__":
         help="Don't descend into elements with this tag (can be repeated or comma-delimited)",
     )
     parser.add_argument(
+        "--ignore", action="append", default=[], metavar="ELEM",
+        help="Omit elements with this tag entirely (can be repeated or comma-delimited)",
+    )
+    parser.add_argument(
         "-t", "--tree", type=int, nargs="?", const=0, default=None, metavar="DEPTH",
         help="Hierarchical display with DEPTH levels (0 = unlimited, default). Implies --deep.",
     )
@@ -235,13 +245,17 @@ if __name__ == "__main__":
     for p in args.prune:
         prune.update(p.split(","))
 
+    ignore = set()
+    for i in args.ignore:
+        ignore.update(i.split(","))
+
     signatures = Counter()
     examples = {}
 
     for source in process_xml(args.root):
         tree = etree.parse(source)
         for activity in tree.xpath("//activity"):
-            sig = signature(activity, deep=args.deep, prune=prune)
+            sig = signature(activity, deep=args.deep, prune=prune, ignore=ignore)
             signatures[sig] += 1
             if sig not in examples:
                 examples[sig] = activity.get("label", "?")

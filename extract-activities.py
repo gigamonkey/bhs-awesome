@@ -15,7 +15,7 @@ XI_NAMESPACE = "http://www.w3.org/2001/XInclude"
 XI_TAG = f"{{{XI_NAMESPACE}}}include"
 
 # Elements that are "meta" rather than the primary activity type
-META_TAGS = {"title", "statement", "hint", "solution", "answer"}
+META_TAGS = {"title", "statement", "hint", "solution" }
 
 
 def process_xml(filename, base_dir=None):
