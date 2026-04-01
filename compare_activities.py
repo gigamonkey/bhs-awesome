@@ -157,8 +157,8 @@ def write_unused(groups, pairings, threshold, outdir):
         new_chapter = etree.Element("chapter")
         for section in chapter:
             new_section = etree.Element("section")
-            for k, v in section.attrib.items():
-                new_section.set(k, v)
+            for attr, val in section.attrib.items():
+                new_section.set(attr, val)
             unused = []
             for child in section:
                 if child.tag != "activity":
