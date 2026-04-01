@@ -109,6 +109,8 @@ def match_type(atype, acts_a, acts_b, paired_f, similarity=DEFAULT_SIMILARITY, s
             uid_large, norm_large = entry
             if similarity == "lcs":
                 sim = lcs_mod.similarity(norm_small, norm_large)["total"]
+            elif similarity == "jaccard-weighted":
+                sim = jaccard_mod.weighted_similarity(norm_small, norm_large, shingle_size)["total"]
             else:
                 sim = jaccard_mod.similarity(norm_small, norm_large, shingle_size)["total"]
             if sim > best_sim:
@@ -189,7 +191,7 @@ if __name__ == "__main__":
     parser.add_argument("root_b", help="Second root PreTeXt file")
     parser.add_argument("outdir", help="Output directory")
     parser.add_argument(
-        "--similarity", choices=["jaccard", "lcs"], default=DEFAULT_SIMILARITY,
+        "--similarity", choices=["jaccard", "jaccard-weighted", "lcs"], default=DEFAULT_SIMILARITY,
         help=f"Similarity metric to use (default: {DEFAULT_SIMILARITY})",
     )
     parser.add_argument(
