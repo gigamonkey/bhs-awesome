@@ -87,6 +87,21 @@ def extract_activities(root_file):
     return groups
 
 
+def write_groups(groups, outdir, strip_xml_id=False):
+    """Write activity groups to .ptx files in outdir, one file per type."""
+    os.makedirs(outdir, exist_ok=True)
+    for atype, chapter in sorted(groups.items()):
+        if strip_xml_id:
+            for elem in chapter.iter():
+                if XML_ID in elem.attrib:
+                    del elem.attrib[XML_ID]
+        outfile = os.path.join(outdir, f"{atype}.ptx")
+        with open(outfile, "wb") as f:
+            f.write(etree.tostring(chapter, pretty_print=True, xml_declaration=True, encoding="UTF-8"))
+        count = len(chapter.xpath(".//activity"))
+        print(f"{outfile}: {count} activities")
+
+
 if __name__ == "__main__":
     parser = ArgumentParser(
         prog="extract_activities",
@@ -98,18 +113,5 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    os.makedirs(args.outdir, exist_ok=True)
-
     groups = extract_activities(args.root)
-
-    for atype, chapter in sorted(groups.items()):
-        if args.strip_xml_id:
-            for elem in chapter.iter():
-                if XML_ID in elem.attrib:
-                    del elem.attrib[XML_ID]
-
-        outfile = os.path.join(args.outdir, f"{atype}.ptx")
-        with open(outfile, "wb") as f:
-            f.write(etree.tostring(chapter, pretty_print=True, xml_declaration=True, encoding="UTF-8"))
-        count = len(chapter.xpath(".//activity"))
-        print(f"{outfile}: {count} activities")
+    write_groups(groups, args.outdir, strip_xml_id=args.strip_xml_id)

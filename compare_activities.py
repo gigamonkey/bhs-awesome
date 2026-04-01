@@ -25,7 +25,7 @@ from copy import deepcopy
 from lxml import etree
 
 from jaccard import similarity as jaccard_similarity
-from extract_activities import extract_activities
+from extract_activities import extract_activities, write_groups
 
 # shingle size for jaccard similarity
 k = 6
@@ -36,17 +36,6 @@ def assign_uuids(chapter):
     for activity in chapter.xpath(".//activity"):
         if not activity.get("uuid"):
             activity.set("uuid", str(uuid.uuid4()))
-
-
-def write_groups(groups, outdir):
-    """Write activity groups to .ptx files, mirroring extract-activities.py output."""
-    os.makedirs(outdir, exist_ok=True)
-    for atype, chapter in sorted(groups.items()):
-        outfile = os.path.join(outdir, f"{atype}.ptx")
-        with open(outfile, "wb") as f:
-            f.write(etree.tostring(chapter, pretty_print=True, xml_declaration=True, encoding="UTF-8"))
-        count = len(chapter.xpath(".//activity"))
-        print(f"  {outfile}: {count} activities", file=sys.stderr)
 
 
 def normalize(activity):
