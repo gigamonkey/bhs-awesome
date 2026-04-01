@@ -2,7 +2,7 @@
 
 ## In progress
 
-- Extract all the activities from csawesome and label them by the unit they came from.
+- Write the plan requested by `plans/compare-books.md`
 
 ## Backlog
 
@@ -16,3 +16,6 @@
 - Please do what it says in [plans/extract-mcqs.md](plans/extract-mcqs.md).
 
 - Please do what it says in [plans/summarize-ced.md](plans/summarize-ced.md).
+
+- Extract all the activities from csawesome and label them by the unit they came from. (2026-04-01T13:01:25)
+
