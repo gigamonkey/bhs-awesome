@@ -1,23 +1,18 @@
 # TODO
 
-## Quick
+## In progress
 
-You can work on items in this section in the current branch.
+- Extract all the activities from csawesome and label them by the unit they came from.
 
-## To implement
-
-Items in this section should be of the form `Implement
-[plan_name](plans/plan_name.md).` where `plan_name.md` is a file in the `plans/`
-directory. When asked to do one of these items, work in a git worktree.
-
+## Backlog
 
 ## Done
 
-- [x] Implement [extend-format-xml](plans/extend-format-xml.md).
+- Implement [extend-format-xml](plans/extend-format-xml.md).
 
-- [x] Create `format-xml.py`, a general-purpose XML formatter based on
-      `format-ptx.py` with JSON config for element categories.
+- Create `format-xml.py`, a general-purpose XML formatter based on
+  `format-ptx.py` with JSON config for element categories.
 
-- [x] Please do what it says in [plans/extract-mcqs.md](plans/extract-mcqs.md).
+- Please do what it says in [plans/extract-mcqs.md](plans/extract-mcqs.md).
 
-- [x] Please do what it says in [plans/summarize-ced.md](plans/summarize-ced.md).
+- Please do what it says in [plans/summarize-ced.md](plans/summarize-ced.md).
