@@ -17,7 +17,6 @@ curriculum content from PreTeXt XML files and the College Board CED PDF.
 - `ced/` — AP CSA Course and Exam Description artifacts (PDF, extracted hierarchy, MCQs)
 - `csawesome-activities/` — Activities extracted from CSAwesome, grouped by type
 - `pretext/`, `csawesome/` — Full curriculum trees (gitignored, not in repo)
-- `plans/` — Implementation plans; `plans/done/` holds completed plans (don't read unless asked)
 - `regen` — Shell script that formats and converts CED MCQs to markup
 
 ## Key Scripts
@@ -28,7 +27,10 @@ curriculum content from PreTeXt XML files and the College Board CED PDF.
 | `extract_key.py`        | Extracts JSON answer key from `.mcqs` files                                                                                                                                                               |
 | `extract_activities.py` | Extracts activities from a PreTeXt root file, groups by type                                                                                                                                              |
 | `activity_report.py`    | Analyzes activity element structures and generates statistics                                                                                                                                             |
-| `compare_activities.py` | Finds identical or similar activities between two PreTeXt root files                                                                                                                                      |
+| `compare_activities.py` | Compares activities between two PreTeXt root files; writes `a/`, `b/`, and `paired.tsv` to an output dir. Options: `--similarity jaccard\|jaccard-weighted\|lcs`, `-s`/`--shingle-size`, `-t`/`--threshold` |
+| `filter_pairs.py`       | Filters a `compare_activities` output dir by threshold; writes `a/` and `b/` with unmatched activities annotated with `pair=` and `similarity=` attributes                                               |
+| `lcs.py`                | LCS-based string similarity utilities                                                                                                                                                                     |
+| `jaccard.py`            | Jaccard similarity on character k-grams (set and weighted/multiset variants)                                                                                                                             |
 | `list_files.py`         | Lists files in a PreTeXt document tree in topological order                                                                                                                                               |
 | `identify.py`           | Adds UUID attributes to XML elements matching XPath expressions                                                                                                                                           |
 
