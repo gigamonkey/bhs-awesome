@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+BHSAWESOME_ROOT=~/Runestone/books/BHSawesome2
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "$BHSAWESOME_ROOT"
+git pull
+cd pretext
+
+mkdir -p "$SCRIPT_DIR"/just-book
+
+"$SCRIPT_DIR"/list-files.py main.ptx | while read -r f; do
+    cp --parents "$f" "$SCRIPT_DIR"/just-book/;
+done
