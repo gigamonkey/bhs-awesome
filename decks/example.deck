@@ -1,0 +1,11 @@
+<deck>
+  <title>Example</title>
+  <card>
+    <front><p>A</p></front>
+    <back><p>1</p></back>
+  </card>
+  <card>
+    <front><p>B</p></front>
+    <back><p>2</p></back>
+  </card>
+</deck>

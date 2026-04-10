@@ -1,0 +1,33 @@
+<deck>
+  <title>AP CSA Essential Knowledge</title>
+
+  <section>
+    <title>Data types</title>
+
+    <cards>
+      <ek>A type is a set of values (a domain) and a set of operations on them.</ek>
+
+      <card>
+        <front><p>What two things define a type?</p></front>
+        <back><p>A set of values (a domain) and a set of operations on them.</p></back>
+      </card>
+      <card>
+        <front><p>In the definition of a type, what is the "domain"?</p></front>
+        <back><p>The set of values that belong to that type.</p></back>
+      </card>
+      <card>
+        <front><p>Why is <code>int</code> considered a different type from <code>double</code>, even though both represent numbers?</p></front>
+        <back><p>They have different domains (sets of possible values) and different operations defined on them.</p></back>
+      </card>
+      <card>
+        <front><p>If someone says "a type is just a set of values," what part of the definition are they missing?</p></front>
+        <back><p>The set of operations defined on those values.</p></back>
+      </card>
+      <card>
+        <front><p>What does it mean to say that operations are part of a type's definition?</p></front>
+        <back><p>A type is not just its values but also what you can do with them; the allowed operations are integral to what the type is.</p></back>
+      </card>
+    </cards>
+  </section>
+
+</deck>
