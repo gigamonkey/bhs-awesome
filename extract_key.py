@@ -17,6 +17,11 @@ def process_file(filename):
     qs = tree.xpath('/quiz/q')
 
     for q in qs:
+        tf = q.xpath('answers[@type="tf"]')
+        if tf:
+            answers.append({ "answer": "True" if tf[0].get("answer", "") == "t" else "False" })
+            continue
+
         correct = q.xpath('answers/item[@correct="true"]')
 
         if len(correct) == 0:
