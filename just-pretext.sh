@@ -14,7 +14,7 @@ cd "$REPO"
 git pull
 cd pretext
 
-"$SCRIPT_DIR"/list_files.py main.ptx | while read -r f; do
+uv run "$SCRIPT_DIR"/list_files.py main.ptx | while read -r f; do
     cp --parents "$f" "$DIR";
 done
 
