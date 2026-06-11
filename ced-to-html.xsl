@@ -19,13 +19,23 @@
           </xsl:choose>
         </title>
         <style>
-          body { font-family: sans-serif; line-height: 1.4; max-width: 50em; margin: 2em auto; padding: 0 1em; }
-          section section { margin-left: 1.5em; }
+          body { font-family: sans-serif; line-height: 1.2; max-width: 50em; margin: 2em auto; padding: 0 1em; }
+          h1.title { font-size: 2rem; }
+          h1 { font-size: 1.5rem; }
+          h2 { font-size: 1.2rem; }
+          h3 { font-size: 1.1rem; }
+          /*section section { margin-left: 1.5em; }*/
           .id { font-weight: bold; }
           pre { background: #f4f4f4; padding: 0.5em; }
         </style>
       </head>
       <body>
+        <h1 class="title">
+          <xsl:choose>
+            <xsl:when test="unit">AP CSA Course and Exam Description</xsl:when>
+            <xsl:otherwise>AP CSP Course and Exam Description</xsl:otherwise>
+          </xsl:choose>
+        </h1>
         <xsl:apply-templates select="big-idea|unit"/>
       </body>
     </html>
