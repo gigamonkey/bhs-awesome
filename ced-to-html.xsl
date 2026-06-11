@@ -136,7 +136,7 @@
   </xsl:template>
 
   <xsl:template match="text" mode="extra-blocks">
-    <xsl:apply-templates select="*[position() &gt; 1]"/>
+    <xsl:apply-templates select="*[self::p or self::ul or self::ol or self::pre][position() &gt; 1]"/>
   </xsl:template>
 
   <!-- Blocks and inline markup: already HTML-shaped, so rebuild as-is -->

@@ -19,3 +19,5 @@
 
 - Write the plan requested by `plans/compare-books.md` (2026-04-03T14:25:07)
 
+- Figure out why `<code>` elements are being emitted twice is ced-to-html.xsl (2026-06-11T13:26:41)
+
