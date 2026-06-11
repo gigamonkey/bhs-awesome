@@ -1,0 +1,63 @@
+<ced>
+  <big-idea xml:id="CRD">
+    <title>Creative Development</title>
+
+    <essential-understanding xml:id="CRD-1">
+      <text>
+        Incorporating multiple perspectives through collaboration improves
+        computing innovations as they are developed.
+      </text>
+
+      <learning-objective xml:id="CRD-1.A">
+        <text>
+          Explain how computing innovations are improved through collaboration.
+        </text>
+
+        <essential-knowledge xml:id="CRD-1.A.1">
+          <text>
+            A computing innovation includes a program as an integral part of its
+            function.
+          </text>
+        </essential-knowledge>
+
+        <essential-knowledge xml:id="CRD-1.A.2">
+          <text>
+            A computing innovation can be physical (e.g., self-driving car),
+            nonphysical computing software (e.g., picture editing software), or
+            a nonphysical computing concept (e.g., e-commerce).
+          </text>
+        </essential-knowledge>
+
+        <essential-knowledge xml:id="CRD-1.A.3">
+          <text>
+            Effective collaboration produces a computing innovation that
+            reflects the diversity of talents and perspectives of those who
+            designed it.
+          </text>
+        </essential-knowledge>
+
+        <essential-knowledge xml:id="CRD-1.A.4">
+          <text>
+            Collaboration that includes diverse perspectives helps avoid bias in
+            the development of computing innovations.
+          </text>
+        </essential-knowledge>
+
+        <essential-knowledge xml:id="CRD-1.A.5">
+          <text>
+            Consultation and communication with users are important aspects of
+            the development of computing innovations.
+          </text>
+        </essential-knowledge>
+
+        <essential-knowledge xml:id="CRD-1.A.6">
+          <text>
+            Information gathered from potential users can be used to understand
+            the purpose of a program from diverse perspectives and to develop a
+            program that fully incorporates these perspectives.
+          </text>
+        </essential-knowledge>
+      </learning-objective>
+    </essential-understanding>
+  </big-idea>
+</ced>

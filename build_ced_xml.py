@@ -1,0 +1,273 @@
+"""Convert csp/ced-hierarchy.md to csp/ced.xml using the schema from csp/sample.xml.
+
+- # Big Idea N: TITLE (CODE)  ->  <big-idea xml:id="CODE"><title>TITLE</title>...
+- ## ID TEXT                  ->  <essential-understanding xml:id="ID"><text>TEXT</text>...
+- ### ID TEXT                 ->  <learning-objective xml:id="ID"><text>TEXT</text>...
+- #### ID TEXT                ->  <essential-knowledge xml:id="ID"><text>TEXT</text>...
+
+Bullet/lettered lists, code blocks, *italic*, and `code` are converted to
+HTML-style markup inside <text>.
+"""
+
+import re
+import sys
+import textwrap
+
+HEADING = re.compile(r"^(#{1,4}) (.+)$")
+BIG_IDEA = re.compile(r"^Big Idea \d+: (.+) \((\w+)\)$")
+LETTERED = re.compile(r"^([a-z])\. (.*)")
+BULLET = re.compile(r"^- (.*)")
+
+LEVEL_TAG = {
+    1: "big-idea",
+    2: "essential-understanding",
+    3: "learning-objective",
+    4: "essential-knowledge",
+}
+
+
+def parse_sections(md):
+    """Walk markdown lines and return a flat list of section dicts."""
+    sections = []
+    current = None
+    for line in md.splitlines():
+        m = HEADING.match(line)
+        if m:
+            if current is not None:
+                sections.append(current)
+            level = len(m.group(1))
+            rest = m.group(2)
+            if level == 1:
+                bm = BIG_IDEA.match(rest)
+                if not bm:
+                    sys.exit(f"unparseable big-idea heading: {rest!r}")
+                title, code = bm.group(1), bm.group(2)
+                current = {"level": 1, "id": code, "title": title, "body": []}
+            else:
+                # "ID TEXT"
+                parts = rest.split(" ", 1)
+                id_ = parts[0]
+                title = parts[1] if len(parts) > 1 else ""
+                current = {"level": level, "id": id_, "title": title, "body": []}
+        else:
+            if current is not None:
+                current["body"].append(line)
+    if current is not None:
+        sections.append(current)
+    return sections
+
+
+# --- Markdown body parser --------------------------------------------------
+
+def parse_blocks(lines):
+    """Parse a list of markdown lines into a list of block tuples.
+
+    Returns blocks as (kind, content) where kind is one of:
+        'p'    - paragraph,   content = inline-markdown string
+        'pre'  - code block,  content = raw code string (newline-separated)
+        'ul'   - unordered list, content = list of block-lists (one per <li>)
+        'ol'   - lettered ordered list, content = list of block-lists
+    """
+    blocks = []
+    i = 0
+    n = len(lines)
+    while i < n:
+        # skip blank lines
+        if not lines[i].strip():
+            i += 1
+            continue
+        line = lines[i]
+        if BULLET.match(line):
+            items, i = parse_list(lines, i, kind="ul")
+            blocks.append(("ul", items))
+        elif LETTERED.match(line):
+            items, i = parse_list(lines, i, kind="ol")
+            blocks.append(("ol", items))
+        elif line.startswith("    "):
+            # top-level indented code block
+            code, i = parse_code(lines, i)
+            blocks.append(("pre", code))
+        else:
+            para, i = parse_paragraph(lines, i)
+            blocks.append(("p", para))
+    return blocks
+
+
+def parse_paragraph(lines, start):
+    """Collect consecutive non-blank, non-list, non-code lines into one paragraph."""
+    out = []
+    i = start
+    while i < len(lines):
+        ln = lines[i]
+        if not ln.strip():
+            break
+        if BULLET.match(ln) or LETTERED.match(ln) or ln.startswith("    "):
+            break
+        out.append(ln.rstrip())
+        i += 1
+    return " ".join(out), i
+
+
+def parse_code(lines, start):
+    """Collect a code block: consecutive lines starting with 4 spaces (blanks allowed inside)."""
+    out = []
+    i = start
+    while i < len(lines):
+        ln = lines[i]
+        if ln.startswith("    "):
+            out.append(ln[4:])
+            i += 1
+        elif not ln.strip():
+            # blank line could be part of code if next non-blank is also indented
+            j = i + 1
+            while j < len(lines) and not lines[j].strip():
+                j += 1
+            if j < len(lines) and lines[j].startswith("    "):
+                out.append("")
+                i += 1
+            else:
+                break
+        else:
+            break
+    while out and not out[-1].strip():
+        out.pop()
+    return "\n".join(out), i
+
+
+def parse_list(lines, start, kind):
+    """Parse a list (`ul` or `ol`) starting at lines[start].
+
+    Each item collects: the marker line's text, plus any subsequent lines
+    indented by 4+ spaces (which form nested blocks).
+    """
+    marker = BULLET if kind == "ul" else LETTERED
+    items = []
+    i = start
+    while i < len(lines):
+        m = marker.match(lines[i])
+        if not m:
+            break
+        first = m.group(1) if kind == "ul" else m.group(2)
+        i += 1
+        sub = []
+        while i < len(lines):
+            ln = lines[i]
+            if not ln.strip():
+                sub.append("")
+                i += 1
+                continue
+            if ln.startswith("    "):
+                sub.append(ln[4:])
+                i += 1
+                continue
+            break
+        while sub and not sub[-1].strip():
+            sub.pop()
+        if sub:
+            item_blocks = parse_blocks([first, ""] + sub)
+        else:
+            item_blocks = [("p", first)]
+        items.append(item_blocks)
+    return items, i
+
+
+# --- Inline + block rendering ----------------------------------------------
+
+def render_inline(text):
+    """Escape XML special chars, then convert `code` and *em*."""
+    text = text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    text = re.sub(r"\*([^*]+)\*", r"<em>\1</em>", text)
+    return text
+
+
+def render_blocks(blocks, base_indent):
+    """Render a list of blocks to XML lines. base_indent is the indent prefix (string)."""
+    out = []
+    for kind, content in blocks:
+        if kind == "p":
+            out.append(f"{base_indent}<p>{render_inline(content)}</p>")
+        elif kind == "pre":
+            escaped = content.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+            out.append(f"{base_indent}<pre>{escaped}</pre>")
+        elif kind in ("ul", "ol"):
+            tag_open = "<ul>" if kind == "ul" else '<ol type="a">'
+            tag_close = "</ul>" if kind == "ul" else "</ol>"
+            out.append(f"{base_indent}{tag_open}")
+            for item_blocks in content:
+                # Compact a single-paragraph item to <li>text</li>
+                if len(item_blocks) == 1 and item_blocks[0][0] == "p":
+                    out.append(f"{base_indent}  <li>{render_inline(item_blocks[0][1])}</li>")
+                else:
+                    out.append(f"{base_indent}  <li>")
+                    out.extend(render_blocks(item_blocks, base_indent + "    "))
+                    out.append(f"{base_indent}  </li>")
+            out.append(f"{base_indent}{tag_close}")
+    return out
+
+
+def wrap_text_paragraph(text, indent):
+    """Wrap a long line at ~78 chars, indented by `indent`. Returns multi-line string."""
+    wrapped = textwrap.fill(text, width=78, initial_indent=indent, subsequent_indent=indent,
+                            break_long_words=False, break_on_hyphens=False)
+    return wrapped
+
+
+def render_text_element(title, body_blocks, indent_level):
+    """Render the <text> element containing title prose + body blocks."""
+    ind = "  " * indent_level
+    inner_ind = "  " * (indent_level + 1)
+    if not body_blocks:
+        wrapped = wrap_text_paragraph(render_inline(title), inner_ind)
+        return [f"{ind}<text>", wrapped, f"{ind}</text>"]
+    out = [f"{ind}<text>"]
+    out.append(f"{inner_ind}<p>{render_inline(title)}</p>")
+    out.extend(render_blocks(body_blocks, inner_ind))
+    out.append(f"{ind}</text>")
+    return out
+
+
+# --- Top-level builder -----------------------------------------------------
+
+def build_xml(sections):
+    out = ['<ced>']
+    # stack of (level, indent_level) so we know when to close ancestors
+    stack = []
+    for sec in sections:
+        # close any open sections at >= this level
+        while stack and stack[-1][0] >= sec["level"]:
+            level, indent = stack.pop()
+            out.append(f"{'  ' * indent}</{LEVEL_TAG[level]}>")
+        indent = sec["level"]  # 1=big-idea -> 1 indent, etc.
+        ind = "  " * indent
+        tag = LEVEL_TAG[sec["level"]]
+        out.append("")
+        out.append(f'{ind}<{tag} xml:id="{sec["id"]}">')
+        if sec["level"] == 1:
+            out.append(f'{ind}  <title>{render_inline(sec["title"])}</title>')
+        else:
+            body_blocks = parse_blocks(sec["body"])
+            out.extend(render_text_element(sec["title"], body_blocks, indent + 1))
+        stack.append((sec["level"], indent))
+    while stack:
+        level, indent = stack.pop()
+        out.append(f"{'  ' * indent}</{LEVEL_TAG[level]}>")
+    out.append("</ced>")
+    return "\n".join(out) + "\n"
+
+
+def main():
+    with open("csp/ced-hierarchy.md") as f:
+        md = f.read()
+    sections = parse_sections(md)
+    xml = build_xml(sections)
+    with open("csp/ced.xml", "w") as f:
+        f.write(xml)
+    counts = {1: 0, 2: 0, 3: 0, 4: 0}
+    for s in sections:
+        counts[s["level"]] += 1
+    print(f"sections: big-idea={counts[1]} EU={counts[2]} LO={counts[3]} EK={counts[4]}")
+
+
+if __name__ == "__main__":
+    main()
