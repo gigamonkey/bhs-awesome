@@ -1,33 +1,70 @@
-"""Convert csp/ced-hierarchy.md to csp/ced.xml using the schema from csp/sample.xml.
+"""Convert a CED hierarchy markdown file to XML.
 
+Handles two hierarchy flavors, detected from the first level-1 heading:
+
+CSP (e.g., csp/ced-hierarchy.md; schema from csp/sample.xml):
 - # Big Idea N: TITLE (CODE)  ->  <big-idea xml:id="CODE"><title>TITLE</title>...
 - ## ID TEXT                  ->  <essential-understanding xml:id="ID"><text>TEXT</text>...
 - ### ID TEXT                 ->  <learning-objective xml:id="ID"><text>TEXT</text>...
 - #### ID TEXT                ->  <essential-knowledge xml:id="ID"><text>TEXT</text>...
 
+CSA (e.g., csa/ced-2025-hierarchy.md):
+- # Unit N: TITLE             ->  <unit xml:id="unit-N"><title>TITLE</title>...
+- ## ID TEXT                  ->  <topic xml:id="topic-ID"><text>TEXT</text>...
+- ### ID TEXT                 ->  <learning-objective xml:id="lo-ID"><text>TEXT</text>...
+- #### ID TEXT                ->  <essential-knowledge xml:id="ek-ID"><text>TEXT</text>...
+
+CSA codes start with a digit (e.g., 1.1.A.1), which is not a valid xml:id
+(NCName), so they get a level prefix like the unit-N ids do.
+
 Bullet/lettered lists, code blocks, *italic*, and `code` are converted to
 HTML-style markup inside <text>.
 """
 
+import argparse
 import re
 import sys
 import textwrap
 
 HEADING = re.compile(r"^(#{1,4}) (.+)$")
 BIG_IDEA = re.compile(r"^Big Idea \d+: (.+) \((\w+)\)$")
+UNIT = re.compile(r"^Unit (\d+): (.+)$")
 LETTERED = re.compile(r"^([a-z])\. (.*)")
 BULLET = re.compile(r"^- (.*)")
 
-LEVEL_TAG = {
-    1: "big-idea",
-    2: "essential-understanding",
-    3: "learning-objective",
-    4: "essential-knowledge",
+LEVEL_TAGS = {
+    "csp": {
+        1: "big-idea",
+        2: "essential-understanding",
+        3: "learning-objective",
+        4: "essential-knowledge",
+    },
+    "csa": {
+        1: "unit",
+        2: "topic",
+        3: "learning-objective",
+        4: "essential-knowledge",
+    },
 }
+
+# CSA codes (1.1.A.1) start with a digit, which is not a valid xml:id (NCName).
+CSA_ID_PREFIX = {2: "topic", 3: "lo", 4: "ek"}
+
+
+def parse_top_heading(rest):
+    """Parse a level-1 heading, returning (flavor, id, title)."""
+    m = BIG_IDEA.match(rest)
+    if m:
+        return "csp", m.group(2), m.group(1)
+    m = UNIT.match(rest)
+    if m:
+        return "csa", f"unit-{m.group(1)}", m.group(2)
+    sys.exit(f"unparseable top-level heading: {rest!r}")
 
 
 def parse_sections(md):
-    """Walk markdown lines and return a flat list of section dicts."""
+    """Walk markdown lines; return (flavor, flat list of section dicts)."""
+    flavor = None
     sections = []
     current = None
     for line in md.splitlines():
@@ -38,23 +75,30 @@ def parse_sections(md):
             level = len(m.group(1))
             rest = m.group(2)
             if level == 1:
-                bm = BIG_IDEA.match(rest)
-                if not bm:
-                    sys.exit(f"unparseable big-idea heading: {rest!r}")
-                title, code = bm.group(1), bm.group(2)
-                current = {"level": 1, "id": code, "title": title, "body": []}
+                heading_flavor, id_, title = parse_top_heading(rest)
+                if flavor is None:
+                    flavor = heading_flavor
+                elif flavor != heading_flavor:
+                    sys.exit(f"mixed hierarchy flavors: {rest!r}")
+                current = {"level": 1, "id": id_, "title": title, "body": []}
             else:
+                if flavor is None:
+                    sys.exit(f"sub-heading before any top-level heading: {rest!r}")
                 # "ID TEXT"
                 parts = rest.split(" ", 1)
                 id_ = parts[0]
                 title = parts[1] if len(parts) > 1 else ""
+                if flavor == "csa":
+                    id_ = f"{CSA_ID_PREFIX[level]}-{id_}"
                 current = {"level": level, "id": id_, "title": title, "body": []}
         else:
             if current is not None:
                 current["body"].append(line)
     if current is not None:
         sections.append(current)
-    return sections
+    if flavor is None:
+        sys.exit("no top-level heading found")
+    return flavor, sections
 
 
 # --- Markdown body parser --------------------------------------------------
@@ -229,7 +273,7 @@ def render_text_element(title, body_blocks, indent_level):
 
 # --- Top-level builder -----------------------------------------------------
 
-def build_xml(sections):
+def build_xml(sections, level_tag):
     out = ['<ced>']
     # stack of (level, indent_level) so we know when to close ancestors
     stack = []
@@ -237,10 +281,10 @@ def build_xml(sections):
         # close any open sections at >= this level
         while stack and stack[-1][0] >= sec["level"]:
             level, indent = stack.pop()
-            out.append(f"{'  ' * indent}</{LEVEL_TAG[level]}>")
+            out.append(f"{'  ' * indent}</{level_tag[level]}>")
         indent = sec["level"]  # 1=big-idea -> 1 indent, etc.
         ind = "  " * indent
-        tag = LEVEL_TAG[sec["level"]]
+        tag = level_tag[sec["level"]]
         out.append("")
         out.append(f'{ind}<{tag} xml:id="{sec["id"]}">')
         if sec["level"] == 1:
@@ -251,22 +295,28 @@ def build_xml(sections):
         stack.append((sec["level"], indent))
     while stack:
         level, indent = stack.pop()
-        out.append(f"{'  ' * indent}</{LEVEL_TAG[level]}>")
+        out.append(f"{'  ' * indent}</{level_tag[level]}>")
     out.append("</ced>")
     return "\n".join(out) + "\n"
 
 
 def main():
-    with open("csp/ced-hierarchy.md") as f:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("input", help="hierarchy markdown file")
+    parser.add_argument("output", help="XML output file")
+    args = parser.parse_args()
+
+    with open(args.input) as f:
         md = f.read()
-    sections = parse_sections(md)
-    xml = build_xml(sections)
-    with open("csp/ced.xml", "w") as f:
+    flavor, sections = parse_sections(md)
+    level_tag = LEVEL_TAGS[flavor]
+    xml = build_xml(sections, level_tag)
+    with open(args.output, "w") as f:
         f.write(xml)
     counts = {1: 0, 2: 0, 3: 0, 4: 0}
     for s in sections:
         counts[s["level"]] += 1
-    print(f"sections: big-idea={counts[1]} EU={counts[2]} LO={counts[3]} EK={counts[4]}")
+    print(f"{flavor}: " + " ".join(f"{level_tag[lvl]}={n}" for lvl, n in counts.items()))
 
 
 if __name__ == "__main__":
