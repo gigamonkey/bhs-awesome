@@ -1,0 +1,27 @@
+Explain how a 2D array is just a 1D array in disguise
+State the component type of a 2D array
+Write code to initialize a 2D array variable with given dimensions
+State the two contexts where an array initializer may appear
+Write code to initialize a 2D array with an array initializer
+Write code to access individual elements of a 2D array
+Write code to access individual rows of a 2D array
+State the number of values in a 2D array
+State the number of rows & columns in a row-major 2D array
+Explain how 2D arrays are stored in the heap
+Write code to process all elements of a 2D array w/ regular for loops
+Write code to process all elements of a 2D array w/ enhanced for loops
+Distinguish between the element type & component type of 2D array
+Write code using standard loop algorithms over rows & columns of 2D array
+Write code to process cells and their neighbors in a 2D array
+Outline the difference between viewing a 2D array as a grid vs table
+Write code using standard loop algorithms over all elements of 2D array
+Write a finding loop
+Write a find index loop
+Demonstrate bubble sort with cards
+Demonstrate insertion sort with cards
+Demonstrate selection sort with cards
+Demonstrate merge sort with cards
+Identify sorting algorithm from code (bubble, insertion, selection, merge)
+Define recursion
+Explain how recursive calls work in terms of the stack and local variables
+Describe a recursive algorithm that is hard to express iteratively

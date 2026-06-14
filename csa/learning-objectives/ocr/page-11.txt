@@ -1,0 +1,27 @@
+Write code that uses the length property of an array
+Distinguish between the two ways of allocating an array with new
+List the default values for array elements of different types of array.
+State the initial value of elements of an array constructed with new
+Write code to declare and initialize an array with an array initializer
+Write code to create an array with an array creation expression
+State the value of array access expressions
+Write code to access elements of arrays
+State the valid indexer of an array
+State the relationship between the length of an array and its last valid index.
+Write regular for loops to traverse arrays
+Write for loops that modify array elements.
+Write enhanced for loops to traverse a 1-d array
+Explain why code in an enhanced for loop can't modify the array
+Distinguish between an index variable and a value.
+Distinguish between modifying an array variable and an array element
+Write methods that modify a passed in array.
+Write methods that modify an array held in an instance variable
+Translate between regular and enhanced for loops
+Distinguish regular for loops that can be written as enhanced for loops
+Write code that modifies mutable objects stored in an array.
+Describe how arrays of reference types are stored in the heap.
+Write a reducing loop
+Write code using all the standard looping patterns over an array
+Write code to reverse the elements in an array
+Write code to process consecutive pairs of elements in an array
+Write code to process all pairs of elements in an array, unordered

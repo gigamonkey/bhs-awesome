@@ -1,0 +1,27 @@
+Create methods by extracting code
+Describe a class in English in terms of its attributes & methods
+Describe a method in terms of its inputs and outputs or side effects
+Write a class based on an abstract description.
+Define "system reliability"
+Discuss ways software can have unintended societal consequences
+Explain how copyright applies to software
+Explain the purpose of an open source license.
+Define "encapsulation"
+Explain why instance variables should usually be private.
+Explain how to decide if a method should be public or private.
+Explain what it means for each object to have its own copy of instance variables
+Define an object's "state"
+Explain the main job of every constructor
+Define a "class invariant"
+Explain what it means if two objects represent the same mutable object
+Explain why a constructor might make a copy of one of its arguments.
+State what constructor a class has that doesn't contain an explicit constructor
+List the default values for member variables & types: int, double, boolean, etc. and references
+Write void methods that have external side effects
+Write void methods that have internal side effects
+Write getters & setters (accessors & mutators)
+Write non-void methods that compute values.
+Explain why non-void methods usually shouldn't have side effects
+Trace code that contains return statements
+Explain return in terms of the call stack
+Explain why you might write a getter but no setter

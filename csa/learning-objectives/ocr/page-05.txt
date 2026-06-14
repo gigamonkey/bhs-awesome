@@ -1,0 +1,27 @@
+Identify syntactically correct constructor signatures.
+Explain the difference between allocating & initializing an object.
+Explain the difference between the heap and the stack.
+Describe the differences between methods and constructors.
+Use constructor calls in contexts other than assignments.
+Identify correct & incorrect calls to a constructor based on arg types.
+Identify correct & incorrect uses of constructor invocation based on expected type.
+Write correct calls to instance methods on specific object
+Write correct calls to instance methods with implicit this.
+Write code that passes this as an argument
+State what happens if you invoke an instance method on null.
+Explain the purpose of the null value
+Write code that uses strong literals.
+Write code that uses variables of type String
+Define "immutable."
+Write code that uses string concatenation with +
+Write code that builds up a String value with +=
+Write code that uses string + with non-String values.
+Explain the relationship between + and toString
+Explain why its necessary to use equals with String objects.
+Explain why we can (and should) use equals with all reference types.
+Explain why equals probably doesn't do what we want with arrays.
+Write code that uses String length
+Write code that uses both 1-arg and 2-arg substring
+Write code that uses indexOf with substring to extract parts
+Write code that uses compareTo
+Explain the recipe for writing comparisons using compareTo

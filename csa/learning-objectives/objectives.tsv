@@ -1,0 +1,361 @@
+1	1.1	1.1.B	1.1.B.1	1	Compile and run HelloWorld.java
+2	2.1	2.1.A	2.1.A.1	2	Describe the three basic building blocks of algorithms
+2	2.6	2.6.A	2.6.A.1	3	Simplify boolean expressions (2 and 3 variables)
+1	1.1	1.1.A	1.1.A.1	4	Express a real-world procedure as an algorithm.
+1	1.14	1.14.A	1.14.A.1	5	Write code to call instance methods
+1	1.1	1.1.C	1.1.C.3	6	Describe the difference between compile-time and run-time errors
+1	1.10	1.10.A	1.10.A.2	7	Write code to call static methods
+1	1.1	1.1.C	1.1.C.1	8	Fix common syntax errors in Java code
+1	1.5	1.5.A	1.5.A.1	9	Use casts to get mathematically appropriate answers.
+1	1.15	1.15.B	1.15.B.1	10	Debug index out of bounds errors.
+1	1.3	1.3.C	1.3.C.2	11	Write expressions using +, -, *, and /
+1	1.1	1.1.C	1.1.C.2	12	Distinguish between syntax, run-time, and logic errors.
+1	1.3	1.3.C	1.3.C.4	13	Write expressions using %
+1	1.8	1.8.A	1.8.A.2	14	Define preconditions and postconditions.
+1	1.11	1.11.A	1.11.A.2	15	Write arithmetic expressions with Math.pow, Math.sqrt, and Math.abs
+1	1.1	1.1.C	1.1.C.1	16	Distinguish between syntax & type errors.
+1	1.1	1.1.C	1.1.C.4	17	List some situations when Java will throw a runtime Exception
+1	1.2	1.2.A	1.2.A.1	18	Distinguish between primitive and reference types.
+1	1.5	1.5.B	1.5.B.2	19	Describe the limits of ints, doubles, and booleans.
+none	none	none	none	20	Properly format Java code. (By hand.)
+1	1.3	1.3.C	1.3.C.3	21	Explain the difference between int and double math.
+1	1.3	1.3.C	1.3.C.1	22	State the type of arithmetic expressions.
+3	3.6	3.6.A	3.6.A.1	23	Explain why non-primitive types are passed by reference.
+3	3.6	3.6.A	3.6.A.1	24	Explain the consequences of passing mutable types by reference
+1	1.9	1.9.B	1.9.B.2	25	State the type of expressions involving method calls.
+1	1.2	1.2.B	1.2.B.2	26	Distinguish between variables and values.
+1	1.4	1.4.A	1.4.A.1	27	Distinguish between declaring, initializing, assigning, and using a variable
+3	3.8	3.8.A	3.8.A.1	28	Explain the scope of variables
+4	4.3	4.3.A	4.3.A.1	29	State the type of expression using array access.
+1	1.3	1.3.A	1.3.A.1	30	Write code to generate output with print and println
+1	1.3	1.3.B	1.3.B.2	31	Explain the difference between string literals and variables
+1	1.3	1.3.B	1.3.B.3	32	Write string literals with escape characters
+1	1.9	1.9.B	1.9.B.2	33	Explain the difference between returning a string and printing
+1	1.3	1.3.C	1.3.C.1	34	Write arithmetic expressions that include variables
+1	1.3	1.3.C	1.3.C.3	35	State the value of expressions involving truncating division.
+1	1.3	1.3.C	1.3.C.2	36	State the value and type of mixed int/double expressions.
+1	1.3	1.3.C	1.3.C.5	37	Write expressions using arithmetic operators obeying precedence
+1	1.3	1.3.C	1.3.C.4	38	Explain 2-3 uses of the remainder operator
+1	1.4	1.4.A	1.4.A.2	39	Evaluate code including assignment statements
+1	1.4	1.4.A	1.4.A.3	40	Explain the relation between sequential evaluation and assignment
+1	1.4	1.4.B	1.4.B.1	41	Write code that reads user input with Scanner
+1	1.4	1.4.B	1.4.B.1	42	Explain the difference between parseInt(s.nextLine()) & s.nextInt()
+1	1.5	1.5.A	1.5.A.1	43	Evaluate arithmetic expressions involving casts.
+1	1.5	1.5.A	1.5.A.3	44	State when double contagion ("zombification") occurs.
+1	1.5	1.5.A	1.5.A.4	45	Write expressions to round doubles to nearest int w/o Math.round
+1	1.11	1.11.A	1.11.A.3	46	Write expressions to generate random numbers from a speci
+1	1.5	1.5.B	1.5.B.3	47	Explain integer overflow: both when & why it occurs.
+1	1.5	1.5.B	1.5.B.3	48	Explain the two (?) ways int math only approximates real math.
+1	1.5	1.5.B	1.5.B.1	49	State the names and approximate values (and exact expression) of int max.
+1	1.5	1.5.C	1.5.C.1	50	Describe the limitations of doubles
+1	1.5	1.5.C	1.5.C.1	51	Explain why the order of operations can affect the value of double comp.
+1	1.5	1.5.C	1.5.C.1	52	Explain why doubles are bad for money.
+1	1.6	1.6.A	1.6.A.1	53	Explain results of code that uses compound assignment operators
+1	1.6	1.6.A	1.6.A.2	54	Explain code that uses post-increment and decrement operators.
+1	1.6	1.6.A	1.6.A.1	55	Translate code between compound operators and not (incl. ++ & --)
+1	1.6	1.6.A	1.6.A.1	56	Write code using += with ints and Strings.
+1	1.7	1.7.A	1.7.A.1	57	Describe the relationship between classes, libraries, & APIs
+1	1.7	1.7.A	1.7.A.2	58	Describe the relationship between class attributes, methods, and constructors
+1	1.8	1.8.A	1.8.A.1	59	Use comments to temporarily disable chunks of code.
+1	1.8	1.8.A	1.8.A.1	60	Add useful comments to code.
+1	1.8	1.8.A	1.8.A.1	61	Remove redundant comments from code
+1	1.8	1.8.A	1.8.A.2	62	Write comments documenting a method's pre- and post-conditions.
+1	1.8	1.8.A	1.8.A.2	63	Explain how pre and postconditions constrain other code.
+none	none	none	none	64	Name all the punctuation characters used in Java.
+none	none	none	none	65	List the purpose or purposes of each punctuation character.
+1	1.9	1.9.A	1.9.A.1	66	Explain how procedural abstraction simplifies code.
+1	1.9	1.9.A	1.9.A.2	67	Write correct method signatures given a name, return type, and arg types
+1	1.9	1.9.B	1.9.B.3	68	Write correct calls to a method given its signature
+1	1.9	1.9.A	1.9.A.2	69	State the name, return type, and argument types & names given a usage.
+1	1.9	1.9.B	1.9.B.3	70	Distinguish between parameters (variables) and arguments (values).
+1	1.9	1.9.A	1.9.A.2	71	Identify the correct method signature for a given method call.
+1	1.9	1.9.B	1.9.B.1	72	Explain the difference between "pure" and side-effecting methods.
+1	1.9	1.9.B	1.9.B.2	73	Identify methods that can be used in an expression based on return type
+1	1.9	1.9.B	1.9.B.3	74	Explain how call by value works.
+3	3.8	3.8.A	3.8.A.2	75	Identify shadowed variables
+1	1.9	1.9.B	1.9.B.3	76	Evaluate code involving pass by value and changes to local variables.
+1	1.9	1.9.B	1.9.B.4	77	Identify which of several overloaded methods will be invoked by a call.
+1	1.9	1.9.B	1.9.B.5	78	Explain how method calls affect the flow of control.
+1	1.9	1.9.B	1.9.B.5	79	Trace the execution of code involving method calls.
+1	1.9	1.9.B	1.9.B.5	80	Trace the order of evaluation of expressions & statements.
+1	1.10	1.10.A	1.10.A.2	81	Write correct calls to a static method from outside the class.
+1	1.10	1.10.A	1.10.A.2	82	Write correct calls to a static method from inside the class.
+1	1.9	1.9.A	1.9.A.2	83	Write correct calls to static & instance methods based on signatures.
+1	1.10	1.10.A	1.10.A.1	84	Determine whether a method can be static or not.
+1	1.11	1.11.A	1.11.A.2	85	Write expressions using Math.random() to generate random numbers
+1	1.11	1.11.A	1.11.A.3	86	Write if statements that use Math.random() to execute code with probability
+1	1.11	1.11.A	1.11.A.3	87	Explain the difference between inclusive and exclusive bounds
+1	1.11	1.11.A	1.11.A.3	88	Explain what a half-open intervals (is- closed)
+1	1.12	1.12.A	1.12.A.1	89	Describe how instance variables are used by instance methods.
+1	1.12	1.12.A	1.12.A.1	90	Sketch diagram of how instances and classes relate in memory
+1	1.12	1.12.A	1.12.A.3	91	List the methods all classes inherit from java.lang.Object
+1	1.15	1.15.A	1.15.A.5	92	Write correct overriding to String methods.
+2	2.6	2.6.B	2.6.B.3	93	Explain the difference between Object.equals & String.equals.
+1	1.12	1.12.A	1.12.A.2	94	Describe the purpose of inheritance (limited to Object)
+1	1.12	1.12.B	1.12.B.1	95	Distinguish between the reference value & object data of an instance.
+1	1.12	1.12.B	1.12.B.1	96	Explain where instance variables are stored in memory
+1	1.13	1.13.A	1.13.A.1	97	Describe the role of a constructor
+3	3.4	3.4.A	3.4.A.2	98	Describe the two main ways instance variables are initialized.
+3	3.9	3.9.A	3.9.A.1	99	Write constructors that use the this. idiom.
+3	3.8	3.8.A	3.8.A.2	100	Explain why the this. idiom is necessary.
+1	1.13	1.13.A	1.13.A.3	101	Identify which overloaded constructor will be invoked by a call.
+3	3.9	3.9.A	3.9.A.1	102	Distinguish between when we have to use this. and when its optional
+3	3.9	3.9.A	3.9.A.1	103	Write overloaded constructors that use this()
+3	3.4	3.4.A	3.4.A.5	104	List the default values for uninitialized instance variables
+1	1.13	1.13.C	1.13.C.1	105	Write correct invocations of a constructor with new
+1	1.13	1.13.C	1.13.C.4	106	Trace the flow of code containing calls to constructors.
+1	1.13	1.13.A	1.13.A.2	107	Identify syntactically correct constructor signatures.
+1	1.13	1.13.C	1.13.C.1	108	Explain the difference between allocating & initializing an object.
+1	1.13	1.13.A	1.13.A.1	109	Explain the difference between the heap and the stack.
+1	1.13	1.13.A	1.13.A.1	110	Describe the differences between methods and constructors.
+1	1.13	1.13.C	1.13.C.1	111	Use constructor calls in contexts other than assignments.
+1	1.13	1.13.C	1.13.C.3	112	Identify correct & incorrect calls to a constructor based on arg types.
+1	1.13	1.13.B	1.13.B.1	113	Identify correct & incorrect uses of constructor invocation based on expected type.
+1	1.14	1.14.A	1.14.A.1	114	Write correct calls to instance methods on specific object
+3	3.9	3.9.A	3.9.A.1	115	Write correct calls to instance methods with implicit this.
+3	3.9	3.9.A	3.9.A.2	116	Write code that passes this as an argument
+1	1.14	1.14.A	1.14.A.2	117	State what happens if you invoke an instance method on null.
+1	1.4	1.4.A	1.4.A.1	118	Explain the purpose of the null value
+1	1.3	1.3.B	1.3.B.2	119	Write code that uses strong literals.
+1	1.15	1.15.A	1.15.A.1	120	Write code that uses variables of type String
+1	1.15	1.15.A	1.15.A.3	121	Define "immutable."
+1	1.15	1.15.A	1.15.A.4	122	Write code that uses string concatenation with +
+1	1.15	1.15.A	1.15.A.4	123	Write code that builds up a String value with +=
+1	1.15	1.15.A	1.15.A.4	124	Write code that uses string + with non-String values.
+1	1.15	1.15.A	1.15.A.5	125	Explain the relationship between + and toString
+1	1.15	1.15.B	1.15.B.2	126	Explain why its necessary to use equals with String objects.
+2	2.6	2.6.B	2.6.B.3	127	Explain why we can (and should) use equals with all reference types.
+2	2.2	2.2.A	2.2.A.1	128	Explain why equals probably doesn't do what we want with arrays.
+1	1.15	1.15.B	1.15.B.2	129	Write code that uses String length
+1	1.15	1.15.B	1.15.B.2	130	Write code that uses both 1-arg and 2-arg substring
+1	1.15	1.15.B	1.15.B.2	131	Write code that uses indexOf with substring to extract parts
+1	1.15	1.15.B	1.15.B.2	132	Write code that uses compareTo
+1	1.15	1.15.B	1.15.B.2	133	Explain the recipe for writing comparisons using compareTo
+1	1.15	1.15.A	1.15.A.5	134	Write a class with an overridden toString
+1	1.15	1.15.B	1.15.B.2	135	Calculate the String and int values returned by String method calls
+1	1.15	1.15.B	1.15.B.3	136	Write code to extract a one-character string at an index
+2	2.1	2.1.A	2.1.A.1	137	Match "selection" with decisions and "repetition" with looping
+2	2.3	2.3.A	2.3.A.1	138	Explain how selection changes control flow
+2	2.7	2.7.A	2.7.A.1	139	Explain how repetition changes control flow
+2	2.3	2.3.A	2.3.A.2	140	Explain the role of booleans in selection & repetition
+2	2.2	2.2.A	2.2.A.1	141	Define the meaning of == & != for primitive & reference values
+2	2.2	2.2.A	2.2.A.1	142	Distinguish between = and == and !=
+2	2.2	2.2.A	2.2.A.2	143	Write expressions using the relational operators <, >, <=, >=
+2	2.5	2.5.A	2.5.A.1	144	Write chained relational expressions with && as standard form
+2	2.2	2.2.A	2.2.A.1	145	Explain why we should never use == & != with booleans
+2	2.3	2.3.A	2.3.A.3	146	Write one-way selections with if
+2	2.3	2.3.A	2.3.A.4	147	Write two-way selections with if/else
+2	2.4	2.4.A	2.4.A.3	148	Write multi-way selections with if/else if/else
+2	2.3	2.3.A	2.3.A.2	149	Explain why you should always use braces with if & else
+2	2.4	2.4.A	2.4.A.3	150	Explain why else if is an (okay) violation of the always use braces rule
+2	2.4	2.4.A	2.4.A.3	151	Calculate the result of code with consecutive ifs vs else if
+2	2.4	2.4.A	2.4.A.3	152	Simplify mutually-exclusive consecutive ifs into chained else ifs
+2	2.4	2.4.A	2.4.A.3	153	Trace the evaluation of if, if/else, & if/else if/else statements
+2	2.4	2.4.A	2.4.A.3	154	Translate multi-way else if chains to mutually exclusive ifs
+2	2.5	2.5.A	2.5.A.1	155	Calculate the value of boolean expressions using &&, ||, and !
+2	2.6	2.6.A	2.6.A.1	156	Create truth tables for boolean expressions of 2 & 3 variables
+2	2.5	2.5.A	2.5.A.2	157	Explain the use of short circuiting boolean operators
+2	2.6	2.6.A	2.6.A.2	158	List the rules of boolean algebra
+2	2.6	2.6.A	2.6.A.2	159	Apply De Morgan's laws to boolean expressions
+2	2.6	2.6.A	2.6.A.2	160	Apply De Morgan's laws to expressions involving relational & equality operators
+2	2.6	2.6.A	2.6.A.1	161	Explain what it means for expressions to be equivalent
+2	2.6	2.6.B	2.6.B.1	162	Calculate the value of expressions using == & != with references
+2	2.6	2.6.B	2.6.B.2	163	Calculate the value of == & != expressions with references including null
+2	2.6	2.6.B	2.6.B.3	164	Explain why classes often override equals
+2	2.8	2.8.A	2.8.A.3	165	Explain the rule of thumb for choosing between while & for loops
+2	2.7	2.7.B	2.7.B.1	166	Explain the structure of a while loop
+2	2.7	2.7.B	2.7.B.1	167	Trace the execution of a while loop
+2	2.7	2.7.B	2.7.B.1	168	Write code that uses a while loop
+2	2.7	2.7.B	2.7.B.1	169	List conditions that you might use in a while loop
+2	2.7	2.7.A	2.7.A.2	170	State when you might want an infinite loop
+2	2.7	2.7.B	2.7.B.1	171	Identify the condition of a while loop
+2	2.7	2.7.B	2.7.B.1	172	Identify the body of a while loop
+2	2.7	2.7.B	2.7.B.1	173	Identify a syntactically correct while loop
+2	2.7	2.7.A	2.7.A.2	174	Identify infinite while loops
+2	2.7	2.7.A	2.7.A.2	175	Fix inadvertant infinite while loops
+1	1.1	1.1.C	1.1.C.1	176	Identify missing semicolons and extraneous semicolons
+2	2.8	2.8.A	2.8.A.1	177	Explain the structure of a regular for loop
+2	2.8	2.8.A	2.8.A.2	178	Write a canonical for loop that runs N times
+2	2.8	2.8.A	2.8.A.2	179	Write a canonical reverse for loop that runs N times
+2	2.8	2.8.A	2.8.A.2	180	Trace the execution of a for loop including the 3 header clauses
+2	2.8	2.8.A	2.8.A.1	181	Define the initializer, condition, and updater in a for loop
+2	2.8	2.8.A	2.8.A.3	182	Translate while loops to equivalent for loops and vice versa.
+2	2.9	2.9.A	2.9.A.1	183	Write code to test if a number is even
+2	2.9	2.9.A	2.9.A.1	184	Write code to test if a number (incl negative) is odd
+2	2.9	2.9.A	2.9.A.1	185	Write a loop to do something with the digits of an int.
+2	2.9	2.9.A	2.9.A.1	186	Write a counting loop
+2	2.9	2.9.A	2.9.A.1	187	Write a maximizing/minimizing loop
+2	2.9	2.9.A	2.9.A.1	188	Write an any/some loop
+2	2.9	2.9.A	2.9.A.1	189	Write an all/every loop
+2	2.9	2.9.A	2.9.A.1	190	Write a summing loop
+2	2.10	2.10.A	2.10.A.1	191	Write a String accumulator loop
+4	4.10	4.10.A	4.10.A.1	192	Write a filtering loop with an ArrayList (copying)
+4	4.10	4.10.A	4.10.A.1	193	Write a loop to remove matching elements from ArrayList
+2	2.10	2.10.A	2.10.A.1	194	Write a loop over all fixed-size substrings of a String
+2	2.10	2.10.A	2.10.A.1	195	Write a loop over all substrings of a String
+2	2.10	2.10.A	2.10.A.1	196	Write a loop to reverse a String
+1	1.15	1.15.B	1.15.B.3	197	Write a loop over all the characters (as Strings) in a String
+2	2.12	2.12.A	2.12.A.1	198	Compute how many times a for loop will run.
+2	2.11	2.11.A	2.11.A.1	199	Compute how many times the inner body of a nested for loop runs.
+2	2.11	2.11.A	2.11.A.1	200	Trace the execution of a nested loop.
+2	2.7	2.7.A	2.7.A.4	201	Check loops by checking their bounds.
+2	2.12	2.12.A	2.12.A.1	202	Give examples of O(N) loops and O(N²) loops
+3	3.1	3.1.A	3.1.A.1	203	Define "abstraction"
+3	3.1	3.1.A	3.1.A.1	204	List the mechanisms in Java we've learned for creating abstractions
+3	3.1	3.1.A	3.1.A.1	205	Describe a program (e.g. Google docs) abstractly in English
+3	3.1	3.1.A	3.1.A.2	206	Explain how ints & doubles are an abstraction
+1	1.5	1.5.C	1.5.C.1	207	Explain how ints & doubles are an approximation
+3	3.1	3.1.A	3.1.A.2	208	List three features of Java that provide data abstraction.
+3	3.1	3.1.A	3.1.A.2	209	Explain how writing a class creates a data abstraction
+3	3.1	3.1.A	3.1.A.3	210	Define "attribute"
+3	3.1	3.1.A	3.1.A.3	211	List the two kinds of attributes in classes.
+3	3.1	3.1.A	3.1.A.4	212	Define "procedural abstraction"
+3	3.1	3.1.A	3.1.A.4	213	Describe how method decomposition creates layered abstractions
+3	3.1	3.1.A	3.1.A.5	214	Explain the role parameters play in a procedural abstraction
+3	3.1	3.1.A	3.1.A.4	215	Create methods by extracting code
+3	3.1	3.1.A	3.1.A.7	216	Describe a class in English in terms of its attributes & methods
+3	3.1	3.1.A	3.1.A.4	217	Describe a method in terms of its inputs and outputs or side effects
+3	3.1	3.1.A	3.1.A.7	218	Write a class based on an abstract description.
+3	3.2	3.2.A	3.2.A.1	219	Define "system reliability"
+3	3.2	3.2.A	3.2.A.2	220	Discuss ways software can have unintended societal consequences
+3	3.2	3.2.A	3.2.A.3	221	Explain how copyright applies to software
+3	3.2	3.2.A	3.2.A.3	222	Explain the purpose of an open source license.
+3	3.3	3.3.A	3.3.A.1	223	Define "encapsulation"
+3	3.3	3.3.A	3.3.A.5	224	Explain why instance variables should usually be private.
+3	3.3	3.3.A	3.3.A.6	225	Explain how to decide if a method should be public or private.
+3	3.3	3.3.A	3.3.A.4	226	Explain what it means for each object to have its own copy of instance variables
+3	3.4	3.4.A	3.4.A.1	227	Define an object's "state"
+3	3.4	3.4.A	3.4.A.2	228	Explain the main job of every constructor
+3	3.4	3.4.A	none	229	Define a "class invariant"
+2	2.6	2.6.B	2.6.B.1	230	Explain what it means if two objects represent the same mutable object
+3	3.4	3.4.A	3.4.A.3	231	Explain why a constructor might make a copy of one of its arguments.
+3	3.4	3.4.A	3.4.A.4	232	State what constructor a class has that doesn't contain an explicit constructor
+3	3.4	3.4.A	3.4.A.5	233	List the default values for member variables & types: int, double, boolean, etc. and references
+3	3.6	3.6.A	3.6.A.1	234	Write void methods that have external side effects
+3	3.5	3.5.A	3.5.A.6	235	Write void methods that have internal side effects
+3	3.5	3.5.A	3.5.A.5	236	Write getters & setters (accessors & mutators)
+3	3.5	3.5.A	3.5.A.2	237	Write non-void methods that compute values.
+3	3.5	3.5.A	3.5.A.2	238	Explain why non-void methods usually shouldn't have side effects
+3	3.5	3.5.A	3.5.A.4	239	Trace code that contains return statements
+3	3.5	3.5.A	3.5.A.4	240	Explain return in terms of the call stack
+3	3.5	3.5.A	3.5.A.5	241	Explain why you might write a getter but no setter
+3	3.5	3.5.A	3.5.A.8	242	Explain argument passing in terms of the call stack
+3	3.6	3.6.A	3.6.A.1	243	Explain passing references as arguments in terms of the call stack
+3	3.6	3.6.A	3.6.A.1	244	Write methods that modify a mutable argument
+3	3.6	3.6.A	3.6.A.2	245	Explain how reference types are returned in terms of the call stack
+3	3.3	3.3.A	3.3.A.6	246	Explain where you can access a private member of a class
+3	3.7	3.7.B	3.7.B.1	247	Distinguish between class (static) and instance variables
+3	3.7	3.7.A	3.7.A.1	248	Explain why static methods can't access instance variables
+3	3.7	3.7.B	3.7.B.1	249	Write code that declares and uses static variables
+3	3.7	3.7.B	3.7.B.3	250	Explain why constant values are often defined as static variables
+3	3.7	3.7.B	3.7.B.3	251	State the proper modifiers for a variable holding a constant value
+3	3.8	3.8.A	3.8.A.1	252	Distinguish between local and member variables
+3	3.8	3.8.A	3.8.A.1	253	Identify the scope of local variables
+3	3.8	3.8.A	3.8.A.2	254	State how to disambiguate a reference to a shadowed member variable
+3	3.9	3.9.A	3.9.A.1	255	State where you can use this as a variable
+3	3.9	3.9.A	3.9.A.2	256	Write code that passes this as an argument
+4	4.1	4.1.A	4.1.A.1	257	Describe ways you give up some privacy when using software
+4	4.1	4.1.A	4.1.A.1	258	Describe ways software or operation failures can compromise privacy
+4	4.1	4.1.B	4.1.B.1	259	Define "algorithmic bias"
+4	4.1	4.1.B	4.1.B.2	260	Describe ways a dataset can be biased
+4	4.1	4.1.B	4.1.B.3	261	Describe ways data sets can be incomplete or inaccurate
+4	4.1	4.1.C	4.1.C.1	262	Describe ways a data set can be useful for one question but misleading for another
+4	4.2	4.2.A	4.2.A.1	263	Define "dataset"
+4	4.2	4.2.A	4.2.A.2	264	Write code to produce various summary statistics of a data set
+4	4.2	4.2.A	4.2.A.3	265	Construct tables to represent a dataset
+4	4.3	4.3.A	4.3.A.1	266	Write code that declares variables with array types
+4	4.11	4.11.A	4.11.A.1	267	Identify the component type of 1- and 2-d array types
+4	4.3	4.3.A	4.3.A.1	268	Describe how arrays are represented in the heap
+4	4.3	4.3.A	4.3.A.2	269	Write code that uses the length property of an array
+4	4.3	4.3.A	4.3.A.3	270	Distinguish between the two ways of allocating an array with new
+4	4.3	4.3.A	4.3.A.3	271	List the default values for array elements of different types of array.
+4	4.3	4.3.A	4.3.A.3	272	State the initial value of elements of an array constructed with new
+4	4.3	4.3.A	4.3.A.4	273	Write code to declare and initialize an array with an array initializer
+4	4.3	4.3.A	4.3.A.3	274	Write code to create an array with an array creation expression
+4	4.3	4.3.A	4.3.A.5	275	State the value of array access expressions
+4	4.3	4.3.A	4.3.A.5	276	Write code to access elements of arrays
+4	4.3	4.3.A	4.3.A.6	277	State the valid indexer of an array
+4	4.3	4.3.A	4.3.A.6	278	State the relationship between the length of an array and its last valid index.
+4	4.4	4.4.A	4.4.A.2	279	Write regular for loops to traverse arrays
+4	4.4	4.4.A	4.4.A.2	280	Write for loops that modify array elements.
+4	4.4	4.4.A	4.4.A.3	281	Write enhanced for loops to traverse a 1-d array
+4	4.4	4.4.A	4.4.A.4	282	Explain why code in an enhanced for loop can't modify the array
+4	4.4	4.4.A	4.4.A.2	283	Distinguish between an index variable and a value.
+4	4.4	4.4.A	4.4.A.4	284	Distinguish between modifying an array variable and an array element
+3	3.6	3.6.A	3.6.A.1	285	Write methods that modify a passed in array.
+4	4.3	4.3.A	4.3.A.5	286	Write methods that modify an array held in an instance variable
+4	4.4	4.4.A	4.4.A.6	287	Translate between regular and enhanced for loops
+4	4.4	4.4.A	4.4.A.6	288	Distinguish regular for loops that can be written as enhanced for loops
+4	4.4	4.4.A	4.4.A.5	289	Write code that modifies mutable objects stored in an array.
+4	4.3	4.3.A	4.3.A.1	290	Describe how arrays of reference types are stored in the heap.
+4	4.5	4.5.A	4.5.A.1	291	Write a reducing loop
+4	4.5	4.5.A	4.5.A.1	292	Write code using all the standard looping patterns over an array
+4	4.5	4.5.A	4.5.A.1	293	Write code to reverse the elements in an array
+4	4.5	4.5.A	4.5.A.1	294	Write code to process consecutive pairs of elements in an array
+4	4.5	4.5.A	4.5.A.1	295	Write code to process all pairs of elements in an array, unordered
+4	4.5	4.5.A	4.5.A.1	296	Write code to process all pairs of elements in an array, ordered
+4	4.5	4.5.A	4.5.A.1	297	Write code to rotate elements one position left or right
+4	4.5	4.5.A	4.5.A.1	298	Write code to detect duplicate elements in an array
+4	4.6	4.6.A	4.6.A.1	299	Explain the difference between data in a file and in a program.
+4	4.6	4.6.A	4.6.A.2	300	Write code to read data with File and Scanner
+4	4.6	4.6.A	4.6.A.5	301	Explain the purpose of import in Java
+4	4.6	4.6.A	4.6.A.4	302	Explain why file operations may throw IOException
+4	4.6	4.6.A	4.6.A.6	303	Write code that uses Scanner with System.in
+4	4.6	4.6.A	4.6.A.7	304	Explain why Scanner.nextLine and other next methods interact badly
+4	4.6	4.6.A	4.6.A.8	305	Write code that uses String.split to extract data
+4	4.6	4.6.A	4.6.A.9	306	Explain why processing user input line-by-line makes sense.
+4	4.7	4.7.A	4.7.A.1	307	Distinguish between primitive values and wrapper types.
+4	4.7	4.7.A	4.7.A.2	308	Translate code that uses autoboxing/unboxing to explicit boxing.
+4	4.7	4.7.A	4.7.A.4	309	Write code that uses Integer.parseInt
+4	4.7	4.7.A	4.7.A.5	310	Write code that uses Double.parseDouble
+4	4.7	4.7.A	4.7.A.1	311	State the two places you must use the names of wrapper types
+4	4.8	4.8.A	4.8.A.4	312	State the import statement needed to use ArrayList
+4	4.8	4.8.A	4.8.A.3	313	Write code to declare an ArrayList of type T
+4	4.8	4.8.A	4.8.A.2	314	Write code to construct an ArrayList with <>
+4	4.8	4.8.A	4.8.A.1	315	Describe the difference between arrays and ArrayLists
+4	4.10	4.10.A	4.10.A.1	316	Write code that uses all the standard loop algorithms with ArrayLists
+4	4.9	4.9.A	4.9.A.1	317	Write code that uses enhanced for loops with ArrayLists
+4	4.9	4.9.A	4.9.A.2	318	Write code to remove elements from an ArrayList
+4	4.9	4.9.A	4.9.A.2	319	Debug code that incorrectly removes elements from an ArrayList
+4	4.8	4.8.A	4.8.A.6	320	State the relationship between the size() of an ArrayList and its last index
+4	4.9	4.9.A	4.9.A.2	321	State when you must use a regular for loop with an ArrayList
+4	4.10	4.10.A	4.10.A.2	322	Write code to traverse multiple Strings, arrays, or ArrayLists in parallel
+4	4.11	4.11.A	4.11.A.1	323	Explain how a 2D array is just a 1D array in disguise
+4	4.11	4.11.A	4.11.A.1	324	State the component type of a 2D array
+4	4.11	4.11.A	4.11.A.2	325	Write code to initialize a 2D array variable with given dimensions
+4	4.11	4.11.A	4.11.A.3	326	State the two contexts where an array initializer may appear
+4	4.11	4.11.A	4.11.A.3	327	Write code to initialize a 2D array with an array initializer
+4	4.11	4.11.A	4.11.A.4	328	Write code to access individual elements of a 2D array
+4	4.11	4.11.A	4.11.A.5	329	Write code to access individual rows of a 2D array
+4	4.11	4.11.A	4.11.A.6	330	State the number of values in a 2D array
+4	4.11	4.11.A	4.11.A.6	331	State the number of rows & columns in a row-major 2D array
+4	4.11	4.11.A	4.11.A.1	332	Explain how 2D arrays are stored in the heap
+4	4.12	4.12.A	4.12.A.1	333	Write code to process all elements of a 2D array w/ regular for loops
+4	4.12	4.12.A	4.12.A.2	334	Write code to process all elements of a 2D array w/ enhanced for loops
+4	4.11	4.11.A	4.11.A.1	335	Distinguish between the element type & component type of 2D array
+4	4.13	4.13.A	4.13.A.1	336	Write code using standard loop algorithms over rows & columns of 2D array
+4	4.13	4.13.A	4.13.A.1	337	Write code to process cells and their neighbors in a 2D array
+4	4.12	4.12.A	4.12.A.1	338	Outline the difference between viewing a 2D array as a grid vs table
+4	4.13	4.13.A	4.13.A.1	339	Write code using standard loop algorithms over all elements of 2D array
+4	4.14	4.14.A	4.14.A.1	340	Write a finding loop
+4	4.14	4.14.A	4.14.A.1	341	Write a find index loop
+4	4.15	4.15.A	4.15.A.1	342	Demonstrate bubble sort with cards
+4	4.15	4.15.A	4.15.A.3	343	Demonstrate insertion sort with cards
+4	4.15	4.15.A	4.15.A.2	344	Demonstrate selection sort with cards
+4	4.17	4.17.C	4.17.C.2	345	Demonstrate merge sort with cards
+4	4.15	4.15.A	4.15.A.1	346	Identify sorting algorithm from code (bubble, insertion, selection, merge)
+4	4.16	4.16.A	4.16.A.1	347	Define recursion
+4	4.16	4.16.A	4.16.A.2	348	Explain how recursive calls work in terms of the stack and local variables
+4	4.16	4.16.A	4.16.A.3	349	Describe a recursive algorithm that is hard to express iteratively
+4	4.16	4.16.A	4.16.A.3	350	Translate iterative code to recursion
+4	4.16	4.16.A	4.16.A.1	351	State what mystery recursive methods do.
+4	4.17	4.17.A	4.17.A.1	352	Write recursive methods over ints, Strings, arrays, and ArrayLists
+4	4.17	4.17.B	4.17.B.1	353	Describe how binary search works
+4	4.17	4.17.B	4.17.B.2	354	Explain why binary search is more efficient than linear search.
+4	4.17	4.17.B	4.17.B.1	355	State the condition for using binary search
+4	4.17	4.17.B	4.17.B.3	356	Write an iterative binary search
+4	4.17	4.17.B	4.17.B.3	357	Write a recursive binary search
+4	4.15	4.15.A	4.15.A.1	358	Write bubble sort.
+4	4.15	4.15.A	4.15.A.3	359	Write insertion sort.
+4	4.15	4.15.A	4.15.A.2	360	Write selection sort.
+4	4.17	4.17.C	4.17.C.2	361	Write merge sort

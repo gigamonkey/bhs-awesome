@@ -1,0 +1,27 @@
+Write an any/some loop
+Write an all/every loop
+Write a summing loop
+Write a String accumulator loop
+Write a filtering loop with an ArrayList (copying)
+Write a loop to remove matching elements from ArrayList
+Write a loop over all fixed-size substrings of a String
+Write a loop over all substrings of a String
+Write a loop to reverse a String
+Write a loop over all the characters (as Strings) in a String
+Compute how many times a for loop will run.
+Compute how many times the inner body of a nested for loop runs.
+Trace the execution of a nested loop.
+Check loops by checking their bounds.
+Give examples of O(N) loops and O(N²) loops
+Define "abstraction"
+List the mechanisms in Java we've learned for creating abstractions
+Describe a program (e.g. Google docs) abstractly in English
+Explain how ints & doubles are an abstraction
+Explain how ints & doubles are an approximation
+List three features of Java that provide data abstraction.
+Explain how writing a class creates a data abstraction
+Define "attribute"
+List the two kinds of attributes in classes.
+Define "procedural abstraction"
+Describe how method decomposition creates layered abstractions
+Explain the role parameters play in a procedural abstraction

@@ -1,0 +1,27 @@
+Trace the order of evaluation of expressions & statements.
+Write correct calls to a static method from outside the class.
+Write correct calls to a static method from inside the class.
+Write correct calls to static & instance methods based on signatures.
+Determine whether a method can be static or not.
+Write expressions using Math.random() to generate random numbers
+Write if statements that use Math.random() to execute code with probability
+Explain the difference between inclusive and exclusive bounds
+Explain what a half-open intervals (is- closed)
+Describe how instance variables are used by instance methods.
+Sketch diagram of how instances and classes relate in memory
+List the methods all classes inherit from java.lang.Object
+Write correct overriding to String methods.
+Explain the difference between Object.equals & String.equals.
+Describe the purpose of inheritance (limited to Object)
+Distinguish between the reference value & object data of an instance.
+Explain where instance variables are stored in memory
+Describe the role of a constructor
+Describe the two main ways instance variables are initialized.
+Write constructors that use the this. idiom.
+Explain why the this. idiom is necessary.
+Identify which overloaded constructor will be invoked by a call.
+Distinguish between when we have to use this. and when its optional
+Write overloaded constructors that use this()
+List the default values for uninitialized instance variables
+Write correct invocations of a constructor with new
+Trace the flow of code containing calls to constructors.

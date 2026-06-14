@@ -1,0 +1,27 @@
+Distinguish between variables and values.
+Distinguish between declaring, initializing, assigning, and using a variable
+Explain the scope of variables
+State the type of expression using array access.
+Write code to generate output with print and println
+Explain the difference between string literals and variables
+Write string literals with escape characters
+Explain the difference between returning a string and printing
+Write arithmetic expressions that include variables
+State the value of expressions involving truncating division.
+State the value and type of mixed int/double expressions.
+Write expressions using arithmetic operators obeying precedence
+Explain 2-3 uses of the remainder operator
+Evaluate code including assignment statements
+Explain the relation between sequential evaluation and assignment
+Write code that reads user input with Scanner
+Explain the difference between parseInt(s.nextLine()) & s.nextInt()
+Evaluate arithmetic expressions involving casts.
+State when double contagion ("zombification") occurs.
+Write expressions to round doubles to nearest int w/o Math.round
+Write expressions to generate random numbers from a speci
+Explain integer overflow: both when & why it occurs.
+Explain the two (?) ways int math only approximates real math.
+State the names and approximate values (and exact expression) of int max.
+Describe the limitations of doubles
+Explain why the order of operations can affect the value of double comp.
+Explain why doubles are bad for money.

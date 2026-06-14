@@ -1,0 +1,27 @@
+CSA Learning Objectives
+
+Compile and run HelloWorld.java
+Describe the three basic building blocks of algorithms
+Simplify boolean expressions (2 and 3 variables)
+Express a real-world procedure as an algorithm.
+Write code to call instance methods
+Describe the difference between compile-time and run-time errors
+Write code to call static methods
+Fix common syntax errors in Java code
+Use casts to get mathematically appropriate answers.
+Debug index out of bounds errors.
+Write expressions using +, -, *, and /
+Distinguish between syntax, run-time, and logic errors.
+Write expressions using %
+Define preconditions and postconditions.
+Write arithmetic expressions with Math.pow, Math.sqrt, and Math.abs
+Distinguish between syntax & type errors.
+List some situations when Java will throw a runtime Exception
+Distinguish between primitive and reference types.
+Describe the limits of ints, doubles, and booleans.
+Properly format Java code. (By hand.)
+Explain the difference between int and double math.
+State the type of arithmetic expressions.
+Explain why non-primitive types are passed by reference.
+Explain the consequences of passing mutable types by reference
+State the type of expressions involving method calls.

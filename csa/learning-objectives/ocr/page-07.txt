@@ -1,0 +1,27 @@
+Explain what it means for expressions to be equivalent
+Calculate the value of expressions using == & != with references
+Calculate the value of == & != expressions with references including null
+Explain why classes often override equals
+Explain the rule of thumb for choosing between while & for loops
+Explain the structure of a while loop
+Trace the execution of a while loop
+Write code that uses a while loop
+List conditions that you might use in a while loop
+State when you might want an infinite loop
+Identify the condition of a while loop
+Identify the body of a while loop
+Identify a syntactically correct while loop
+Identify infinite while loops
+Fix inadvertant infinite while loops
+Identify missing semicolons and extraneous semicolons
+Explain the structure of a regular for loop
+Write a canonical for loop that runs N times
+Write a canonical reverse for loop that runs N times
+Trace the execution of a for loop including the 3 header clauses
+Define the initializer, condition, and updater in a for loop
+Translate while loops to equivalent for loops and vice versa.
+Write code to test if a number is even
+Write code to test if a number (incl negative) is odd
+Write a loop to do something with the digits of an int.
+Write a counting loop
+Write a maximizing/minimizing loop

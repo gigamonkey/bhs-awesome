@@ -1,0 +1,27 @@
+Write a class with an overridden toString
+Calculate the String and int values returned by String method calls
+Write code to extract a one-character string at an index
+Match "selection" with decisions and "repetition" with looping
+Explain how selection changes control flow
+Explain how repetition changes control flow
+Explain the role of booleans in selection & repetition
+Define the meaning of == & != for primitive & reference values
+Distinguish between = and == and !=
+Write expressions using the relational operators <, >, <=, >=
+Write chained relational expressions with && as standard form
+Explain why we should never use == & != with booleans
+Write one-way selections with if
+Write two-way selections with if/else
+Write multi-way selections with if/else if/else
+Explain why you should always use braces with if & else
+Explain why else if is an (okay) violation of the always use braces rule
+Calculate the result of code with consecutive ifs vs else if
+Simplify mutually-exclusive consecutive ifs into chained else ifs
+Trace the evaluation of if, if/else, & if/else if/else statements
+Translate multi-way else if chains to mutually exclusive ifs
+Calculate the value of boolean expressions using &&, ||, and !
+Create truth tables for boolean expressions of 2 & 3 variables
+Explain the use of short circuiting boolean operators
+List the rules of boolean algebra
+Apply De Morgan's laws to boolean expressions
+Apply De Morgan's laws to expressions involving relational & equality operators

@@ -1,0 +1,27 @@
+Write code to process all pairs of elements in an array, ordered
+Write code to rotate elements one position left or right
+Write code to detect duplicate elements in an array
+Explain the difference between data in a file and in a program.
+Write code to read data with File and Scanner
+Explain the purpose of import in Java
+Explain why file operations may throw IOException
+Write code that uses Scanner with System.in
+Explain why Scanner.nextLine and other next methods interact badly
+Write code that uses String.split to extract data
+Explain why processing user input line-by-line makes sense.
+Distinguish between primitive values and wrapper types.
+Translate code that uses autoboxing/unboxing to explicit boxing.
+Write code that uses Integer.parseInt
+Write code that uses Double.parseDouble
+State the two places you must use the names of wrapper types
+State the import statement needed to use ArrayList
+Write code to declare an ArrayList of type T
+Write code to construct an ArrayList with <>
+Describe the difference between arrays and ArrayLists
+Write code that uses all the standard loop algorithms with ArrayLists
+Write code that uses enhanced for loops with ArrayLists
+Write code to remove elements from an ArrayList
+Debug code that incorrectly removes elements from an ArrayList
+State the relationship between the size() of an ArrayList and its last index
+State when you must use a regular for loop with an ArrayList
+Write code to traverse multiple Strings, arrays, or ArrayLists in parallel

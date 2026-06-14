@@ -1,0 +1,12 @@
+Translate iterative code to recursion
+State what mystery recursive methods do.
+Write recursive methods over ints, Strings, arrays, and ArrayLists
+Describe how binary search works
+Explain why binary search is more efficient than linear search.
+State the condition for using binary search
+Write an iterative binary search
+Write a recursive binary search
+Write bubble sort.
+Write insertion sort.
+Write selection sort.
+Write merge sort

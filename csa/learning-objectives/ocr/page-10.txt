@@ -1,0 +1,27 @@
+Explain argument passing in terms of the call stack
+Explain passing references as arguments in terms of the call stack
+Write methods that modify a mutable argument
+Explain how reference types are returned in terms of the call stack
+Explain where you can access a private member of a class
+Distinguish between class (static) and instance variables
+Explain why static methods can't access instance variables
+Write code that declares and uses static variables
+Explain why constant values are often defined as static variables
+State the proper modifiers for a variable holding a constant value
+Distinguish between local and member variables
+Identify the scope of local variables
+State how to disambiguate a reference to a shadowed member variable
+State where you can use this as a variable
+Write code that passes this as an argument
+Describe ways you give up some privacy when using software
+Describe ways software or operation failures can compromise privacy
+Define "algorithmic bias"
+Describe ways a dataset can be biased
+Describe ways data sets can be incomplete or inaccurate
+Describe ways a data set can be useful for one question but misleading for another
+Define "dataset"
+Write code to produce various summary statistics of a data set
+Construct tables to represent a dataset
+Write code that declares variables with array types
+Identify the component type of 1- and 2-d array types
+Describe how arrays are represented in the heap

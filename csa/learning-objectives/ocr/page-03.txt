@@ -1,0 +1,27 @@
+Explain results of code that uses compound assignment operators
+Explain code that uses post-increment and decrement operators.
+Translate code between compound operators and not (incl. ++ & --)
+Write code using += with ints and Strings.
+Describe the relationship between classes, libraries, & APIs
+Describe the relationship between class attributes, methods, and constructors
+Use comments to temporarily disable chunks of code.
+Add useful comments to code.
+Remove redundant comments from code
+Write comments documenting a method's pre- and post-conditions.
+Explain how pre and postconditions constrain other code.
+Name all the punctuation characters used in Java.
+List the purpose or purposes of each punctuation character.
+Explain how procedural abstraction simplifies code.
+Write correct method signatures given a name, return type, and arg types
+Write correct calls to a method given its signature
+State the name, return type, and argument types & names given a usage.
+Distinguish between parameters (variables) and arguments (values).
+Identify the correct method signature for a given method call.
+Explain the difference between "pure" and side-effecting methods.
+Identify methods that can be used in an expression based on return type
+Explain how call by value works.
+Identify shadowed variables
+Evaluate code involving pass by value and changes to local variables.
+Identify which of several overloaded methods will be invoked by a call.
+Explain how method calls affect the flow of control.
+Trace the execution of code involving method calls.
