@@ -22,71 +22,10 @@ import re
 import sqlite3
 import sys
 
-from build_ced_xml import BIG_IDEA, HEADING, LEVEL_TAGS as CED_LEVEL_TAGS, UNIT
+from ced_hierarchy import LEVEL_TAGS, parse_sections
 
 # Table/column identifiers we generate must be plain SQL identifiers.
 IDENT_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
-
-# Book hierarchy level-1 heading (from extract_book_hierarchy.py): "Chapter N: TITLE".
-CHAPTER = re.compile(r"^Chapter (\d+): (.+)$")
-
-LEVEL_TAGS = {
-    **CED_LEVEL_TAGS,
-    "book": {1: "chapter", 2: "section", 3: "subsection"},
-}
-
-
-def parse_top_heading(rest):
-    """Parse a level-1 heading, returning (flavor, id, title)."""
-    m = BIG_IDEA.match(rest)
-    if m:
-        return "csp", m.group(2), m.group(1)
-    m = UNIT.match(rest)
-    if m:
-        return "csa", m.group(1), m.group(2)
-    m = CHAPTER.match(rest)
-    if m:
-        return "book", m.group(1), m.group(2)
-    sys.exit(f"unparseable top-level heading: {rest!r}")
-
-
-def parse_sections(md):
-    """Walk markdown lines; return (flavor, flat list of section dicts).
-
-    Each section dict has: level, id, head (heading text after the id) and
-    body (raw lines up to the next heading). Unlike build_ced_xml, ids are
-    kept verbatim (e.g. "1", "1.1", "1.1.A", "1.1.A.1").
-    """
-    flavor = None
-    sections = []
-    current = None
-    for line in md.splitlines():
-        m = HEADING.match(line)
-        if m:
-            if current is not None:
-                sections.append(current)
-            level = len(m.group(1))
-            rest = m.group(2)
-            if level == 1:
-                heading_flavor, id_, head = parse_top_heading(rest)
-                if flavor is None:
-                    flavor = heading_flavor
-                elif flavor != heading_flavor:
-                    sys.exit(f"mixed hierarchy flavors: {rest!r}")
-            else:
-                if flavor is None:
-                    sys.exit(f"sub-heading before any top-level heading: {rest!r}")
-                parts = rest.split(" ", 1)
-                id_ = parts[0]
-                head = parts[1] if len(parts) > 1 else ""
-            current = {"level": level, "id": id_, "head": head, "body": []}
-        elif current is not None:
-            current["body"].append(line)
-    if current is not None:
-        sections.append(current)
-    if flavor is None:
-        sys.exit("no top-level heading found")
-    return flavor, sections
 
 
 def section_text(sec):

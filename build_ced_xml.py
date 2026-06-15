@@ -26,79 +26,25 @@ import re
 import sys
 import textwrap
 
-HEADING = re.compile(r"^(#{1,4}) (.+)$")
-BIG_IDEA = re.compile(r"^Big Idea \d+: (.+) \((\w+)\)$")
-UNIT = re.compile(r"^Unit (\d+): (.+)$")
+from ced_hierarchy import LEVEL_TAGS, parse_sections
+
 LETTERED = re.compile(r"^([a-z])\. (.*)")
 BULLET = re.compile(r"^- (.*)")
 
-LEVEL_TAGS = {
-    "csp": {
-        1: "big-idea",
-        2: "essential-understanding",
-        3: "learning-objective",
-        4: "essential-knowledge",
-    },
-    "csa": {
-        1: "unit",
-        2: "topic",
-        3: "learning-objective",
-        4: "essential-knowledge",
-    },
-}
-
-# CSA codes (1.1.A.1) start with a digit, which is not a valid xml:id (NCName).
-CSA_ID_PREFIX = {2: "topic", 3: "lo", 4: "ek"}
+# CSA codes (1.1.A.1) start with a digit, which is not a valid xml:id (NCName),
+# so each level's id gets a prefix.
+CSA_ID_PREFIX = {1: "unit", 2: "topic", 3: "lo", 4: "ek"}
 
 
-def parse_top_heading(rest):
-    """Parse a level-1 heading, returning (flavor, id, title)."""
-    m = BIG_IDEA.match(rest)
-    if m:
-        return "csp", m.group(2), m.group(1)
-    m = UNIT.match(rest)
-    if m:
-        return "csa", f"unit-{m.group(1)}", m.group(2)
-    sys.exit(f"unparseable top-level heading: {rest!r}")
+def xml_id(flavor, level, raw_id):
+    """Map a verbatim hierarchy id to a valid xml:id for the given flavor.
 
-
-def parse_sections(md):
-    """Walk markdown lines; return (flavor, flat list of section dicts)."""
-    flavor = None
-    sections = []
-    current = None
-    for line in md.splitlines():
-        m = HEADING.match(line)
-        if m:
-            if current is not None:
-                sections.append(current)
-            level = len(m.group(1))
-            rest = m.group(2)
-            if level == 1:
-                heading_flavor, id_, title = parse_top_heading(rest)
-                if flavor is None:
-                    flavor = heading_flavor
-                elif flavor != heading_flavor:
-                    sys.exit(f"mixed hierarchy flavors: {rest!r}")
-                current = {"level": 1, "id": id_, "title": title, "body": []}
-            else:
-                if flavor is None:
-                    sys.exit(f"sub-heading before any top-level heading: {rest!r}")
-                # "ID TEXT"
-                parts = rest.split(" ", 1)
-                id_ = parts[0]
-                title = parts[1] if len(parts) > 1 else ""
-                if flavor == "csa":
-                    id_ = f"{CSA_ID_PREFIX[level]}-{id_}"
-                current = {"level": level, "id": id_, "title": title, "body": []}
-        else:
-            if current is not None:
-                current["body"].append(line)
-    if current is not None:
-        sections.append(current)
-    if flavor is None:
-        sys.exit("no top-level heading found")
-    return flavor, sections
+    CSP ids (Big Idea codes like "CRD-1.A") are already valid NCNames and used
+    as is; CSA codes start with a digit, so they get a per-level prefix.
+    """
+    if flavor == "csa":
+        return f"{CSA_ID_PREFIX[level]}-{raw_id}"
+    return raw_id
 
 
 # --- Markdown body parser --------------------------------------------------
@@ -273,7 +219,7 @@ def render_text_element(title, body_blocks, indent_level):
 
 # --- Top-level builder -----------------------------------------------------
 
-def build_xml(sections, level_tag):
+def build_xml(flavor, sections, level_tag):
     out = ['<ced>']
     # stack of (level, indent_level) so we know when to close ancestors
     stack = []
@@ -286,12 +232,12 @@ def build_xml(sections, level_tag):
         ind = "  " * indent
         tag = level_tag[sec["level"]]
         out.append("")
-        out.append(f'{ind}<{tag} xml:id="{sec["id"]}">')
+        out.append(f'{ind}<{tag} xml:id="{xml_id(flavor, sec["level"], sec["id"])}">')
         if sec["level"] == 1:
-            out.append(f'{ind}  <title>{render_inline(sec["title"])}</title>')
+            out.append(f'{ind}  <title>{render_inline(sec["head"])}</title>')
         else:
             body_blocks = parse_blocks(sec["body"])
-            out.extend(render_text_element(sec["title"], body_blocks, indent + 1))
+            out.extend(render_text_element(sec["head"], body_blocks, indent + 1))
         stack.append((sec["level"], indent))
     while stack:
         level, indent = stack.pop()
@@ -309,8 +255,10 @@ def main():
     with open(args.input) as f:
         md = f.read()
     flavor, sections = parse_sections(md)
+    if flavor not in ("csa", "csp"):
+        sys.exit(f"build_ced_xml only supports CSA/CSP hierarchies, not {flavor!r}")
     level_tag = LEVEL_TAGS[flavor]
-    xml = build_xml(sections, level_tag)
+    xml = build_xml(flavor, sections, level_tag)
     with open(args.output, "w") as f:
         f.write(xml)
     counts = {1: 0, 2: 0, 3: 0, 4: 0}
