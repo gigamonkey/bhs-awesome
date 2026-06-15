@@ -17,7 +17,7 @@ and the College Board Course and Exam Description (CED) PDFs.
 - `.xml-formats/` — JSON configs for `format_xml.py` (`ptx.json`, `quiz.json`, `mcqs.json`)
 - `csa/` — AP CSA CED artifacts: PDF, `ced-2025-hierarchy.md`, `ced.xml`, `ced.html`, `mcqs.quiz`, and `learning-objectives/` (handwriting scans, OCR text, and `objectives.tsv`)
 - `csp/` — AP CSP CED artifacts: PDF, `ced-hierarchy.md`, `ced.xml`, `ced.html`, and `sample.xml` (target schema)
-- `ib/` — IB Computer Science guide: `ib-cs-guide-2025.pdf` and the extracted `ib-hierarchy.md`
+- `ib/` — IB Computer Science guide: `ib-cs-guide-2025.pdf` and the extracted `ib-hierarchy.md` and `ib-hours.tsv`
 - `decks/` — Flashcard `.deck` files (XML)
 - `reports/` — Generated analysis reports (e.g., the book comparison)
 - `bhsawesome/`, `csawesome/` — Local PreTeXt source trees extracted by `just-pretext.sh` (gitignored)
@@ -38,6 +38,7 @@ and the College Board Course and Exam Description (CED) PDFs.
 | `build_ced_db.py`          | Loads a hierarchy markdown file (CSA/CSP CED or `extract_book_hierarchy.py` book output, auto-detected) into a SQLite table: one row per node, an id column per level (ancestors filled, deeper levels NULL), plus the node's raw markdown text |
 | `extract_book_hierarchy.py`| Extracts the chapter/section/subsection hierarchy from a PreTeXt book (following `.ptx` includes) as a numbered markdown hierarchy (`# Chapter N:`, `## N.M`, `### N.M.K`)                              |
 | `extract_ib_hierarchy.py`  | Extracts the IB Computer Science guide's five-level syllabus hierarchy (theme/area/topic/objective/essential-knowledge) from the guide PDF into a markdown hierarchy (`# Theme X:`, `## A1`, `### A1.1`, `#### A1.1.1`, `##### A1.1.1.1`); essential-knowledge ids are synthesized |
+| `extract_ib_hours.py`      | Extracts per-area teaching hours from the IB CS guide's syllabus outline table into a TSV (`area`, `sl`, `hl`); an HL-only area shows 0 SL hours                                                          |
 | `check_deck.py`         | Checks (and with `--fix`, repairs) the structure of a `.deck` file                                                                                                                                       |
 | `rename_card_tags.py`   | Renames `<front>`/`<back>` to `<question>`/`<answer>` in a deck via text substitution (preserves formatting)                                                                                             |
 | `uuidize_objectives.py` | Rewrites `objectives.tsv` in place, replacing the number column with a leading UUID                                                                                                                       |
@@ -106,8 +107,9 @@ uv run build_ced_xml.py csa/ced-2025-hierarchy.md csa/ced.xml
 uv run build_ced_db.py csa/ced-2025-hierarchy.md ced.db hierarchy
 make                                         # render */ced.xml -> */ced.html
 
-# Extract the IB CS syllabus hierarchy from the guide PDF
+# Extract the IB CS syllabus hierarchy and per-area hours from the guide PDF
 uv run extract_ib_hierarchy.py ib/ib-cs-guide-2025.pdf ib/ib-hierarchy.md
+uv run extract_ib_hours.py ib/ib-cs-guide-2025.pdf ib/ib-hours.tsv
 
 # Compare activities between two books
 uv run compare_activities.py bhsawesome/main.ptx csawesome/main.ptx comparison/
