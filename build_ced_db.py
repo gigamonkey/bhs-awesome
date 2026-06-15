@@ -100,9 +100,17 @@ def build_rows(sections):
 
 
 def column_names(flavor):
-    """Id column name for each level, derived from the flavor's level tags."""
+    """Id column name for each level, derived from the flavor's level tags.
+
+    Hyphenated tags are abbreviated to their initials (e.g. learning-objective
+    -> lo, essential-knowledge -> ek); single-word tags are used as-is.
+    """
     tags = LEVEL_TAGS[flavor]
-    return {level: tags[level].replace("-", "_") + "_id" for level in (1, 2, 3, 4)}
+
+    def name(tag):
+        return "".join(part[0] for part in tag.split("-")) if "-" in tag else tag
+
+    return {level: name(tags[level]) for level in (1, 2, 3, 4)}
 
 
 def load(db_path, table, columns, rows):
