@@ -98,9 +98,9 @@ def main():
     root = resolve(args.input)
     rows = extract(root)
     text = "".join(
-        f"# Chapter {number}: {title}\n"
+        f"# Chapter {number}: {title}\n\n"
         if level == 1
-        else f"{'#' * level} {number} {title}\n"
+        else f"{'#' * level} {number} {title}\n\n"
         for level, _tag, number, title in rows
     )
 
