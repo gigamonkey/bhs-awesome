@@ -7,8 +7,8 @@ each syllabus area at standard level (SL) and higher level (HL), e.g.
     ...
     B4 Abstract data types—HL only – 23
 
-This writes a TSV with one row per area (header: area, sl, hl). An area offered
-only at higher level shows "–" for SL in the table; that becomes 0 hours.
+This writes a TSV with one row per area (header: area, title, sl, hl). An area
+offered only at higher level shows "–" for SL in the table; that becomes 0 hours.
 """
 
 import argparse
@@ -21,7 +21,11 @@ TABLE_MARKERS = ("Syllabus component", "Teaching hours")
 
 # An area row: id (A1..B4), title, then the SL and HL hour columns. Hours are an
 # integer or an en/em dash ("–"/"-") meaning the area is not offered at SL.
-AREA_ROW = re.compile(r"^([AB]\d)\s+.+?\s+([\d–-]+)\s+([\d–-]+)$")
+AREA_ROW = re.compile(r"^([AB]\d)\s+(.+?)\s+([\d–-]+)\s+([\d–-]+)$")
+
+# An HL-only area's title carries a trailing "—HL only" annotation; the HL-only
+# status is already captured by 0 SL hours, so strip it from the title.
+HL_ONLY = re.compile(r"\s*[—–-]\s*HL only$")
 
 
 def hours(token):
@@ -42,7 +46,8 @@ def parse_areas(text):
     for line in text.splitlines():
         m = AREA_ROW.match(line.strip())
         if m:
-            rows.append((m.group(1), hours(m.group(2)), hours(m.group(3))))
+            title = HL_ONLY.sub("", m.group(2))
+            rows.append((m.group(1), title, hours(m.group(3)), hours(m.group(4))))
     return rows
 
 
@@ -55,9 +60,9 @@ def main():
     reader = PdfReader(args.input)
     rows = parse_areas(find_table_page(reader))
     with open(args.output, "w") as f:
-        f.write("area\tsl\thl\n")
-        for area, sl, hl in rows:
-            f.write(f"{area}\t{sl}\t{hl}\n")
+        f.write("area\ttitle\tsl\thl\n")
+        for area, title, sl, hl in rows:
+            f.write(f"{area}\t{title}\t{sl}\t{hl}\n")
     print(f"{len(rows)} areas")
 
 
