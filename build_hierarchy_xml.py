@@ -2,7 +2,7 @@
 
 Handles four hierarchy flavors, detected from the first level-1 heading. The
 document root is <ced> for the College Board flavors, <syllabus> for IB, and
-<book> for the PreTeXt book flavor.
+<book> for the PreTeXt book flavor; its xml:id is given as a required argument.
 
 CSP (e.g., csp/ced-hierarchy.md; schema from csp/sample.xml):
 - # Big Idea N: TITLE (CODE)  ->  <big-idea xml:id="CODE"><title>TITLE</title>...
@@ -243,8 +243,8 @@ def render_text_element(title, body_blocks, indent_level):
 
 # --- Top-level builder -----------------------------------------------------
 
-def build_xml(flavor, sections, level_tag, root_tag):
-    out = [f"<{root_tag}>"]
+def build_xml(flavor, sections, level_tag, root_tag, root_id):
+    out = [f'<{root_tag} xml:id="{root_id}">']
     # stack of (level, indent_level) so we know when to close ancestors
     stack = []
     for sec in sections:
@@ -274,6 +274,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("input", help="hierarchy markdown file")
     parser.add_argument("output", help="XML output file")
+    parser.add_argument("root_id", help="xml:id for the root element")
     args = parser.parse_args()
 
     with open(args.input) as f:
@@ -283,7 +284,7 @@ def main():
         supported = "/".join(sorted(ROOT_TAG))
         sys.exit(f"build_hierarchy_xml only supports {supported} hierarchies, not {flavor!r}")
     level_tag = LEVEL_TAGS[flavor]
-    xml = build_xml(flavor, sections, level_tag, ROOT_TAG[flavor])
+    xml = build_xml(flavor, sections, level_tag, ROOT_TAG[flavor], args.root_id)
     with open(args.output, "w") as f:
         f.write(xml)
     counts = {level: 0 for level in level_tag}

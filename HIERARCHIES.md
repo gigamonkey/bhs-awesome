@@ -188,8 +188,9 @@ uv run load_objectives.py csa/learning-objectives/objectives.tsv objectives.db
 
 Renders a `csa`/`csp`/`ib`/`book` hierarchy markdown file to nested XML (the CED
 schema is in `csp/sample.xml`). The document root is `<ced>` for the College
-Board flavors, `<syllabus>` for IB, and `<book>` for the PreTeXt book flavor. It
-auto-detects the flavor and maps levels to elements:
+Board flavors, `<syllabus>` for IB, and `<book>` for the PreTeXt book flavor; its
+`xml:id` is a required CLI argument (e.g. `ap-csa-2025`). It auto-detects the
+flavor and maps levels to elements:
 
 | Level | `csa` element | `csp` element | `ib` element | `book` element |
 |-------|---------------|---------------|--------------|----------------|
@@ -210,8 +211,8 @@ parsed into blocks — paragraphs (`<p>`), indented code (`<pre>`), bullet lists
 are converted to `<code>`/`<em>`.
 
 ```bash
-uv run build_hierarchy_xml.py csa/ced-2025-hierarchy.md csa/ced.xml
-uv run build_hierarchy_xml.py ib/ib-hierarchy.md ib/syllabus.xml   # <syllabus> root, no HTML stage
+uv run build_hierarchy_xml.py csa/ced-2025-hierarchy.md csa/ced.xml ap-csa-2025
+uv run build_hierarchy_xml.py ib/ib-hierarchy.md ib/syllabus.xml ib-cs-2025   # <syllabus> root, no HTML stage
 make                                          # */ced.xml -> */ced.html via xsltproc
 ```
 

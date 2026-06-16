@@ -105,8 +105,8 @@ uv run format_xml.py -i csa/mcqs.quiz        # format quiz in place
 uv run extract_key.py csa/mcqs.quiz          # extract answer key as JSON
 
 # Build XML/DB artifacts from a hierarchy markdown file (CSA/CSP/IB/book)
-uv run build_hierarchy_xml.py csa/ced-2025-hierarchy.md csa/ced.xml
-uv run build_hierarchy_xml.py ib/ib-hierarchy.md ib/syllabus.xml
+uv run build_hierarchy_xml.py csa/ced-2025-hierarchy.md csa/ced.xml ap-csa-2025
+uv run build_hierarchy_xml.py ib/ib-hierarchy.md ib/syllabus.xml ib-cs-2025
 uv run build_hierarchy_db.py csa/ced-2025-hierarchy.md ced.db hierarchy
 make                                         # render */ced.xml -> */ced.html
 
