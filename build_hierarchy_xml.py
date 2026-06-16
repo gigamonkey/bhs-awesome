@@ -1,6 +1,8 @@
-"""Convert a CED hierarchy markdown file to XML.
+"""Convert a curriculum hierarchy markdown file to XML.
 
-Handles two hierarchy flavors, detected from the first level-1 heading:
+Handles four hierarchy flavors, detected from the first level-1 heading. The
+document root is <ced> for the College Board flavors, <syllabus> for IB, and
+<book> for the PreTeXt book flavor.
 
 CSP (e.g., csp/ced-hierarchy.md; schema from csp/sample.xml):
 - # Big Idea N: TITLE (CODE)  ->  <big-idea xml:id="CODE"><title>TITLE</title>...
@@ -14,8 +16,21 @@ CSA (e.g., csa/ced-2025-hierarchy.md):
 - ### ID TEXT                 ->  <learning-objective xml:id="lo-ID"><text>TEXT</text>...
 - #### ID TEXT                ->  <essential-knowledge xml:id="ek-ID"><text>TEXT</text>...
 
-CSA codes start with a digit (e.g., 1.1.A.1), which is not a valid xml:id
-(NCName), so they get a level prefix like the unit-N ids do.
+IB (e.g., ib/ib-hierarchy.md):
+- # Theme X: TITLE            ->  <theme xml:id="X"><title>TITLE</title>...
+- ## ID TEXT                  ->  <topic xml:id="ID"><text>TEXT</text>...
+- ### ID TEXT                 ->  <subtopic xml:id="ID"><text>TEXT</text>...
+- #### ID TEXT                ->  <learning-statement xml:id="ID"><text>TEXT</text>...
+- ##### ID TEXT               ->  <content xml:id="ID"><text>TEXT</text>...
+
+book (e.g., extract_book_hierarchy.py output):
+- # Chapter N: TITLE          ->  <chapter xml:id="chapter-N"><title>TITLE</title>...
+- ## ID TEXT                  ->  <section xml:id="section-ID"><text>TEXT</text>...
+- ### ID TEXT                 ->  <subsection xml:id="subsection-ID"><text>TEXT</text>...
+
+CSA codes (e.g., 1.1.A.1) and book numbers (e.g., 1.1.1) start with a digit,
+which is not a valid xml:id (NCName), so they get a level prefix like the unit-N
+ids do. CSP and IB ids are already valid NCNames and used verbatim.
 
 Bullet/lettered lists, code blocks, *italic*, and `code` are converted to
 HTML-style markup inside <text>.
@@ -26,24 +41,33 @@ import re
 import sys
 import textwrap
 
-from ced_hierarchy import LEVEL_TAGS, parse_sections
+from hierarchy import LEVEL_TAGS, parse_sections
 
 LETTERED = re.compile(r"^([a-z])\. (.*)")
 BULLET = re.compile(r"^- (.*)")
 
-# CSA codes (1.1.A.1) start with a digit, which is not a valid xml:id (NCName),
-# so each level's id gets a prefix.
-CSA_ID_PREFIX = {1: "unit", 2: "topic", 3: "lo", 4: "ek"}
+# The document root element, by flavor. The College Board flavors render through
+# ced-to-html.xsl, which matches /ced; IB and book have no such pipeline.
+ROOT_TAG = {"csa": "ced", "csp": "ced", "ib": "syllabus", "book": "book"}
+
+# CSA codes (1.1.A.1) and book numbers (1.1.1) start with a digit, which is not a
+# valid xml:id (NCName), so each level's id gets a per-level prefix.
+ID_PREFIX = {
+    "csa": {1: "unit", 2: "topic", 3: "lo", 4: "ek"},
+    "book": {1: "chapter", 2: "section", 3: "subsection"},
+}
 
 
 def xml_id(flavor, level, raw_id):
     """Map a verbatim hierarchy id to a valid xml:id for the given flavor.
 
-    CSP ids (Big Idea codes like "CRD-1.A") are already valid NCNames and used
-    as is; CSA codes start with a digit, so they get a per-level prefix.
+    CSP ids (Big Idea codes like "CRD-1.A") and IB ids (e.g. "A1.1.1.1") are
+    already valid NCNames and used as is; CSA and book ids start with a digit, so
+    they get a per-level prefix.
     """
-    if flavor == "csa":
-        return f"{CSA_ID_PREFIX[level]}-{raw_id}"
+    prefixes = ID_PREFIX.get(flavor)
+    if prefixes:
+        return f"{prefixes[level]}-{raw_id}"
     return raw_id
 
 
@@ -219,8 +243,8 @@ def render_text_element(title, body_blocks, indent_level):
 
 # --- Top-level builder -----------------------------------------------------
 
-def build_xml(flavor, sections, level_tag):
-    out = ['<ced>']
+def build_xml(flavor, sections, level_tag, root_tag):
+    out = [f"<{root_tag}>"]
     # stack of (level, indent_level) so we know when to close ancestors
     stack = []
     for sec in sections:
@@ -242,7 +266,7 @@ def build_xml(flavor, sections, level_tag):
     while stack:
         level, indent = stack.pop()
         out.append(f"{'  ' * indent}</{level_tag[level]}>")
-    out.append("</ced>")
+    out.append(f"</{root_tag}>")
     return "\n".join(out) + "\n"
 
 
@@ -255,16 +279,17 @@ def main():
     with open(args.input) as f:
         md = f.read()
     flavor, sections = parse_sections(md)
-    if flavor not in ("csa", "csp"):
-        sys.exit(f"build_ced_xml only supports CSA/CSP hierarchies, not {flavor!r}")
+    if flavor not in ROOT_TAG:
+        supported = "/".join(sorted(ROOT_TAG))
+        sys.exit(f"build_hierarchy_xml only supports {supported} hierarchies, not {flavor!r}")
     level_tag = LEVEL_TAGS[flavor]
-    xml = build_xml(flavor, sections, level_tag)
+    xml = build_xml(flavor, sections, level_tag, ROOT_TAG[flavor])
     with open(args.output, "w") as f:
         f.write(xml)
-    counts = {1: 0, 2: 0, 3: 0, 4: 0}
+    counts = {level: 0 for level in level_tag}
     for s in sections:
         counts[s["level"]] += 1
-    print(f"{flavor}: " + " ".join(f"{level_tag[lvl]}={n}" for lvl, n in counts.items()))
+    print(f"{flavor}: " + " ".join(f"{level_tag[lvl]}={counts[lvl]}" for lvl in sorted(counts)))
 
 
 if __name__ == "__main__":

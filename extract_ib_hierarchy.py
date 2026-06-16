@@ -2,15 +2,15 @@
 
 The IB CS guide organizes required course material into a five-level hierarchy:
 
-- Theme        ->  # Theme A: Concepts of computer science
-- Area         ->  ## A1 Computer fundamentals
-- Topic        ->  ### A1.1 Computer hardware and operation
-- Objective    ->  #### A1.1.1 Describe the functions ... of the main CPU components.
-- Knowledge    ->  ##### A1.1.1.1 Units: arithmetic logic unit (ALU), control unit (CU)
+- Theme              ->  # Theme A: Concepts of computer science
+- Topic              ->  ## A1 Computer fundamentals
+- Subtopic           ->  ### A1.1 Computer hardware and operation
+- Learning statement ->  #### A1.1.1 Describe the functions ... of the main CPU components.
+- Content            ->  ##### A1.1.1.1 Units: arithmetic logic unit (ALU), control unit (CU)
 
-Learning objectives carry three-part ids in the PDF; essential-knowledge items
-are bulleted and have no id, so their id is synthesized as the objective id plus
-a sequential number.
+Learning statements carry three-part ids in the PDF; content items are bulleted
+and have no id, so their id is synthesized as the learning-statement id plus a
+sequential number.
 
 Only the syllabus-content pages are read (auto-detected as the contiguous run of
 pages carrying the "Syllabus content" footer, starting at the "A note on
@@ -35,7 +35,7 @@ CONTENT_FOOTER = "Syllabus content"
 # Record starters.
 THEME = re.compile(r"^Theme ([AB]):\s*(.*)$")
 # Node id: a letter, an optional stray dot (the guide has a "A.1.2.5" typo),
-# then dot-separated numbers. 1 number = area, 2 = topic, 3 = objective.
+# then dot-separated numbers. 1 number = topic, 2 = subtopic, 3 = learning statement.
 NODE_ID = re.compile(r"^([AB])\.?(\d+(?:\.\d+)*)\s+(.*)$", re.S)
 BULLET = re.compile(r"^•\s*(.*)$")
 # Lines that introduce non-hierarchy content; everything up to the next heading
@@ -43,8 +43,14 @@ BULLET = re.compile(r"^•\s*(.*)$")
 SECTION_KW = ("Guiding question", "Linking questions", "Standard level",
               "Higher level", "A note on syllabus")
 
-LEVEL_BY_DEPTH = {1: "area", 2: "topic", 3: "objective"}
-HEADING_LEVEL = {"theme": 1, "area": 2, "topic": 3, "objective": 4, "knowledge": 5}
+LEVEL_BY_DEPTH = {1: "topic", 2: "subtopic", 3: "learning-statement"}
+HEADING_LEVEL = {
+    "theme": 1,
+    "topic": 2,
+    "subtopic": 3,
+    "learning-statement": 4,
+    "content": 5,
+}
 
 
 def content_lines(reader):
@@ -71,12 +77,12 @@ def starter(line):
     if THEME.match(line):
         return "theme"
     if BULLET.match(line):
-        return "knowledge"
-    # A standalone "Note:" paragraph clarifies an objective but is not a bulleted
-    # knowledge item; keep it as its own item so it neither corrupts the
+        return "content"
+    # A standalone "Note:" paragraph clarifies a learning statement but is not a
+    # bulleted content item; keep it as its own item so it neither corrupts the
     # preceding bullet nor loses its text.
     if line.startswith("Note:"):
-        return "knowledge"
+        return "content"
     if line.startswith(SECTION_KW) or line.startswith(("—", "“")):
         return "skip"
     m = NODE_ID.match(line)
@@ -112,28 +118,28 @@ def build(records):
     out = []
     counts = {kind: 0 for kind in HEADING_LEVEL}
     skip_bullets = False
-    objective = None
-    knowledge_n = 0
+    statement = None
+    content_n = 0
     for kind, text in records:
         if kind == "theme":
             m = THEME.match(text)
             out.append(f"# Theme {m.group(1)}: {m.group(2).strip()}")
-            skip_bullets, objective = False, None
-        elif kind in ("area", "topic", "objective"):
+            skip_bullets, statement = False, None
+        elif kind in ("topic", "subtopic", "learning-statement"):
             ident, rest = node_id(text)
             out.append(f"{'#' * HEADING_LEVEL[kind]} {ident} {rest}")
             skip_bullets = False
-            if kind == "objective":
-                objective, knowledge_n = ident, 0
+            if kind == "learning-statement":
+                statement, content_n = ident, 0
             else:
-                objective = None
-        elif kind == "knowledge":
-            if skip_bullets or objective is None:
+                statement = None
+        elif kind == "content":
+            if skip_bullets or statement is None:
                 continue
             m = BULLET.match(text)
             body = m.group(1).strip() if m else text.strip()
-            knowledge_n += 1
-            out.append(f"##### {objective}.{knowledge_n} {body}")
+            content_n += 1
+            out.append(f"##### {statement}.{content_n} {body}")
         elif kind == "skip":
             skip_bullets = True
             continue

@@ -34,12 +34,12 @@ and the College Board Course and Exam Description (CED) PDFs.
 | `activity_report.py`    | Analyzes activity element structures and generates statistics. Options: `-d`/`--deep`, `-p`/`--prune`, `--ignore`, `-t`/`--tree`                                                                         |
 | `compare_activities.py` | Compares activities between two PreTeXt root files; writes `a/`, `b/`, and `paired.tsv` to an output dir. Options: `--similarity jaccard\|jaccard-weighted\|lcs`, `-s`/`--shingle-size`                 |
 | `filter_pairs.py`       | Filters a `compare_activities` output dir by threshold; writes `a/` and `b/` with unmatched activities annotated with `pair=` and `similarity=` attributes. Option: `-t`/`--threshold` (default 0.95)   |
-| `ced_hierarchy.py`         | Shared hierarchy-markdown parser used by `build_ced_xml.py` and `build_ced_db.py`. `parse_sections` auto-detects the flavor (CSA/CSP/book) from the first heading and returns a flat list of nodes with verbatim ids and separate `head`/`body`; consumers apply their own id transforms. Exposes `LEVEL_TAGS` (per-level tags per flavor) |
-| `build_ced_xml.py`         | Converts a CED hierarchy markdown file to XML (auto-detects CSA or CSP flavor from the first heading; rejects the book flavor)                                                                          |
-| `build_ced_db.py`          | Loads a hierarchy markdown file (CSA/CSP CED or `extract_book_hierarchy.py` book output, auto-detected) into a SQLite table: one row per node, an id column per level (ancestors filled, deeper levels NULL), plus the node's raw markdown text |
+| `hierarchy.py`             | Shared hierarchy-markdown parser used by `build_hierarchy_xml.py` and `build_hierarchy_db.py`. `parse_sections` auto-detects the flavor (CSA/CSP/IB/book) from the first heading and returns a flat list of nodes with verbatim ids and separate `head`/`body`; consumers apply their own id transforms. Exposes `LEVEL_TAGS` (per-level tags per flavor) |
+| `build_hierarchy_xml.py`   | Converts a hierarchy markdown file to XML (auto-detects CSA, CSP, IB, or book flavor from the first heading). Root is `<ced>` for CSA/CSP, `<syllabus>` for IB, and `<book>` for book                     |
+| `build_hierarchy_db.py`    | Loads a hierarchy markdown file (CSA/CSP CED, IB syllabus, or `extract_book_hierarchy.py` book output, auto-detected) into a SQLite table: one row per node, an id column per level (ancestors filled, deeper levels NULL), plus the node's raw markdown text |
 | `extract_book_hierarchy.py`| Extracts the chapter/section/subsection hierarchy from a PreTeXt book (following `.ptx` includes) as a numbered markdown hierarchy (`# Chapter N:`, `## N.M`, `### N.M.K`)                              |
-| `extract_ib_hierarchy.py`  | Extracts the IB Computer Science guide's five-level syllabus hierarchy (theme/area/topic/objective/essential-knowledge) from the guide PDF into a markdown hierarchy (`# Theme X:`, `## A1`, `### A1.1`, `#### A1.1.1`, `##### A1.1.1.1`); essential-knowledge ids are synthesized |
-| `extract_ib_hours.py`      | Extracts per-area teaching hours from the IB CS guide's syllabus outline table into a TSV (`area`, `title`, `sl`, `hl`); an HL-only area shows 0 SL hours                                                 |
+| `extract_ib_hierarchy.py`  | Extracts the IB Computer Science guide's five-level syllabus hierarchy (theme/topic/subtopic/learning-statement/content) from the guide PDF into a markdown hierarchy (`# Theme X:`, `## A1`, `### A1.1`, `#### A1.1.1`, `##### A1.1.1.1`); content ids are synthesized |
+| `extract_ib_hours.py`      | Extracts per-topic teaching hours from the IB CS guide's syllabus outline table into a TSV (`topic`, `title`, `sl`, `hl`); an HL-only topic shows 0 SL hours                                              |
 | `check_deck.py`         | Checks (and with `--fix`, repairs) the structure of a `.deck` file                                                                                                                                       |
 | `rename_card_tags.py`   | Renames `<front>`/`<back>` to `<question>`/`<answer>` in a deck via text substitution (preserves formatting)                                                                                             |
 | `uuidize_objectives.py` | Rewrites `objectives.tsv` in place, replacing the number column with a leading UUID                                                                                                                       |
@@ -56,8 +56,9 @@ source tree (the files reachable from `main.ptx`, per `list_files.py`) into
 
 ## Building CED HTML
 
-The CED pipeline is: `*/ced*hierarchy.md` → (`build_ced_xml.py`) → `*/ced.xml`
-→ (`make` via `ced-to-html.xsl`) → `*/ced.html`.
+The CED pipeline is: `*/ced*hierarchy.md` → (`build_hierarchy_xml.py`) → `*/ced.xml`
+→ (`make` via `ced-to-html.xsl`) → `*/ced.html`. (Only the CSA/CSP `<ced>` output
+is rendered to HTML; IB XML uses a `<syllabus>` root and has no HTML stage.)
 
 `make` renders `csa/ced.xml` and `csp/ced.xml` to `*/ced.html` with `xsltproc`;
 `make clean` removes the generated HTML.
@@ -103,12 +104,13 @@ Validate with `check_deck.py`.
 uv run format_xml.py -i csa/mcqs.quiz        # format quiz in place
 uv run extract_key.py csa/mcqs.quiz          # extract answer key as JSON
 
-# Build CED artifacts from a hierarchy markdown file
-uv run build_ced_xml.py csa/ced-2025-hierarchy.md csa/ced.xml
-uv run build_ced_db.py csa/ced-2025-hierarchy.md ced.db hierarchy
+# Build XML/DB artifacts from a hierarchy markdown file (CSA/CSP/IB/book)
+uv run build_hierarchy_xml.py csa/ced-2025-hierarchy.md csa/ced.xml
+uv run build_hierarchy_xml.py ib/ib-hierarchy.md ib/syllabus.xml
+uv run build_hierarchy_db.py csa/ced-2025-hierarchy.md ced.db hierarchy
 make                                         # render */ced.xml -> */ced.html
 
-# Extract the IB CS syllabus hierarchy and per-area hours from the guide PDF
+# Extract the IB CS syllabus hierarchy and per-topic hours from the guide PDF
 uv run extract_ib_hierarchy.py ib/ib-cs-guide-2025.pdf ib/ib-hierarchy.md
 uv run extract_ib_hours.py ib/ib-cs-guide-2025.pdf ib/ib-hours.tsv
 

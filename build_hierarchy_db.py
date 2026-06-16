@@ -1,19 +1,20 @@
 """Load a hierarchy markdown file into a SQLite table.
 
-Reads the CED hierarchy files produced for build_ced_xml.py (CSA or CSP flavor)
-as well as the book hierarchy from extract_book_hierarchy.py, detecting the
-flavor from the first level-1 heading. Writes one row per node in the
-hierarchy. Each row has an id column for every level of the hierarchy -- the
-node's own id plus its ancestors', with deeper levels left NULL -- and a text
-column holding the node's text exactly as it appears in the .md file (the
-heading text after the id, plus any body lines such as paragraphs, lists, and
-code blocks, with surrounding blank lines trimmed).
+Reads the CED hierarchy files produced for build_hierarchy_xml.py (CSA or CSP
+flavor), the IB CS syllabus hierarchy from extract_ib_hierarchy.py, and the book
+hierarchy from extract_book_hierarchy.py, detecting the flavor from the first
+level-1 heading. Writes one row per node in the hierarchy. Each row has an id
+column for every level of the hierarchy -- the node's own id plus its ancestors',
+with deeper levels left NULL -- and a text column holding the node's text exactly
+as it appears in the .md file (the heading text after the id, plus any body lines
+such as paragraphs, lists, and code blocks, with surrounding blank lines trimmed).
 
 Hierarchies may have any number of levels; columns are named after the level
 tags, with hyphenated tags abbreviated to their initials:
 
 - CSA columns:  unit, topic, lo, ek, text
 - CSP columns:  bi, eu, lo, ek, text
+- IB columns:   theme, topic, subtopic, ls, content, text
 - book columns: chapter, section, subsection, text
 """
 
@@ -22,7 +23,7 @@ import re
 import sqlite3
 import sys
 
-from ced_hierarchy import LEVEL_TAGS, parse_sections
+from hierarchy import LEVEL_TAGS, parse_sections
 
 # Table/column identifiers we generate must be plain SQL identifiers.
 IDENT_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")

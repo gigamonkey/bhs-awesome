@@ -1,0 +1,2844 @@
+<syllabus>
+
+  <theme xml:id="A">
+    <title>Concepts of computer science</title>
+
+    <topic xml:id="A1">
+      <text>
+        Computer fundamentals
+      </text>
+
+      <subtopic xml:id="A1.1">
+        <text>
+          Computer hardware and operation
+        </text>
+
+        <learning-statement xml:id="A1.1.1">
+          <text>
+            Describe the functions and interactions of the main CPU
+            components.
+          </text>
+
+          <content xml:id="A1.1.1.1">
+            <text>
+              Units: arithmetic logic unit (ALU), control unit (CU)
+            </text>
+          </content>
+
+          <content xml:id="A1.1.1.2">
+            <text>
+              Registers: instruction register (IR), program counter (PC),
+              memory address register (MAR), memory data register (MDR),
+              accumulator (AC)
+            </text>
+          </content>
+
+          <content xml:id="A1.1.1.3">
+            <text>
+              Buses: address, data, control
+            </text>
+          </content>
+
+          <content xml:id="A1.1.1.4">
+            <text>
+              Processors: single core processor, multi-core processor,
+              co-processors
+            </text>
+          </content>
+
+          <content xml:id="A1.1.1.5">
+            <text>
+              A diagrammatic representation of the relationship between the
+              specified CPU components
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.1.2">
+          <text>
+            Describe the role of a GPU.
+          </text>
+
+          <content xml:id="A1.1.2.1">
+            <text>
+              The architecture that allows graphics processing units (GPUs) to
+              handle specific tasks and makes them suitable for complex
+              computations
+            </text>
+          </content>
+
+          <content xml:id="A1.1.2.2">
+            <text>
+              Real-world scenarios may include video games, artificial
+              intelligence (AI), large simulations and other applications that
+              require graphics rendering and machine learning.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.1.3">
+          <text>
+            Explain the differences between the CPU and the GPU. (HL only)
+          </text>
+
+          <content xml:id="A1.1.3.1">
+            <text>
+              Differences in their design philosophies, usage scenarios
+            </text>
+          </content>
+
+          <content xml:id="A1.1.3.2">
+            <text>
+              Differences in their core architecture, processing power, memory
+              access, power efficiency
+            </text>
+          </content>
+
+          <content xml:id="A1.1.3.3">
+            <text>
+              CPUs and GPUs working together: task division, data sharing,
+              coordinating execution
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.1.4">
+          <text>
+            Explain the purposes of different types of primary memory.
+          </text>
+
+          <content xml:id="A1.1.4.1">
+            <text>
+              Random-access memory (RAM), read only memory (ROM), cache (L1,
+              L2, L3), registers
+            </text>
+          </content>
+
+          <content xml:id="A1.1.4.2">
+            <text>
+              The interaction of the CPU with different types of memory to
+              optimize performance
+            </text>
+          </content>
+
+          <content xml:id="A1.1.4.3">
+            <text>
+              The relevance of the terms “cache miss” and “cache hit”
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.1.5">
+          <text>
+            Describe the fetch, decode and execute cycle.
+          </text>
+
+          <content xml:id="A1.1.5.1">
+            <text>
+              The basic operations a CPU performs to execute a single
+              instruction in machine language
+            </text>
+          </content>
+
+          <content xml:id="A1.1.5.2">
+            <text>
+              The interaction between memory and registers via the three
+              buses: address, data, control
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.1.6">
+          <text>
+            Describe the process of pipelining in multi-core architectures.
+            (HL only)
+          </text>
+
+          <content xml:id="A1.1.6.1">
+            <text>
+              The instructions fetch, decode, execute
+            </text>
+          </content>
+
+          <content xml:id="A1.1.6.2">
+            <text>
+              Write-back stages to improve the overall system performance in
+              multi-core architectures
+            </text>
+          </content>
+
+          <content xml:id="A1.1.6.3">
+            <text>
+              Overview of how cores in multi-core processors work
+              independently and in parallel
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.1.7">
+          <text>
+            Describe internal and external types of secondary memory storage.
+          </text>
+
+          <content xml:id="A1.1.7.1">
+            <text>
+              Internal hard drives: solid state drive (SSD), hard disk drive
+              (HDD), embedded multimedia cards (eMMCs)
+            </text>
+          </content>
+
+          <content xml:id="A1.1.7.2">
+            <text>
+              External hard drives: SSD, HDD, optical drives, flash drives,
+              memory cards, network attached storage (NAS)
+            </text>
+          </content>
+
+          <content xml:id="A1.1.7.3">
+            <text>
+              The scenarios in which the various types of drive are used
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.1.8">
+          <text>
+            Describe the concept of compression.
+          </text>
+
+          <content xml:id="A1.1.8.1">
+            <text>
+              The differences between lossy compression methods and lossless
+              compression methods
+            </text>
+          </content>
+
+          <content xml:id="A1.1.8.2">
+            <text>
+              Run-length encoding and transform coding
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.1.9">
+          <text>
+            Describe the different types of services in cloud computing.
+          </text>
+
+          <content xml:id="A1.1.9.1">
+            <text>
+              Services: software as a service (SaaS), platform as a service
+              (PaaS), infrastructure as a service (IaaS)
+            </text>
+          </content>
+
+          <content xml:id="A1.1.9.2">
+            <text>
+              The differences between the approaches of SaaS, PaaS, and IaaS
+              in various real-world scenarios, recognizing that different
+              degrees of control and flexibility influence resource management
+              and resource availability
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A1.2">
+        <text>
+          Data representation and computer logic
+        </text>
+
+        <learning-statement xml:id="A1.2.1">
+          <text>
+            Describe the principal methods of representing data.
+          </text>
+
+          <content xml:id="A1.2.1.1">
+            <text>
+              The representation of integers in binary and hexadecimal
+            </text>
+          </content>
+
+          <content xml:id="A1.2.1.2">
+            <text>
+              Conversion of binary and hexadecimal integers to decimal, and
+              vice versa
+            </text>
+          </content>
+
+          <content xml:id="A1.2.1.3">
+            <text>
+              Conversion of integers from binary to hexadecimal, and vice
+              versa
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.2.2">
+          <text>
+            Explain how binary is used to store data.
+          </text>
+
+          <content xml:id="A1.2.2.1">
+            <text>
+              The fundamentals of binary encoding and the impact on data
+              storage and retrieval
+            </text>
+          </content>
+
+          <content xml:id="A1.2.2.2">
+            <text>
+              The mechanisms by which data such as integers, strings,
+              characters, images, audio and video are stored in binary form
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.2.3">
+          <text>
+            Describe the purpose and use of logic gates.
+          </text>
+
+          <content xml:id="A1.2.3.1">
+            <text>
+              The purpose and use of logic gates
+            </text>
+          </content>
+
+          <content xml:id="A1.2.3.2">
+            <text>
+              The functions and applications of logic gates in computer
+              systems
+            </text>
+          </content>
+
+          <content xml:id="A1.2.3.3">
+            <text>
+              The role of logic gates in binary computing
+            </text>
+          </content>
+
+          <content xml:id="A1.2.3.4">
+            <text>
+              Boolean operators: AND, OR, NOT, NAND, NOR, XOR, XNOR
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.2.4">
+          <text>
+            Construct and analyse truth tables.
+          </text>
+
+          <content xml:id="A1.2.4.1">
+            <text>
+              Truth tables to predict the output of simple logic circuits
+            </text>
+          </content>
+
+          <content xml:id="A1.2.4.2">
+            <text>
+              Truth tables to determine outputs from inputs for a problem
+              description
+            </text>
+          </content>
+
+          <content xml:id="A1.2.4.3">
+            <text>
+              Truth tables and their relationship to a Boolean expression,
+              with inputs and outputs
+            </text>
+          </content>
+
+          <content xml:id="A1.2.4.4">
+            <text>
+              Truth tables derived from logic diagrams to aid the
+              simplification of logical expressions
+            </text>
+          </content>
+
+          <content xml:id="A1.2.4.5">
+            <text>
+              Karnaugh maps and algebraic simplification to simplify output
+              expressions
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.2.5">
+          <text>
+            Construct logic diagrams.
+          </text>
+
+          <content xml:id="A1.2.5.1">
+            <text>
+              Logic diagrams to demonstrate how logic gates are connected and
+              interact in a circuit.
+            </text>
+          </content>
+
+          <content xml:id="A1.2.5.2">
+            <text>
+              Use of standard gate symbols for AND, OR, NOT, NAND, NOR, XOR
+              and XNOR gates
+            </text>
+          </content>
+
+          <content xml:id="A1.2.5.3">
+            <text>
+              Inputs processed diagrammatically to produce outputs
+            </text>
+          </content>
+
+          <content xml:id="A1.2.5.4">
+            <text>
+              Combinations of these gates to perform more complex logical
+              operations
+            </text>
+          </content>
+
+          <content xml:id="A1.2.5.5">
+            <text>
+              Boolean algebra rules to simplify complex logic diagrams and
+              expressions
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A1.3">
+        <text>
+          Operating systems and control systems
+        </text>
+
+        <learning-statement xml:id="A1.3.1">
+          <text>
+            Describe the role of operating systems.
+          </text>
+
+          <content xml:id="A1.3.1.1">
+            <text>
+              Operating systems abstract hardware complexities to manage
+              system resources
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.3.2">
+          <text>
+            Describe the functions of an operating system.
+          </text>
+
+          <content xml:id="A1.3.2.1">
+            <text>
+              Maintaining system integrity while running operating systems’
+              background operations
+            </text>
+          </content>
+
+          <content xml:id="A1.3.2.2">
+            <text>
+              Memory management, file system, device management, scheduling,
+              security, accounting, graphical user interface (GUI),
+              virtualization, networking
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.3.3">
+          <text>
+            Compare different approaches to scheduling.
+          </text>
+
+          <content xml:id="A1.3.3.1">
+            <text>
+              Managing the execution of processes by allocating CPU time to
+              optimize system performance
+            </text>
+          </content>
+
+          <content xml:id="A1.3.3.2">
+            <text>
+              First-come first-served, round robin, multilevel queue
+              scheduling, priority scheduling
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.3.4">
+          <text>
+            Evaluate the use of polling and interrupt handling.
+          </text>
+
+          <content xml:id="A1.3.4.1">
+            <text>
+              Event frequency, CPU processing overheads, power source (battery
+              or mains), event predictability, controlled latency, security
+              concerns
+            </text>
+          </content>
+
+          <content xml:id="A1.3.4.2">
+            <text>
+              Real-world scenarios may include keyboard and mouse inputs,
+              network communications, disk input/output operations, embedded
+              systems, real-time systems.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.3.5">
+          <text>
+            Explain the role of the operating system in managing multitasking
+            and resource allocation. (HL only)
+          </text>
+
+          <content xml:id="A1.3.5.1">
+            <text>
+              The challenges of multitasking and resource allocation,
+              including task scheduling, resource contention and deadlock
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.3.6">
+          <text>
+            Describe the use of the control system components. (HL only)
+          </text>
+
+          <content xml:id="A1.3.6.1">
+            <text>
+              The input, process, output, and feedback mechanism (open-loop,
+              closed-loop)
+            </text>
+          </content>
+
+          <content xml:id="A1.3.6.2">
+            <text>
+              Controller, sensors, actuators, transducers and control
+              algorithm
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A1.3.7">
+          <text>
+            Explain the use of control systems in a range of real-world
+            applications. (HL only)
+          </text>
+
+          <content xml:id="A1.3.7.1">
+            <text>
+              Examples may include autonomous vehicles, home thermostats,
+              automatic elevator controllers, automatic washing machines,
+              traffic signal control systems, irrigation control systems, home
+              security systems, automatic doors.
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A1.4">
+        <text>
+          Translation (HL only)
+        </text>
+
+        <learning-statement xml:id="A1.4.1">
+          <text>
+            Evaluate the translation processes of interpreters and compilers.
+          </text>
+
+          <content xml:id="A1.4.1.1">
+            <text>
+              The mechanics and use-cases of each translation approach
+            </text>
+          </content>
+
+          <content xml:id="A1.4.1.2">
+            <text>
+              The difference in error detection, translation time, portability
+              and applicability for different translation processes, including
+              just-in-time compilation (JIT) and bytecode interpreters
+            </text>
+          </content>
+
+          <content xml:id="A1.4.1.3">
+            <text>
+              Example scenarios where the translation method should be
+              considered must include rapid development and testing,
+              performance-critical applications and cross-platform
+              development.
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+    </topic>
+
+    <topic xml:id="A2">
+      <text>
+        Networks
+      </text>
+
+      <subtopic xml:id="A2.1">
+        <text>
+          Network fundamentals
+        </text>
+
+        <learning-statement xml:id="A2.1.1">
+          <text>
+            Describe the purpose and characteristics of networks.
+          </text>
+
+          <content xml:id="A2.1.1.1">
+            <text>
+              Networks: local area network (LAN), wide area network (WAN),
+              personal area network (PAN), virtual private network (VPN)
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.1.2">
+          <text>
+            Describe the purpose, benefits and limitations of modern digital
+            infrastructures.
+          </text>
+
+          <content xml:id="A2.1.2.1">
+            <text>
+              Modern digital infrastructure: the internet, cloud computing,
+              distributed systems, edge computing, mobile networks
+            </text>
+          </content>
+
+          <content xml:id="A2.1.2.2">
+            <text>
+              Examples where specific networks are used may include the
+              worldwide web (WWW), cryptocurrency blockchains, smart traffic
+              lights, a school.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.1.3">
+          <text>
+            Describe the function of network devices.
+          </text>
+
+          <content xml:id="A2.1.3.1">
+            <text>
+              Gateways, hardware firewalls, modems, network interface cards,
+              routers, switches, wireless access points
+            </text>
+          </content>
+
+          <content xml:id="A2.1.3.2">
+            <text>
+              How devices map to the layers of the TCP/IP model
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.1.4">
+          <text>
+            Describe the network protocols used for transport and application.
+          </text>
+
+          <content xml:id="A2.1.4.1">
+            <text>
+              Protocols: transmission control protocol (TCP), user datagram
+              protocol (UDP), hypertext transfer protocol (HTTP), hypertext
+              transfer protocol secure (HTTPS), dynamic host configuration
+              protocol (DHCP)
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.1.5">
+          <text>
+            Describe the function of the TCP/IP model. (HL only)
+          </text>
+
+          <content xml:id="A2.1.5.1">
+            <text>
+              Application, transport, internet, network interface
+            </text>
+          </content>
+
+          <content xml:id="A2.1.5.2">
+            <text>
+              The role of each layer and the interaction between these layers
+              to ensure reliable data transmission over a network
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A2.2">
+        <text>
+          Network architecture
+        </text>
+
+        <learning-statement xml:id="A2.2.1">
+          <text>
+            Describe the functions and practical applications of network
+            topologies.
+          </text>
+
+          <content xml:id="A2.2.1.1">
+            <text>
+              Network topologies: star, mesh, hybrid
+            </text>
+          </content>
+
+          <content xml:id="A2.2.1.2">
+            <text>
+              Factors to consider must include reliability, transmission
+              speed, scalability, data collisions, cost.
+            </text>
+          </content>
+
+          <content xml:id="A2.2.1.3">
+            <text>
+              Examples may include home and small office settings, where
+              reliability is paramount, and the use of networks in larger
+              settings (e.g. corporations, government departments, college
+              campuses).
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.2.2">
+          <text>
+            Describe the function of servers. (HL only)
+          </text>
+
+          <content xml:id="A2.2.2.1">
+            <text>
+              Types of servers: domain name server (DNS), dynamic host
+              configuration protocol (DHCP), file server, mail server, proxy
+              server, web server
+            </text>
+          </content>
+
+          <content xml:id="A2.2.2.2">
+            <text>
+              Factors to consider must include function, scalability,
+              reliability and security.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.2.3">
+          <text>
+            Compare and contrast networking models.
+          </text>
+
+          <content xml:id="A2.2.3.1">
+            <text>
+              Client-server and peer-to-peer models
+            </text>
+          </content>
+
+          <content xml:id="A2.2.3.2">
+            <text>
+              The respective benefits and drawbacks of client-server and
+              peer-to-peer models
+            </text>
+          </content>
+
+          <content xml:id="A2.2.3.3">
+            <text>
+              Real-world applications may include web browsing, email
+              services, online banking, file sharing, VoIP services,
+              blockchain.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.2.4">
+          <text>
+            Explain the concepts and applications of network segmentation.
+          </text>
+
+          <content xml:id="A2.2.4.1">
+            <text>
+              Segmentation for network performance and security, to reduce
+              congestion, to manage network resources efficiently
+            </text>
+          </content>
+
+          <content xml:id="A2.2.4.2">
+            <text>
+              Network segmentation must include the uses and roles of
+              segmenting, subnetting and virtual local area networks (VLANs).
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A2.3">
+        <text>
+          Data transmissions
+        </text>
+
+        <learning-statement xml:id="A2.3.1">
+          <text>
+            Describe different types of IP addressing.
+          </text>
+
+          <content xml:id="A2.3.1.1">
+            <text>
+              The distinction between IPv4 and IPv6 addressing
+            </text>
+          </content>
+
+          <content xml:id="A2.3.1.2">
+            <text>
+              The differences between public IP addresses and private IP
+              addresses, and between static IP addresses and dynamic IP
+              addresses
+            </text>
+          </content>
+
+          <content xml:id="A2.3.1.3">
+            <text>
+              The role of network address translation (NAT) to minimize the
+              use of IP addresses and to facilitate communication between
+              private internal networks and the public internet
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.3.2">
+          <text>
+            Compare types of media for data transmission.
+          </text>
+
+          <content xml:id="A2.3.2.1">
+            <text>
+              Wired transmission via fibre optic cables and twisted pair
+              cables; wireless transmission
+            </text>
+          </content>
+
+          <content xml:id="A2.3.2.2">
+            <text>
+              The advantages and disadvantages of these three types of data
+              transmission
+            </text>
+          </content>
+
+          <content xml:id="A2.3.2.3">
+            <text>
+              Factors to consider must include bandwidth, complexity of
+              installation, cost, range, susceptibility to interference,
+              attenuation, reliability, security.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.3.3">
+          <text>
+            Explain how packet switching is used to send data across a
+            network.
+          </text>
+
+          <content xml:id="A2.3.3.1">
+            <text>
+              The process of segmenting data into packets with a routing
+              header attached, and independently transmitting control
+              information, allowing the data to be reassembled at the
+              destination
+            </text>
+          </content>
+
+          <content xml:id="A2.3.3.2">
+            <text>
+              The role that switches and routers play in packet switching
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.3.4">
+          <text>
+            Explain how static routing and dynamic routing move data across
+            local area networks. (HL only)
+          </text>
+
+          <content xml:id="A2.3.4.1">
+            <text>
+              The process of static routing, and its advantages and
+              disadvantages
+            </text>
+          </content>
+
+          <content xml:id="A2.3.4.2">
+            <text>
+              The process of dynamic routing, and its advantages and
+              disadvantages (explanation of a specific routing protocol is not
+              required)
+            </text>
+          </content>
+
+          <content xml:id="A2.3.4.3">
+            <text>
+              Factors to consider must include configuration, maintenance,
+              complexity, resource usage, convergence, scalability, network
+              size.
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A2.4">
+        <text>
+          Network security
+        </text>
+
+        <learning-statement xml:id="A2.4.1">
+          <text>
+            Discuss the effectiveness of firewalls at protecting a network.
+          </text>
+
+          <content xml:id="A2.4.1.1">
+            <text>
+              The function of firewalls in inspecting and filtering incoming
+              and outgoing traffic based on whitelists, blacklists and rules
+            </text>
+          </content>
+
+          <content xml:id="A2.4.1.2">
+            <text>
+              The strengths and limitations of firewalls
+            </text>
+          </content>
+
+          <content xml:id="A2.4.1.3">
+            <text>
+              The role of NAT to enhance network security
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.4.2">
+          <text>
+            Describe common network vulnerabilities. (HL only)
+          </text>
+
+          <content xml:id="A2.4.2.1">
+            <text>
+              Distributed denial of service (DDoS), insecure network
+              protocols, malware, man-in-the-middle (MitM) attacks, phishing
+              attacks, SQL injection, cross-site scripting (XSS), unpatched
+              software, weak authentication, zero-day exploits
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.4.3">
+          <text>
+            Describe common network countermeasures. (HL only)
+          </text>
+
+          <content xml:id="A2.4.3.1">
+            <text>
+              Content security policies, complex password policies, DDoS
+              mitigation tools, email filtering solutions, encrypted
+              protocols, input validation (filtering, whitelisting), intrusion
+              detection systems (IDS), intrusion prevention systems (IPS),
+              multifactor authentication (MFA), secure socket layer (SSL)
+              certificate, transport layer security (TLS) certificate, update
+              software, VPNs
+            </text>
+          </content>
+
+          <content xml:id="A2.4.3.2">
+            <text>
+              The importance of regular security testing and employee training
+            </text>
+          </content>
+
+          <content xml:id="A2.4.3.3">
+            <text>
+              Wireless security measures may include media access controllers
+              (MAC), whitelists and blacklists.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A2.4.4">
+          <text>
+            Describe the process of encryption and digital certificates.
+          </text>
+
+          <content xml:id="A2.4.4.1">
+            <text>
+              The difference between symmetric and asymmetric cryptography
+            </text>
+          </content>
+
+          <content xml:id="A2.4.4.2">
+            <text>
+              The role of digital certificates in establishing secure network
+              connections
+            </text>
+          </content>
+
+          <content xml:id="A2.4.4.3">
+            <text>
+              The use of public and private keys in asymmetric cryptography
+            </text>
+          </content>
+
+          <content xml:id="A2.4.4.4">
+            <text>
+              The significance of encryption key management
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+    </topic>
+
+    <topic xml:id="A3">
+      <text>
+        Databases
+      </text>
+
+      <subtopic xml:id="A3.1">
+        <text>
+          Database fundamentals
+        </text>
+
+        <learning-statement xml:id="A3.1.1">
+          <text>
+            Explain the features, benefits and limitations of a relational
+            database.
+          </text>
+
+          <content xml:id="A3.1.1.1">
+            <text>
+              Features: composite keys, foreign keys, primary keys,
+              relationships, tables
+            </text>
+          </content>
+
+          <content xml:id="A3.1.1.2">
+            <text>
+              Benefits of databases: community support, concurrency control,
+              data consistency, data integrity, data retrieval, reduced data
+              duplication, reduced redundancy, reliable transaction
+              processing, scalability, security features
+            </text>
+          </content>
+
+          <content xml:id="A3.1.1.3">
+            <text>
+              Limitations of databases: “big data” scalability issues, design
+              complexity, hierarchical data handling, rigid schema,
+              object-relational impedance mismatch, unstructured data handling
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A3.2">
+        <text>
+          Database design
+        </text>
+
+        <learning-statement xml:id="A3.2.1">
+          <text>
+            Describe database schemas.
+          </text>
+
+          <content xml:id="A3.2.1.1">
+            <text>
+              Conceptual schema, logical schema, physical schema
+            </text>
+          </content>
+
+          <content xml:id="A3.2.1.2">
+            <text>
+              Abstract definitions of the data structure and organization of
+              the data at different levels
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.2.2">
+          <text>
+            Construct ERDs.
+          </text>
+
+          <content xml:id="A3.2.2.1">
+            <text>
+              The significance of entity relationship diagrams (ERDs) in
+              crafting organized, efficient database designs tailored for
+              specific applications
+            </text>
+          </content>
+
+          <content xml:id="A3.2.2.2">
+            <text>
+              The relationships between different data entities within a
+              database
+            </text>
+          </content>
+
+          <content xml:id="A3.2.2.3">
+            <text>
+              The roles of cardinality and modality in defining relationships
+              in ERDs
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.2.3">
+          <text>
+            Outline the different data types used in relational databases.
+          </text>
+
+          <content xml:id="A3.2.3.1">
+            <text>
+              The importance of data type consistency
+            </text>
+          </content>
+
+          <content xml:id="A3.2.3.2">
+            <text>
+              The potential effects of choosing the wrong data type
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.2.4">
+          <text>
+            Construct tables for relational databases.
+          </text>
+
+          <content xml:id="A3.2.4.1">
+            <text>
+              The relationship between tables using primary keys, foreign
+              keys, composite keys and concatenated keys
+            </text>
+          </content>
+
+          <content xml:id="A3.2.4.2">
+            <text>
+              The importance of well-defined tables in ensuring data integrity
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.2.5">
+          <text>
+            Explain the difference between normal forms.
+          </text>
+
+          <content xml:id="A3.2.5.1">
+            <text>
+              First normal form (1NF), second normal form (2NF), third normal
+              form (3NF)
+            </text>
+          </content>
+
+          <content xml:id="A3.2.5.2">
+            <text>
+              The terms atomicity, unique identification, functional
+              dependencies, partial-key dependencies, non-key/transitive
+              dependencies
+            </text>
+          </content>
+
+          <content xml:id="A3.2.5.3">
+            <text>
+              Normalization issues can encompass data duplication, missing
+              data, and a range of dependency concerns, including data
+              dependencies, composite key dependencies, transitive
+              dependencies, and multi-valued dependencies.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.2.6">
+          <text>
+            Construct a database normalized to 3NF for a range of real-world
+            scenarios.
+          </text>
+
+          <content xml:id="A3.2.6.1">
+            <text>
+              Examples may include library management, hospital management,
+              e-commerce platforms, school management, employee management,
+              inventory management, police crime reporting
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.2.7">
+          <text>
+            Evaluate the need for denormalizing databases.
+          </text>
+
+          <content xml:id="A3.2.7.1">
+            <text>
+              The advantages and disadvantages of normalizing and
+              denormalizing databases
+            </text>
+          </content>
+
+          <content xml:id="A3.2.7.2">
+            <text>
+              Situations where denormalization can enhance performance,
+              particularly in read-intensive applications
+            </text>
+          </content>
+
+          <content xml:id="A3.2.7.3">
+            <text>
+              The balance between straightforward query structures and the
+              risk of data redundancy in denormalized schemas
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A3.3">
+        <text>
+          Database programming
+        </text>
+
+        <learning-statement xml:id="A3.3.1">
+          <text>
+            Outline the differences between data language types within SQL.
+          </text>
+
+          <content xml:id="A3.3.1.1">
+            <text>
+              Data language types must include data definition language (DDL)
+              and data manipulation language (DML)
+            </text>
+          </content>
+
+          <content xml:id="A3.3.1.2">
+            <text>
+              SQL statements to define data structures or to manipulate data
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.3.2">
+          <text>
+            Construct queries between two tables in SQL.
+          </text>
+
+          <content xml:id="A3.3.2.1">
+            <text>
+              Queries must include joins, relational operators, filtering,
+              pattern matching, and ordering data
+            </text>
+          </content>
+
+          <content xml:id="A3.3.2.2">
+            <text>
+              SQL commands: SELECT, DISTINCT, FROM, WHERE, BETWEEN, ORDER BY,
+              GROUP BY, HAVING, ASC, DESC, JOIN, LIKE with % wildcard, AND,
+              OR, NOT (note: Syntax may vary in different database systems)
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.3.3">
+          <text>
+            Explain how SQL can be used to update data in a database.
+          </text>
+
+          <content xml:id="A3.3.3.1">
+            <text>
+              Insert new records (INSERT INTO), modify data (UPDATE SET),
+              remove data (DELETE)
+            </text>
+          </content>
+
+          <content xml:id="A3.3.3.2">
+            <text>
+              The performance implications of updating data in indexed
+              columns, and how indexes might need to be rebuilt or reorganized
+              following significant data modifications
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.3.4">
+          <text>
+            Construct calculations within a database using SQL’s aggregate
+            functions. (HL only)
+          </text>
+
+          <content xml:id="A3.3.4.1">
+            <text>
+              Aggregate functions on grouped data to aid reporting and
+              decision-making
+            </text>
+          </content>
+
+          <content xml:id="A3.3.4.2">
+            <text>
+              Aggregate commands: AVERAGE, COUNT, MAX, MIN, SUM
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.3.5">
+          <text>
+            Describe different database views. (HL only)
+          </text>
+
+          <content xml:id="A3.3.5.1">
+            <text>
+              Virtual views and materialized (snapshot) views
+            </text>
+          </content>
+
+          <content xml:id="A3.3.5.2">
+            <text>
+              Hiding data complexity, data consistency, independence,
+              performance, query simplification, read-only data or updatable
+              data, security
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.3.6">
+          <text>
+            Describe how transactions maintain data integrity in a database.
+            (HL only)
+          </text>
+
+          <content xml:id="A3.3.6.1">
+            <text>
+              The role of atomicity, consistency, isolation and durability
+              (ACID) to ensure reliable processing of transactions
+            </text>
+          </content>
+
+          <content xml:id="A3.3.6.2">
+            <text>
+              Transaction control language (TCL) commands: BEGIN TRANSACTION,
+              COMMIT, ROLLBACK
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A3.4">
+        <text>
+          Alternative databases and data warehouses (HL only)
+        </text>
+
+        <learning-statement xml:id="A3.4.1">
+          <text>
+            Outline the different types of databases as approaches to storing
+            data.
+          </text>
+
+          <content xml:id="A3.4.1.1">
+            <text>
+              Databases models: NoSQL, cloud, spatial, in-memory
+            </text>
+          </content>
+
+          <content xml:id="A3.4.1.2">
+            <text>
+              Examples of the use of the database model in real-world
+              scenarios may include e-commerce platforms, geographic
+              information systems (GIS), managed services, real-time
+              analytics, social media platforms, SaaS.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.4.2">
+          <text>
+            Explain the primary objectives of data warehouses in data
+            management and business intelligence.
+          </text>
+
+          <content xml:id="A3.4.2.1">
+            <text>
+              The roles of append-only data, subject-oriented data, integrated
+              data, time-variant data, non-volatile data and data optimized
+              for query performance, to ensure efficient data storage and
+              analysis
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.4.3">
+          <text>
+            Explain the role of online analytical processing (OLAP) and data
+            mining for business intelligence.
+          </text>
+
+          <content xml:id="A3.4.3.1">
+            <text>
+              Data mining techniques must include classification, clustering,
+              regression, association rule discovery, sequential pattern
+              discovery, anomaly detection (note: This links to “A4 Machine
+              learning”).
+            </text>
+          </content>
+
+          <content xml:id="A3.4.3.2">
+            <text>
+              The uses of the techniques in extracting meaningful information
+              from large data sets
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A3.4.4">
+          <text>
+            Describe the features of distributed databases.
+          </text>
+
+          <content xml:id="A3.4.4.1">
+            <text>
+              The need to maintain data consistency in a distributed database
+            </text>
+          </content>
+
+          <content xml:id="A3.4.4.2">
+            <text>
+              The role of ACID to ensure reliable processing of transactions
+              in distributed databases
+            </text>
+          </content>
+
+          <content xml:id="A3.4.4.3">
+            <text>
+              Features of distributed databases: concurrency control, data
+              consistency, data partitioning, data security, distribution
+              transparency, fault tolerance, global query processing, location
+              transparency, replication, scalability
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+    </topic>
+
+    <topic xml:id="A4">
+      <text>
+        Machine learning
+      </text>
+
+      <subtopic xml:id="A4.1">
+        <text>
+          Machine learning fundamentals
+        </text>
+
+        <learning-statement xml:id="A4.1.1">
+          <text>
+            Describe the types of machine learning and their applications in
+            the real world.
+          </text>
+
+          <content xml:id="A4.1.1.1">
+            <text>
+              The different approaches to machine learning algorithms and
+              their unique characteristics
+            </text>
+          </content>
+
+          <content xml:id="A4.1.1.2">
+            <text>
+              Deep learning (DL), reinforcement learning (RL), supervised
+              learning, transfer learning (TL), unsupervised learning (UL)
+            </text>
+          </content>
+
+          <content xml:id="A4.1.1.3">
+            <text>
+              Real-world applications of machine learning may include market
+              basket analysis, medical imaging diagnostics, natural language
+              processing, object detection and classification, robotics
+              navigation, sentiment analysis.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.1.2">
+          <text>
+            Describe the hardware requirements for various scenarios where
+            machine learning is deployed.
+          </text>
+
+          <content xml:id="A4.1.2.1">
+            <text>
+              The hardware configurations for different machine learning
+              scenarios, considering factors such as processing, storage and
+              scalability
+            </text>
+          </content>
+
+          <content xml:id="A4.1.2.2">
+            <text>
+              Hardware configurations for machine learning ranging from
+              standard laptops to advanced infrastructure
+            </text>
+          </content>
+
+          <content xml:id="A4.1.2.3">
+            <text>
+              Advanced infrastructure must include application-specific
+              integrated circuits (ASICs), edge devices, field-programmable
+              gate arrays (FPGAs), GPUs, tensor processing units (TPUs),
+              cloud-based platforms, high-performance computing (HPC) centres.
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A4.2">
+        <text>
+          Data preprocessing (HL only)
+        </text>
+
+        <learning-statement xml:id="A4.2.1">
+          <text>
+            Describe the significance of data cleaning.
+          </text>
+
+          <content xml:id="A4.2.1.1">
+            <text>
+              The impact of data quality on model performance
+            </text>
+          </content>
+
+          <content xml:id="A4.2.1.2">
+            <text>
+              Techniques for handling outliers, removing or consolidating
+              duplicate data, identifying incorrect data, filtering irrelevant
+              data, transforming improperly formatted data, and imputation,
+              deletion or predictive modelling for missing data
+            </text>
+          </content>
+
+          <content xml:id="A4.2.1.3">
+            <text>
+              Normalization and standardization as crucial preprocessing steps
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.2.2">
+          <text>
+            Describe the role of feature selection.
+          </text>
+
+          <content xml:id="A4.2.2.1">
+            <text>
+              Feature selection to identify and retain the most informative
+              attributes of the data set
+            </text>
+          </content>
+
+          <content xml:id="A4.2.2.2">
+            <text>
+              Feature selection strategies: filter methods, wrapper methods,
+              embedded methods
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.2.3">
+          <text>
+            Describe the importance of dimensionality reduction.
+          </text>
+
+          <content xml:id="A4.2.3.1">
+            <text>
+              The curse of dimensionality considerations may include
+              overfitting, computational complexity, data sparsity, the
+              effectiveness of distance metrics, data visualization, sample
+              size increases, memory usage.
+            </text>
+          </content>
+
+          <content xml:id="A4.2.3.2">
+            <text>
+              Dimensionality reduction of variables, while preserving the
+              relevant aspects of the data
+            </text>
+          </content>
+
+          <content xml:id="A4.2.3.3">
+            <text>
+              Note: Statistical techniques such as principal component
+              analysis (PCA) and linear discriminant analysis (LDA) are beyond
+              the scope of this course.
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A4.3">
+        <text>
+          Machine learning approaches (HL only)
+        </text>
+
+        <learning-statement xml:id="A4.3.1">
+          <text>
+            Explain how linear regression is used to predict continuous
+            outcomes.
+          </text>
+
+          <content xml:id="A4.3.1.1">
+            <text>
+              The relationship between the independent (predictor) and
+              dependent (response) variables
+            </text>
+          </content>
+
+          <content xml:id="A4.3.1.2">
+            <text>
+              The significance of the slope and intercept in the regression
+              equation
+            </text>
+          </content>
+
+          <content xml:id="A4.3.1.3">
+            <text>
+              How well the model fits the data—often assessed using measures
+              like r2.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.3.2">
+          <text>
+            Explain how classifications techniques in supervised learning are
+            used to predict discrete categorical outcomes.
+          </text>
+
+          <content xml:id="A4.3.2.1">
+            <text>
+              K-Nearest Neighbours (K-NN) and decision trees algorithms to
+              categorize new data points, based on patterns learned from
+              existing labelled data
+            </text>
+          </content>
+
+          <content xml:id="A4.3.2.2">
+            <text>
+              Real-world applications of K-NN may include collaborative
+              filtering recommendation systems.
+            </text>
+          </content>
+
+          <content xml:id="A4.3.2.3">
+            <text>
+              Real-world applications of decision trees may include medical
+              diagnosis based on a patient’s symptoms.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.3.3">
+          <text>
+            Explain the role of hyperparameter tuning when evaluating
+            supervised learning algorithms.
+          </text>
+
+          <content xml:id="A4.3.3.1">
+            <text>
+              Accuracy, precision, recall and F1 score as evaluation metrics
+            </text>
+          </content>
+
+          <content xml:id="A4.3.3.2">
+            <text>
+              The role of hyperparameter tuning on model performance
+            </text>
+          </content>
+
+          <content xml:id="A4.3.3.3">
+            <text>
+              Overfitting and underfitting when training algorithms
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.3.4">
+          <text>
+            Describe how clustering techniques in unsupervised learning are
+            used to group data based on similarities in features.
+          </text>
+
+          <content xml:id="A4.3.4.1">
+            <text>
+              Clustering techniques in unsupervised learning group data based
+              on feature similarities
+            </text>
+          </content>
+
+          <content xml:id="A4.3.4.2">
+            <text>
+              Real-world applications of clustering may include using
+              purchasing data to segment a customer base.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.3.5">
+          <text>
+            Describe how learning techniques using the association rule are
+            used to uncover relations between different attributes in large
+            data sets.
+          </text>
+
+          <content xml:id="A4.3.5.1">
+            <text>
+              Mining techniques using the association rule and interpretation
+              of the results for a given scenario For example, in crime
+              analysis, the techniques may reveal that areas with high rates
+              of vandalism also often experience incidents of theft, assisting
+              law enforcement in predictive policing and resource allocation.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.3.6">
+          <text>
+            Describe how an agent learns to make decisions by interacting with
+            its environment in reinforcement learning.
+          </text>
+
+          <content xml:id="A4.3.6.1">
+            <text>
+              The principle of cumulative reward and the foundational concepts
+              of agent–environment interaction, encompassing actions, states,
+              rewards and policies
+            </text>
+          </content>
+
+          <content xml:id="A4.3.6.2">
+            <text>
+              The exploration versus exploitation trade-off as a core concept
+              in reinforcement learning
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.3.7">
+          <text>
+            Describe the application of genetic algorithms in various
+            real-world situations.
+          </text>
+
+          <content xml:id="A4.3.7.1">
+            <text>
+              For example: population, fitness function, selection, crossover,
+              mutation, evaluation, termination
+            </text>
+          </content>
+
+          <content xml:id="A4.3.7.2">
+            <text>
+              A real-world application of genetic algorithms is seen in
+              optimization problems, such as route planning (e.g. the
+              “travelling salesperson problem”).
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.3.8">
+          <text>
+            Outline the structure and function of ANNs and how multi-layer
+            networks are used to model complex patterns in data sets.
+          </text>
+
+          <content xml:id="A4.3.8.1">
+            <text>
+              An artificial neural network (ANN) to simulate interconnected
+              nodes or “neurons” to process and learn from input data,
+              enabling tasks such as classification, regression and pattern
+              recognition
+            </text>
+          </content>
+
+          <content xml:id="A4.3.8.2">
+            <text>
+              Sketch of a single perceptron, highlighting its input, weights,
+              bias, activation function and output
+            </text>
+          </content>
+
+          <content xml:id="A4.3.8.3">
+            <text>
+              Sketch of a multi-layer perceptron (MLP) encompassing the input
+              layer, one or more hidden layers and the output layer.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.3.9">
+          <text>
+            Describe how CNNs are designed to adaptively learn spatial
+            hierarchies of features in images.
+          </text>
+
+          <content xml:id="A4.3.9.1">
+            <text>
+              Convolutional neural network (CNN) basic architecture: input
+              layer, convolutional layers, activation functions, pooling
+              layers, fully connected layers, output layer
+            </text>
+          </content>
+
+          <content xml:id="A4.3.9.2">
+            <text>
+              The effect of the number of layers, kernel size and stride,
+              activation function selection, and the loss function on how CNNs
+              process input data and classify images
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.3.10">
+          <text>
+            Explain the importance of model selection and comparison in
+            machine learning.
+          </text>
+
+          <content xml:id="A4.3.10.1">
+            <text>
+              How different algorithms can yield different results depending
+              on the data and type of problem
+            </text>
+          </content>
+
+          <content xml:id="A4.3.10.2">
+            <text>
+              The reasons for selecting specific machine learning models over
+              others, considering factors like the nature of the problem, its
+              complexity and desired outcomes
+            </text>
+          </content>
+
+          <content xml:id="A4.3.10.3">
+            <text>
+              The variability in algorithm performance based on the data’s
+              characteristics
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="A4.4">
+        <text>
+          Ethical considerations
+        </text>
+
+        <learning-statement xml:id="A4.4.1">
+          <text>
+            Discuss the ethical implications of machine learning in real-world
+            scenarios.
+          </text>
+
+          <content xml:id="A4.4.1.1">
+            <text>
+              Ethical issues may include accountability, algorithmic fairness,
+              bias, consent, environmental impact, privacy, security, societal
+              impact, transparency.
+            </text>
+          </content>
+
+          <content xml:id="A4.4.1.2">
+            <text>
+              The challenges posed by biases in training data
+            </text>
+          </content>
+
+          <content xml:id="A4.4.1.3">
+            <text>
+              The ethics of using machine learning in online communication may
+              include concerns about misinformation, bias, online harassment,
+              anonymity, privacy.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="A4.4.2">
+          <text>
+            Discuss ethical aspects of the increasing integration of computer
+            technologies into daily life.
+          </text>
+
+          <content xml:id="A4.4.2.1">
+            <text>
+              The importance of continually reassessing ethical guidelines as
+              technology advances
+            </text>
+          </content>
+
+          <content xml:id="A4.4.2.2">
+            <text>
+              The potential implications of emerging technologies such as
+              quantum computing, augmented reality, virtual reality and the
+              pervasive use of AI on society, individual rights, privacy and
+              equity
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+    </topic>
+  </theme>
+
+  <theme xml:id="B">
+    <title>Computational thinking and problem-solving</title>
+
+    <topic xml:id="B1">
+      <text>
+        Computational thinking
+      </text>
+
+      <subtopic xml:id="B1.1">
+        <text>
+          Approaches to computational thinking
+        </text>
+
+        <learning-statement xml:id="B1.1.1">
+          <text>
+            Construct a problem specification.
+          </text>
+
+          <content xml:id="B1.1.1.1">
+            <text>
+              The specification of a problem may include a problem statement,
+              constraints and limitations, objectives and goals, input
+              specifications, output specifications, evaluation criteria.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B1.1.2">
+          <text>
+            Describe the fundamental concepts of computational thinking.
+          </text>
+
+          <content xml:id="B1.1.2.1">
+            <text>
+              Abstraction, algorithmic design, decomposition, pattern
+              recognition
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B1.1.3">
+          <text>
+            Explain how applying computational thinking to fundamental
+            concepts is used to approach and solve problems in computer
+            science.
+          </text>
+
+          <content xml:id="B1.1.3.1">
+            <text>
+              Computational thinking does not necessarily involve
+              programming—it is a toolkit of available techniques for
+              problem-solving.
+            </text>
+          </content>
+
+          <content xml:id="B1.1.3.2">
+            <text>
+              Real-world examples may include software development, data
+              analysis, machine learning, database design, network security.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B1.1.4">
+          <text>
+            Trace flowcharts for a range of programming algorithms.
+          </text>
+
+          <content xml:id="B1.1.4.1">
+            <text>
+              Use of standard flowchart symbols to depict processes, decisions
+              and flows of control
+            </text>
+          </content>
+
+          <content xml:id="B1.1.4.2">
+            <text>
+              Standard flowchart symbols: Connector, Decision, Flowline,
+              Input/Output, Process/Operation, Start/End
+            </text>
+          </content>
+
+          <content xml:id="B1.1.4.3">
+            <text>
+              Flowcharts for execution flow, to track changes in variables and
+              to determine output
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+    </topic>
+
+    <topic xml:id="B2">
+      <text>
+        Programming
+      </text>
+
+      <subtopic xml:id="B2.1">
+        <text>
+          Programming fundamentals
+        </text>
+
+        <learning-statement xml:id="B2.1.1">
+          <text>
+            Construct and trace programs using a range of global and local
+            variables of various data types.
+          </text>
+
+          <content xml:id="B2.1.1.1">
+            <text>
+              Data types: Boolean value, char, decimal, integer, string
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.1.2">
+          <text>
+            Construct programs that can extract and manipulate substrings.
+          </text>
+
+          <content xml:id="B2.1.2.1">
+            <text>
+              Writing of programs that accurately identify and extract
+              substrings from given strings, demonstrating the ability to
+              perform various manipulations, such as altering, concatenating
+              or replacing
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.1.3">
+          <text>
+            Describe how programs use common exception handling techniques.
+          </text>
+
+          <content xml:id="B2.1.3.1">
+            <text>
+              Potential points of failure in a program must include unexpected
+              inputs, resource unavailability, logic errors.
+            </text>
+          </content>
+
+          <content xml:id="B2.1.3.2">
+            <text>
+              The role of exception handling in developing programs
+            </text>
+          </content>
+
+          <content xml:id="B2.1.3.3">
+            <text>
+              Exception handling constructs that effectively manage errors
+              must include try/catch in Java, and try/except in Python, along
+              with the finally block.
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.1.4">
+          <text>
+            Construct and use common debugging techniques.
+          </text>
+
+          <content xml:id="B2.1.4.1">
+            <text>
+              Debugging techniques may include trace tables, breakpoint
+              debugging, print statements and step-by-step code execution.
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="B2.2">
+        <text>
+          Data structures
+        </text>
+
+        <learning-statement xml:id="B2.2.1">
+          <text>
+            Compare static and dynamic data structures.
+          </text>
+
+          <content xml:id="B2.2.1.1">
+            <text>
+              The fundamental differences between static and dynamic data
+              structures, including their underlying mechanisms for memory
+              allocation and resizing
+            </text>
+          </content>
+
+          <content xml:id="B2.2.1.2">
+            <text>
+              The advantages and disadvantages of each type in various
+              scenarios, considering factors such as speed, memory usage,
+              flexibility
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.2.2">
+          <text>
+            Construct programs that apply arrays and Lists.
+          </text>
+
+          <content xml:id="B2.2.2.1">
+            <text>
+              One-dimensional (1D) arrays, two-dimensional (2D) arrays,
+              ArrayLists in Java
+            </text>
+          </content>
+
+          <content xml:id="B2.2.2.2">
+            <text>
+              One-dimensional (1D) Lists and two-dimensional (2D) Lists in
+              Python
+            </text>
+          </content>
+
+          <content xml:id="B2.2.2.3">
+            <text>
+              Add, remove and traverse elements in a dynamic list
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.2.3">
+          <text>
+            Explain the concept of a stack as a “last in, first out” (LIFO)
+            data structure.
+          </text>
+
+          <content xml:id="B2.2.3.1">
+            <text>
+              Must include fundamental operations such as push, pop, peek and
+              isEmpty
+            </text>
+          </content>
+
+          <content xml:id="B2.2.3.2">
+            <text>
+              How stack operations impact both performance and memory usage
+            </text>
+          </content>
+
+          <content xml:id="B2.2.3.3">
+            <text>
+              An appropriate stack for a specific problem
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.2.4">
+          <text>
+            Explain the concept of a queue as a “first in, first out” (FIFO)
+            data structure.
+          </text>
+
+          <content xml:id="B2.2.4.1">
+            <text>
+              Must include fundamental operations such as enqueue, dequeue,
+              front and isEmpty
+            </text>
+          </content>
+
+          <content xml:id="B2.2.4.2">
+            <text>
+              How queue operations impact both performance and memory usage
+            </text>
+          </content>
+
+          <content xml:id="B2.2.4.3">
+            <text>
+              An appropriate queue for a specific problem
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="B2.3">
+        <text>
+          Programming constructs
+        </text>
+
+        <learning-statement xml:id="B2.3.1">
+          <text>
+            Construct programs that implement the correct sequence of code
+            instructions to meet program objectives.
+          </text>
+
+          <content xml:id="B2.3.1.1">
+            <text>
+              The impact of instruction order on program functionality
+            </text>
+          </content>
+
+          <content xml:id="B2.3.1.2">
+            <text>
+              Ways to avoid errors, such as infinite loops, deadlock,
+              incorrect output
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.3.2">
+          <text>
+            Construct programs utilizing appropriate selection structures.
+          </text>
+
+          <content xml:id="B2.3.2.1">
+            <text>
+              Must include: if, else, else if (Java), elif (Python), to
+              execute different code blocks based on specified conditions
+            </text>
+          </content>
+
+          <content xml:id="B2.3.2.2">
+            <text>
+              Selection structures with or without Boolean operators (AND, OR,
+              NOT) and/or relational operators (&lt;, &lt;=, &gt;, &gt;=, ==,
+              !=) to control program flow effectively
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.3.3">
+          <text>
+            Construct programs that utilize looping structures to perform
+            repeated actions.
+          </text>
+
+          <content xml:id="B2.3.3.1">
+            <text>
+              Types of loops, including counted loops and conditional loops,
+              and appropriate use of each type
+            </text>
+          </content>
+
+          <content xml:id="B2.3.3.2">
+            <text>
+              Conditional statements within loops, using Boolean and/or
+              relational operators to govern the loop’s execution
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.3.4">
+          <text>
+            Construct functions and modularization.
+          </text>
+
+          <content xml:id="B2.3.4.1">
+            <text>
+              Functions to define reusable blocks of code with different
+              inputs
+            </text>
+          </content>
+
+          <content xml:id="B2.3.4.2">
+            <text>
+              Modularization to create well-structured, reusable and
+              maintainable code
+            </text>
+          </content>
+
+          <content xml:id="B2.3.4.3">
+            <text>
+              The principles of scope (local versus global)
+            </text>
+          </content>
+
+          <content xml:id="B2.3.4.4">
+            <text>
+              The benefits of code modularization, applying this concept to
+              various programming scenarios
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="B2.4">
+        <text>
+          Programming algorithms
+        </text>
+
+        <learning-statement xml:id="B2.4.1">
+          <text>
+            Describe the efficiency of specific algorithms by calculating
+            their Big O notation to analyse their scalability.
+          </text>
+
+          <content xml:id="B2.4.1.1">
+            <text>
+              The time and space complexities of algorithms and calculating
+              Big O notation
+            </text>
+          </content>
+
+          <content xml:id="B2.4.1.2">
+            <text>
+              Algorithm choice based on scalability and efficiency
+              requirements
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.4.2">
+          <text>
+            Construct and trace algorithms to implement a linear search and a
+            binary search for data retrieval.
+          </text>
+
+          <content xml:id="B2.4.2.1">
+            <text>
+              The differences in efficiency between different methods of
+              linear and binary search
+            </text>
+          </content>
+
+          <content xml:id="B2.4.2.2">
+            <text>
+              Use of search technique based on efficiency requirements—for
+              example, searching a database for a sorted/indexed list of names
+              to find a phone number, versus searching by the number to
+              identify the name
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.4.3">
+          <text>
+            Construct and trace algorithms to implement bubble sort and
+            selection sort, evaluating their time and space complexities.
+          </text>
+
+          <content xml:id="B2.4.3.1">
+            <text>
+              The time and space complexities of each algorithm, denoted by
+              their respective Big O notations
+            </text>
+          </content>
+
+          <content xml:id="B2.4.3.2">
+            <text>
+              The advantages and disadvantages of each algorithm in terms of
+              efficiency across various data sets
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.4.4">
+          <text>
+            Explain the fundamental concept of recursion and its applications
+            in programming. (HL only)
+          </text>
+
+          <content xml:id="B2.4.4.1">
+            <text>
+              The fundamentals of recursion and its advantages and limitations
+            </text>
+          </content>
+
+          <content xml:id="B2.4.4.2">
+            <text>
+              The utility of recursion in solving problems that can be broken
+              down into smaller, similar sub-problems
+            </text>
+          </content>
+
+          <content xml:id="B2.4.4.3">
+            <text>
+              Recursive algorithms, including but not limited to quicksort
+            </text>
+          </content>
+
+          <content xml:id="B2.4.4.4">
+            <text>
+              The limitations of recursion, including complexity and memory
+              usage
+            </text>
+          </content>
+
+          <content xml:id="B2.4.4.5">
+            <text>
+              Situations that best suit the use of recursion, including
+              fractal image creation, traversing binary trees, sorting
+              algorithms
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B2.4.5">
+          <text>
+            Construct and trace recursive algorithms in a programming
+            language. (HL only)
+          </text>
+
+          <content xml:id="B2.4.5.1">
+            <text>
+              Simple, non-branching recursive algorithms in programming only
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="B2.5">
+        <text>
+          File processing
+        </text>
+
+        <learning-statement xml:id="B2.5.1">
+          <text>
+            Construct code to perform file-processing operations.
+          </text>
+
+          <content xml:id="B2.5.1.1">
+            <text>
+              Programs that manipulate text files
+            </text>
+          </content>
+
+          <content xml:id="B2.5.1.2">
+            <text>
+              Opening a sequential file in various modes (read, write, append)
+            </text>
+          </content>
+
+          <content xml:id="B2.5.1.3">
+            <text>
+              How to read from and write to files, append data to an existing
+              file, and close a file once operations are completed
+            </text>
+          </content>
+
+          <content xml:id="B2.5.1.4">
+            <text>
+              Classes for Java users may include Scanner, FileWriter,
+              BufferedReader.
+            </text>
+          </content>
+
+          <content xml:id="B2.5.1.5">
+            <text>
+              Functions for Python users may include open(), read(),
+              readline(), write(), close().
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+    </topic>
+
+    <topic xml:id="B3">
+      <text>
+        Object-oriented programming
+      </text>
+
+      <subtopic xml:id="B3.1">
+        <text>
+          Fundamentals of OOP for a single class
+        </text>
+
+        <learning-statement xml:id="B3.1.1">
+          <text>
+            Evaluate the fundamentals of OOP.
+          </text>
+
+          <content xml:id="B3.1.1.1">
+            <text>
+              Model real-world entities using OOP concepts: classes, objects,
+              inheritance, encapsulation, polymorphism
+            </text>
+          </content>
+
+          <content xml:id="B3.1.1.2">
+            <text>
+              The advantages and disadvantages of using OOP in various
+              programming scenarios
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B3.1.2">
+          <text>
+            Construct a design of classes, their methods and behaviour.
+          </text>
+
+          <content xml:id="B3.1.2.1">
+            <text>
+              Classes and their methods, based on application requirements
+            </text>
+          </content>
+
+          <content xml:id="B3.1.2.2">
+            <text>
+              The use of unified modelling language (UML) class diagrams to
+              represent class relationships, attributes and methods, to aid
+              effective software design and planning
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B3.1.3">
+          <text>
+            Distinguish between static and non-static variables and methods.
+          </text>
+
+          <content xml:id="B3.1.3.1">
+            <text>
+              The differences between static and non-static variables and
+              methods, including their usage and scope
+            </text>
+          </content>
+
+          <content xml:id="B3.1.3.2">
+            <text>
+              When to use instance variables instead of class variables, and
+              how to apply these concepts effectively in code
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B3.1.4">
+          <text>
+            Construct code to define classes and instantiate objects.
+          </text>
+
+          <content xml:id="B3.1.4.1">
+            <text>
+              How to define classes and create objects from those classes
+            </text>
+          </content>
+
+          <content xml:id="B3.1.4.2">
+            <text>
+              The role of constructors in initializing an object's state,
+              setting initial values for its attributes to define its
+              condition or characteristics at the time of creation
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B3.1.5">
+          <text>
+            Explain and apply the concepts of encapsulation and information
+            hiding in OOP.
+          </text>
+
+          <content xml:id="B3.1.5.1">
+            <text>
+              The principles of encapsulation and information hiding
+            </text>
+          </content>
+
+          <content xml:id="B3.1.5.2">
+            <text>
+              Apply access modifiers such as private and public
+            </text>
+          </content>
+
+          <content xml:id="B3.1.5.3">
+            <text>
+              Controlling access to class members
+            </text>
+          </content>
+
+          <content xml:id="B3.1.5.4">
+            <text>
+              The importance of limiting access to maintain the integrity and
+              security of an object's state
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+
+      <subtopic xml:id="B3.2">
+        <text>
+          Fundamentals of OOP for multiple classes (HL only)
+        </text>
+
+        <learning-statement xml:id="B3.2.1">
+          <text>
+            Explain and apply the concept of inheritance in OOP to promote
+            code reusability.
+          </text>
+
+          <content xml:id="B3.2.1.1">
+            <text>
+              How inheritance enables a hierarchical relationship between
+              parent and child classes
+            </text>
+          </content>
+
+          <content xml:id="B3.2.1.2">
+            <text>
+              Extending existing classes, utilizing inheritance to reuse and
+              extend functionalities
+            </text>
+          </content>
+
+          <content xml:id="B3.2.1.3">
+            <text>
+              The impact of inheritance on access to parent class members with
+              different access modifiers (private, public, protected, default)
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B3.2.2">
+          <text>
+            Construct code to model polymorphism and its various forms, such
+            as method overriding.
+          </text>
+
+          <content xml:id="B3.2.2.1">
+            <text>
+              The principle of polymorphism and how it contributes to code
+              flexibility and reusability
+            </text>
+          </content>
+
+          <content xml:id="B3.2.2.2">
+            <text>
+              How to implement dynamic polymorphic behaviour through
+              mechanisms like method overriding
+            </text>
+          </content>
+
+          <content xml:id="B3.2.2.3">
+            <text>
+              How to apply static polymorphic behaviour to maximize code
+              efficiency
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B3.2.3">
+          <text>
+            Explain the concept of abstraction in OOP.
+          </text>
+
+          <content xml:id="B3.2.3.1">
+            <text>
+              The significance of abstraction in the development of modular
+              code fragments
+            </text>
+          </content>
+
+          <content xml:id="B3.2.3.2">
+            <text>
+              The use of abstract classes to establish common interfaces for
+              sub-classes
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B3.2.4">
+          <text>
+            Explain the role of composition and aggregation in class
+            relationships.
+          </text>
+
+          <content xml:id="B3.2.4.1">
+            <text>
+              How to design objects by leveraging smaller component objects
+              through composition and aggregation
+            </text>
+          </content>
+
+          <content xml:id="B3.2.4.2">
+            <text>
+              That aggregation implies that the subcomponents can function
+              independently of the aggregating class, while in composition,
+              the subcomponents are tightly coupled and cannot exist outside
+              the aggregating class
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B3.2.5">
+          <text>
+            Explain commonly used design patterns in OOP.
+          </text>
+
+          <content xml:id="B3.2.5.1">
+            <text>
+              The key design patterns such as singleton, factory and observer
+            </text>
+          </content>
+
+          <content xml:id="B3.2.5.2">
+            <text>
+              The application of design patterns in solving recurring
+              programming challenges
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+    </topic>
+
+    <topic xml:id="B4">
+      <text>
+        Abstract data types (HL only)
+      </text>
+
+      <subtopic xml:id="B4.1">
+        <text>
+          Fundamentals of ADTs
+        </text>
+
+        <learning-statement xml:id="B4.1.1">
+          <text>
+            Explain the properties and purpose of ADTs in programming.
+          </text>
+
+          <content xml:id="B4.1.1.1">
+            <text>
+              The core principles of ADTs, including their purpose in
+              providing a high-level description of data structures and their
+              associated operations
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B4.1.2">
+          <text>
+            Evaluate linked lists.
+          </text>
+
+          <content xml:id="B4.1.2.1">
+            <text>
+              Lists must include singly, doubly, circular
+            </text>
+          </content>
+
+          <content xml:id="B4.1.2.2">
+            <text>
+              Sketch of linked lists and implementation of basic operations
+              diagrammatically, such as insertion, deletion, traversal, search
+            </text>
+          </content>
+
+          <content xml:id="B4.1.2.3">
+            <text>
+              The advantages and disadvantages of using linked lists over
+              other data structures like arrays, particularly in terms of
+              memory utilization and performance
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B4.1.3">
+          <text>
+            Construct and apply linked lists: singly, doubly and circular.
+          </text>
+
+          <content xml:id="B4.1.3.1">
+            <text>
+              The basic operations on a linked list, such as insertion,
+              deletion, traversal, search
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B4.1.4">
+          <text>
+            Explain the structures and properties of BSTs.
+          </text>
+
+          <content xml:id="B4.1.4.1">
+            <text>
+              How binary search trees (BSTs) are used for data organization
+            </text>
+          </content>
+
+          <content xml:id="B4.1.4.2">
+            <text>
+              Insert, delete, traverse and searching nodes in a BST
+            </text>
+          </content>
+
+          <content xml:id="B4.1.4.3">
+            <text>
+              Sketching a BST as a tree diagram
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B4.1.5">
+          <text>
+            Construct and apply sets as an ADT.
+          </text>
+
+          <content xml:id="B4.1.5.1">
+            <text>
+              The fundamental characteristics of sets, including their
+              unordered nature and the uniqueness of elements
+            </text>
+          </content>
+
+          <content xml:id="B4.1.5.2">
+            <text>
+              Operations: union, intersection and difference
+            </text>
+          </content>
+
+          <content xml:id="B4.1.5.3">
+            <text>
+              Code to check if an element is in a set, to add an element to a
+              set, to remove an element, and to check whether one set is a
+              subset/superset of another set
+            </text>
+          </content>
+        </learning-statement>
+
+        <learning-statement xml:id="B4.1.6">
+          <text>
+            Explain the core principles of ADTs.
+          </text>
+
+          <content xml:id="B4.1.6.1">
+            <text>
+              High-level description of data structures and their associated
+              operations and purpose
+            </text>
+          </content>
+
+          <content xml:id="B4.1.6.2">
+            <text>
+              The underlying mechanics of hash tables, including hashing
+              functions, collision resolution strategies and load factors
+            </text>
+          </content>
+
+          <content xml:id="B4.1.6.3">
+            <text>
+              The underlying mechanics of sets to store and manage data
+            </text>
+          </content>
+
+          <content xml:id="B4.1.6.4">
+            <text>
+              HashMap and HashSet in Java; dict and set in Python
+            </text>
+          </content>
+        </learning-statement>
+      </subtopic>
+    </topic>
+  </theme>
+</syllabus>

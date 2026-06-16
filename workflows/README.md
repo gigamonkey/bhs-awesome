@@ -3,7 +3,7 @@
 These are **Claude Code Workflow scripts** (run via the `Workflow` tool, not
 `uv run`) that extract the AP CSA and AP CSP CED hierarchies from the College
 Board Course and Exam Description PDFs into the markdown files that drive the
-rest of the CED pipeline (`build_ced_xml.py`, `build_ced_db.py`).
+rest of the CED pipeline (`build_hierarchy_xml.py`, `build_hierarchy_db.py`).
 
 Unlike the deterministic extractors (`extract_ib_hierarchy.py`,
 `extract_book_hierarchy.py`), these are **LLM extraction pipelines**: the CED
