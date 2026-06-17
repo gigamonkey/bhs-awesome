@@ -20,6 +20,7 @@ and the College Board Course and Exam Description (CED) PDFs.
 - `ib/` — IB Computer Science guide: `ib-cs-guide-2025.pdf` and the extracted `ib-hierarchy.md` and `ib-hours.tsv`
 - `decks/` — Flashcard `.deck` files (XML)
 - `reports/` — Generated analysis reports (e.g., the book comparison)
+- `lesson-planning/` — Lesson-planning system: `schema.sql` (canonical), `db.db` (live working copy, gitignored), and `export/` (git-diffable TSV snapshots). See `plans/lesson-planning.md`
 - `bhsawesome/`, `csawesome/` — Local PreTeXt source trees extracted by `just-pretext.sh` (gitignored)
 - `repos/` — Cloned source book git repos (gitignored)
 - `plans/` — Implementation plans
@@ -37,6 +38,9 @@ and the College Board Course and Exam Description (CED) PDFs.
 | `hierarchy.py`             | Shared hierarchy-markdown parser used by `build_hierarchy_xml.py` and `build_hierarchy_db.py`. `parse_sections` auto-detects the flavor (CSA/CSP/IB/book) from the first heading and returns a flat list of nodes with verbatim ids and separate `head`/`body`; consumers apply their own id transforms. Exposes `LEVEL_TAGS` (per-level tags per flavor) |
 | `build_hierarchy_xml.py`   | Converts a hierarchy markdown file to XML (auto-detects CSA, CSP, IB, or book flavor from the first heading). Root is `<ced>` for CSA/CSP, `<syllabus>` for IB, and `<book>` for book                     |
 | `build_hierarchy_db.py`    | Loads a hierarchy markdown file (CSA/CSP CED, IB syllabus, or `extract_book_hierarchy.py` book output, auto-detected) into a SQLite table: one row per node, an id column per level (ancestors filled, deeper levels NULL), plus the node's raw markdown text |
+| `load_nodes.py`            | Normalizes a hierarchy markdown file into the lesson-planning `nodes` table (course, node_id, parent_id, level, is_leaf, ordinal, text) — one uniform, course-scoped table across CSA/CSP/IB so the app's gap/coverage queries are flavor-agnostic. `--course` overrides the detected flavor |
+| `import_objectives.py`     | Seeds the lesson-planning `objectives`/`course_objectives`/`coverage` tables from a learning-objectives TSV (each row's `ek` becomes a coverage edge); course-scoped, and warns on coverage node_ids absent from `nodes`. Supersedes `load_objectives.py`'s single-table mapping |
+| `export_planning.py`       | Dumps the lesson-planning database's planning tables to sorted, git-diffable `<table>.tsv` snapshots (the DB is the live working copy; the TSVs are the committed state). The `nodes` table is excluded — it is regenerated from the hierarchy markdown |
 | `extract_book_hierarchy.py`| Extracts the chapter/section/subsection hierarchy from a PreTeXt book (following `.ptx` includes) as a numbered markdown hierarchy (`# Chapter N:`, `## N.M`, `### N.M.K`)                              |
 | `extract_ib_hierarchy.py`  | Extracts the IB Computer Science guide's five-level syllabus hierarchy (theme/topic/subtopic/learning-statement/content) from the guide PDF into a markdown hierarchy (`# Theme X:`, `## A1`, `### A1.1`, `#### A1.1.1`, `##### A1.1.1.1`); content ids are synthesized |
 | `extract_ib_hours.py`      | Extracts per-topic teaching hours from the IB CS guide's syllabus outline table into a TSV (`topic`, `title`, `sl`, `hl`); an HL-only topic shows 0 SL hours                                              |
@@ -109,6 +113,11 @@ uv run build_hierarchy_xml.py csa/ced-2025-hierarchy.md csa/ced.xml ap-csa-2025
 uv run build_hierarchy_xml.py ib/ib-hierarchy.md ib/syllabus.xml ib-cs-2025
 uv run build_hierarchy_db.py csa/ced-2025-hierarchy.md ced.db hierarchy
 make                                         # render */ced.xml -> */ced.html
+
+# Seed the lesson-planning database (nodes + raw objectives + coverage), then snapshot
+uv run load_nodes.py csa/ced-2025-hierarchy.md lesson-planning/db.db
+uv run import_objectives.py csa/learning-objectives/objectives.tsv lesson-planning/db.db
+uv run export_planning.py lesson-planning/db.db lesson-planning/export/
 
 # Extract the IB CS syllabus hierarchy and per-topic hours from the guide PDF
 uv run extract_ib_hierarchy.py ib/ib-cs-guide-2025.pdf ib/ib-hierarchy.md
