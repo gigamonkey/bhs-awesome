@@ -41,6 +41,7 @@ and the College Board Course and Exam Description (CED) PDFs.
 | `load_nodes.py`            | Normalizes a hierarchy markdown file into the lesson-planning `nodes` table (course, node_id, parent_id, level, is_leaf, ordinal, text) — one uniform, course-scoped table across CSA/CSP/IB so the app's gap/coverage queries are flavor-agnostic. `--course` overrides the detected flavor |
 | `import_objectives.py`     | Seeds the lesson-planning `objectives`/`course_objectives`/`coverage` tables from a learning-objectives TSV (each row's `ek` becomes a coverage edge); course-scoped, and warns on coverage node_ids absent from `nodes`. Supersedes `load_objectives.py`'s single-table mapping |
 | `export_planning.py`       | Dumps the lesson-planning database's planning tables to sorted, git-diffable `<table>.tsv` snapshots (the DB is the live working copy; the TSVs are the committed state). The `nodes` table is excluded — it is regenerated from the hierarchy markdown |
+| `render_outline.py`        | Renders a course's lesson plan from the lesson-planning db to markdown: ordered lessons with their lesson objectives and rolled-up raw objectives, a traceability appendix (every leaf → covering lesson(s)), and a gap list. The deliverable. Option: `--course` |
 | `extract_book_hierarchy.py`| Extracts the chapter/section/subsection hierarchy from a PreTeXt book (following `.ptx` includes) as a numbered markdown hierarchy (`# Chapter N:`, `## N.M`, `### N.M.K`)                              |
 | `extract_ib_hierarchy.py`  | Extracts the IB Computer Science guide's five-level syllabus hierarchy (theme/topic/subtopic/learning-statement/content) from the guide PDF into a markdown hierarchy (`# Theme X:`, `## A1`, `### A1.1`, `#### A1.1.1`, `##### A1.1.1.1`); content ids are synthesized |
 | `extract_ib_hours.py`      | Extracts per-topic teaching hours from the IB CS guide's syllabus outline table into a TSV (`topic`, `title`, `sl`, `hl`); an HL-only topic shows 0 SL hours                                              |
@@ -118,7 +119,8 @@ make                                         # render */ced.xml -> */ced.html
 uv run load_nodes.py csa/ced-2025-hierarchy.md lesson-planning/db.db
 uv run import_objectives.py csa/learning-objectives/objectives.tsv lesson-planning/db.db
 uv run export_planning.py lesson-planning/db.db lesson-planning/export/
-uv run lesson-planning/app.py                # read-only coverage web app (port 5001)
+uv run lesson-planning/app.py                # web app: outline, objectives, synthesize, lessons (port 5001)
+uv run render_outline.py lesson-planning/db.db csa/lesson-plan.md --course csa  # the deliverable
 
 # Extract the IB CS syllabus hierarchy and per-topic hours from the guide PDF
 uv run extract_ib_hierarchy.py ib/ib-cs-guide-2025.pdf ib/ib-hierarchy.md
