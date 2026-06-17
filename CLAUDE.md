@@ -20,7 +20,7 @@ and the College Board Course and Exam Description (CED) PDFs.
 - `ib/` — IB Computer Science guide: `ib-cs-guide-2025.pdf` and the extracted `ib-hierarchy.md` and `ib-hours.tsv`
 - `decks/` — Flashcard `.deck` files (XML)
 - `reports/` — Generated analysis reports (e.g., the book comparison)
-- `lesson-planning/` — Lesson-planning system: `schema.sql` (canonical), `db.db` (live working copy, gitignored), and `export/` (git-diffable TSV snapshots). See `plans/lesson-planning.md`
+- `lesson-planning/` — Lesson-planning system: `schema.sql` (canonical), `db.db` (live working copy, gitignored), `export/` (git-diffable TSV snapshots), and `app.py` + `templates/` (Flask web app). See `plans/lesson-planning.md`
 - `bhsawesome/`, `csawesome/` — Local PreTeXt source trees extracted by `just-pretext.sh` (gitignored)
 - `repos/` — Cloned source book git repos (gitignored)
 - `plans/` — Implementation plans
@@ -118,6 +118,7 @@ make                                         # render */ced.xml -> */ced.html
 uv run load_nodes.py csa/ced-2025-hierarchy.md lesson-planning/db.db
 uv run import_objectives.py csa/learning-objectives/objectives.tsv lesson-planning/db.db
 uv run export_planning.py lesson-planning/db.db lesson-planning/export/
+uv run lesson-planning/app.py                # read-only coverage web app (port 5001)
 
 # Extract the IB CS syllabus hierarchy and per-topic hours from the guide PDF
 uv run extract_ib_hierarchy.py ib/ib-cs-guide-2025.pdf ib/ib-hierarchy.md
