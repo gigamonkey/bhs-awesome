@@ -1,7 +1,8 @@
-These objectives were created by first reading through the CED hierarchy and
-hand writing (see scans/) learning objectives of various levels of detail based
-on the CED and also on my experience teaching CSA. In CED terms my learning
-objectives are more at the granularity of essential knowledge.
+The objectives in csa.txt were created by first reading through the CED
+hierarchy and hand writing (see scans/) learning objectives of various levels of
+detail based on the CED and also on my experience teaching CSA. In CED terms my
+learning objectives are more at the granularity of essential knowledge.
 
 I then had Claude OCR the scanned notes (see ocr/). Then I had it label all of
-my objectives with the best matching Unit/Topic/LO/EKs.
+my objectives with the best matching Unit/Topic/LO/EKs which gives us
+objectives.tsv.
