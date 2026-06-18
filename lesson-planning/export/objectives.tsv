@@ -3,7 +3,7 @@ uuid	text	status
 012121cb-e00e-4fcf-a0d7-ab0cdd675cc3	Describe ways a dataset can be biased	active
 0179a3c9-6fc3-4497-922c-3521a0b32233	Write a class based on an abstract description.	active
 020c626c-4580-43bf-997e-f991e28eb5fe	Name all the punctuation characters used in Java.	active
-05321feb-6f50-44c9-ada7-1e7b707851fe	"Describe ""repitition"""	active
+05321feb-6f50-44c9-ada7-1e7b707851fe	"Describe ""repetition"""	active
 0594bf60-f89e-40d6-bf58-7cacfcf6e8d8	Give examples of O(N) loops and O(N²) loops	active
 08d83b53-5f46-468a-b387-78c9b26250ee	Describe the kinds of errors that can be detected without running the program.	active
 092dc9a0-d8c6-4bd2-aac6-99564eef2979	Debug code that incorrectly removes elements from an ArrayList	active
