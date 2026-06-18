@@ -4,6 +4,7 @@ uuid	text	status
 0179a3c9-6fc3-4497-922c-3521a0b32233	Write a class based on an abstract description.	active
 020c626c-4580-43bf-997e-f991e28eb5fe	Name all the punctuation characters used in Java.	active
 0594bf60-f89e-40d6-bf58-7cacfcf6e8d8	Give examples of O(N) loops and O(N²) loops	active
+08d83b53-5f46-468a-b387-78c9b26250ee	Describe the kinds of errors that can be detected without running the program.	active
 092dc9a0-d8c6-4bd2-aac6-99564eef2979	Debug code that incorrectly removes elements from an ArrayList	active
 0a1abe67-cf53-490a-905e-e3d07458a317	Write correct calls to a static method from inside the class.	active
 0a44f60c-8c8a-4aa3-878b-ccf230633a10	Write one-way selections with if	active
@@ -12,15 +13,17 @@ uuid	text	status
 0d0b4211-04ff-4dbe-9566-c0a7db853579	Write void methods that have internal side effects	active
 0d9de022-3a91-477e-b001-3f7c25f4ebff	Write code that reads user input with Scanner	active
 0fad0ed0-ea63-48a2-a151-7152de71ef4a	Identify which overloaded constructor will be invoked by a call.	active
-11b3491b-6cf0-4419-8e4a-98f5d7f42ae1	Explain how pre and postconditions constrain other code.	active
+11b3491b-6cf0-4419-8e4a-98f5d7f42ae1	Explain how preconditions constrain other code.	active
 1299d65a-01d1-4cac-a1ab-bc58de7c898d	State the proper modifiers for a variable holding a constant value	active
 133b2b8c-01c7-42d1-a7c0-ad069fb897c2	List three features of Java that provide data abstraction.	active
+1343971a-d7e9-4440-b367-1f69056369c0	Define postconditions.	active
 136709e5-61eb-4486-b720-ab806a36a94a	Describe the default flow of control in Java code.	active
 13dfb0cd-74e9-423e-ba65-8209b0f36471	"Define ""encapsulation"""	active
 1495d581-d331-4720-8642-cbed74311e8c	Demonstrate merge sort with cards	active
 14a9e7e2-bc59-487f-a3c0-b38870050cba	Write code to declare an ArrayList of type T	active
 15d579c5-5647-406a-a05c-676605dfbf0f	Write expressions using Math.random() to generate random numbers	active
 16f25f04-9202-44cc-8b61-659e1cb4f597	Write a canonical reverse for loop that runs N times	active
+16fb21d4-ae09-4122-b9d2-bedef167e079	Describe what a text editor is.	active
 19494040-d06e-4fb0-ba96-de4eb58fffc7	Describe ways you give up some privacy when using software	active
 1adfdf73-109d-4f79-a26f-803035d8f16c	Write a loop to do something with the digits of an int.	active
 1c167896-1ead-4dab-8816-d7ef8b4ee1cd	Identify which of several overloaded methods will be invoked by a call.	active
@@ -80,7 +83,9 @@ uuid	text	status
 49b7febf-e361-4a7e-92cb-f49dbf36c4e3	Write a counting loop	active
 49c81612-d043-47c9-85c0-d9a704c7e16b	Write two-way selections with if/else	active
 4bf8eee5-759e-47cb-94b7-b262b2cca522	Explain how to decide if a method should be public or private.	active
+4c1eacba-08ae-4814-9aee-b3a7d34e02b0	Describe some errors that cannot be detected until we run the program.	active
 4cbb0b49-7855-44df-a845-fd6445c0c59b	Explain where you can access a private member of a class	active
+4d330f38-1c8d-48f5-afe0-0c8148624610	Describe the mathematical effect of casting a `double` to an `int`.	active
 4df0fbb2-e5a6-4831-a0f8-d3a7235a03a2	Explain how 2D arrays are stored in the heap	active
 4e5027b3-1078-4c00-8971-a6bc5eb6464b	Explain the difference between data in a file and in a program.	active
 4f3404f2-f7ce-4332-816f-2c11010a92d6	Write a maximizing/minimizing loop	active
@@ -186,9 +191,11 @@ uuid	text	status
 94fbea0a-df96-48c1-8305-176d90120069	Write code that uses strong literals.	active
 953f3365-b597-45c1-8f5e-b960bc75112e	Write code that builds up a String value with +=	active
 959a02e6-3b27-4ad6-9da2-098cc79e93af	Write code to declare and initialize an array with an array initializer	active
+96204ddb-58b3-4677-b7dd-0de363342699	Describe how postconditions constrain other code.	active
 9690e8d4-9d6a-4878-bfc4-574a55d36b87	Explain results of code that uses compound assignment operators	active
 96d357dc-8547-4816-8d02-d53b9a04d560	Identify methods that can be used in an expression based on return type	active
 993d25cf-b0b4-4447-aca8-0a542f1882fa	Write code that uses Scanner with System.in	active
+99d49db5-5459-487b-91e3-cc67dbb23aa4	State what happens if we divide an `int` value by zero.	active
 9a3e89cd-c171-4366-9d65-a0c53d4c725a	Explain why the order of operations can affect the value of double comp.	active
 9a77ec7d-e6a9-42b8-bc21-2b7eb75de92b	List the rules of boolean algebra	active
 9a820ae5-535b-4939-84c9-b3df2217533d	Compute how many times the inner body of a nested for loop runs.	active
@@ -201,6 +208,7 @@ uuid	text	status
 9ce0d824-047a-487c-a532-2cbb5de9ee5d	Describe a recursive algorithm that is hard to express iteratively	active
 9cef504a-87e1-459f-89e6-5a27cd735274	Explain why constant values are often defined as static variables	active
 9d199b14-28a1-4461-8bc5-b4ce67e1950c	State the relationship between the length of an array and its last valid index.	active
+9d518b81-c137-45d5-bcc9-e3ed8b8ecb2e	List the three primitive data types we will use in this course.	active
 9d6d1ab7-59c0-48bd-89fa-f61599ce9a43	Explain what it means if two objects represent the same mutable object	active
 9dd34095-a834-4241-bdc9-8d7b22339684	Write code to process cells and their neighbors in a 2D array	active
 9e744a15-6d3c-408a-a573-0801501df15c	Explain why we can (and should) use equals with all reference types.	active
@@ -241,6 +249,7 @@ b263f73a-87c5-40a4-8023-bf437d9d96ec	Write code to access individual elements of
 b26e0f26-82d5-4acc-aee4-b043c433afff	Explain the role of booleans in selection & repetition	active
 b2966670-7f91-4ed5-bc87-738948815030	Write a loop to reverse a String	active
 b306f6dd-f43d-4078-9e4a-ede41bd6f085	Write comments documenting a method's pre- and post-conditions.	active
+b30b4726-11e6-486e-b042-01bcefdae245	Describe the purpose of literal values in code.	active
 b6e42f58-0fe1-4ed1-93d7-cb6c7e77b69a	Explain why the this. idiom is necessary.	active
 b8d83981-ab4d-4684-b42a-3a445a7fa2bb	Write correct calls to instance methods with implicit this.	active
 ba96b284-8f3e-4570-8802-bc690a016bce	Write code using all the standard looping patterns over an array	active
@@ -280,6 +289,7 @@ c6f3e7e8-d8cb-46b4-afd1-ecbccb6c2b1b	Explain what a half-open intervals (is- clo
 c7ebc916-9b70-4688-bea3-5b562bf41cce	Distinguish between primitive and reference types.	active
 c843d2a5-113c-42e8-abf2-1cc26244424e	Write overloaded constructors that use this()	active
 c93988dc-7ff5-44e5-a5df-6ae2cf834564	Write code to reverse the elements in an array	active
+c9791928-299a-4b38-8731-2d48175eec2e	Describe the kinds of values in, non-computer terms, represented by `int`, `double`, and `boolean`.	active
 c9826686-328a-4c47-b32d-e17132034230	Describe the relationship between class attributes, methods, and constructors	active
 c998e915-669c-4d85-a186-bc7e9c28d4fe	Explain how copyright applies to software	active
 c9ea635a-110a-49c0-9644-774795a366b2	Distinguish between syntax & type errors.	active
@@ -325,7 +335,7 @@ e0a704d4-00ac-4146-935d-45418c052106	Translate between regular and enhanced for 
 e175445c-72fb-4d00-b7fd-7154af16fe10	"Define a ""class invariant"""	active
 e55035d8-41af-4a08-9e60-6df19353a201	Distinguish between syntax, run-time, and logic errors.	active
 e6fa01e5-99b3-430a-ba2c-7bb3ab759f41	Explain integer overflow: both when & why it occurs.	active
-e80318fe-b5f1-4cfe-bbe0-f48ebdc60212	Define preconditions and postconditions.	active
+e80318fe-b5f1-4cfe-bbe0-f48ebdc60212	Define preconditions.	active
 e8d29d8f-1bb2-4cb9-af9f-d1227eea3daa	Explain passing references as arguments in terms of the call stack	active
 e906cc04-34ce-47cf-b95e-9d088bf3bf1f	Explain the relationship between + and toString	active
 ea8eac0a-8200-4e67-9bf6-5d572f88e791	Explain how procedural abstraction simplifies code.	active
@@ -352,6 +362,7 @@ f5f769b1-c0a9-4064-bed9-676968202b2c	Distinguish between the two ways of allocat
 f6ad7343-dbce-4f90-a9a7-af560e28beb2	List some situations when Java will throw a runtime Exception	active
 f6cfcc43-c108-47e5-af2e-3c1e1f2c033c	Write code that uses the length property of an array	active
 f9f236f7-c6bf-4079-a579-14fa962f72d9	"State when double contagion (""zombification"") occurs."	active
+fa610165-de88-4157-95bc-9a5c58e7020f	Explain the difference between a primitive and a reference type in terms of the stack and the heap.	active
 fa78c533-f027-4d2d-9300-f498b81061a3	Write code that uses String length	active
 fad5a542-bf14-4bc1-8c70-a650b66ed2d9	Explain the difference between allocating & initializing an object.	active
 fbcddacd-3a38-4090-b035-cdac09ef9754	State when you might want an infinite loop	active
