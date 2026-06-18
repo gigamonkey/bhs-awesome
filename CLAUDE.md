@@ -42,6 +42,7 @@ and the College Board Course and Exam Description (CED) PDFs.
 | `import_objectives.py`     | Seeds the lesson-planning `objectives`/`course_objectives`/`coverage` tables from a learning-objectives TSV (each row's `ek` becomes a coverage edge); course-scoped, and warns on coverage node_ids absent from `nodes`. Supersedes `load_objectives.py`'s single-table mapping |
 | `export_planning.py`       | Dumps the lesson-planning database's planning tables to sorted, git-diffable `<table>.tsv` snapshots (the DB is the live working copy; the TSVs are the committed state). The `nodes` table is excluded — it is regenerated from the hierarchy markdown. Prunes stale `<table>.tsv` files for tables no longer exported |
 | `import_planning.py`       | Inverse of `export_planning.py`: reloads the planning tables from the export `<table>.tsv` files (replacing their rows; `nodes` untouched). With `schema.sql` + `load_nodes.py` this rebuilds a DB from version-controlled inputs |
+| `rebuild_db.py`            | One-command rebuild of the lesson-planning DB from scratch: deletes the db, applies `schema.sql`, loads `nodes` from the hierarchy markdown file(s), and reloads the planning tables from the export dir. Options: `--db`, `--schema`, `--export`, and positional hierarchy file(s) (default: the known CED/IB files). Export + stop the app first — the old db is deleted |
 | `render_outline.py`        | Renders a course's lesson plan from the lesson-planning db to markdown: ordered lessons with their lesson objectives and rolled-up raw objectives, a traceability appendix (every leaf → covering lesson(s)), and a gap list. The deliverable. Option: `--course` |
 | `extract_book_hierarchy.py`| Extracts the chapter/section/subsection hierarchy from a PreTeXt book (following `.ptx` includes) as a numbered markdown hierarchy (`# Chapter N:`, `## N.M`, `### N.M.K`)                              |
 | `extract_ib_hierarchy.py`  | Extracts the IB Computer Science guide's five-level syllabus hierarchy (theme/topic/subtopic/learning-statement/content) from the guide PDF into a markdown hierarchy (`# Theme X:`, `## A1`, `### A1.1`, `#### A1.1.1`, `##### A1.1.1.1`); content ids are synthesized |
@@ -121,7 +122,9 @@ uv run load_nodes.py csa/ced-2025-hierarchy.md lesson-planning/db.db
 uv run import_objectives.py csa/learning-objectives/objectives.tsv lesson-planning/db.db
 uv run export_planning.py lesson-planning/db.db lesson-planning/export/
 
-# Rebuild the lesson-planning DB from version-controlled inputs (schema + nodes + export)
+# Rebuild the lesson-planning DB from scratch (schema + nodes + export). One command:
+uv run rebuild_db.py                         # deletes db.db; export + stop the app first
+# ...or the three steps by hand:
 sqlite3 lesson-planning/db.db < lesson-planning/schema.sql
 uv run load_nodes.py csa/ced-2025-hierarchy.md lesson-planning/db.db
 uv run import_planning.py lesson-planning/db.db lesson-planning/export/
