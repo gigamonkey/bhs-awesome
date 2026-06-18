@@ -177,7 +177,6 @@ uuid	text	status
 7e2ce056-cc7a-452a-9396-7d310daf4d98	Write code that uses Double.parseDouble	active
 7e6fae92-f6d3-48ca-b250-1a2abf0ab491	Describe merge sort.	active
 7ea71ae2-20d7-474e-a06b-82aba0c4e8f9	State what happens if you invoke an instance method on null.	active
-7ef21c3b-cc22-4e19-b52a-33f863580ecb	Write code that passes this as an argument	active
 7f510ba7-cadd-49da-94a5-226eb33be419	State the two contexts where an array initializer may appear	active
 7f8cd116-9db8-48c0-865c-ee91b9d8d52e	List the three kinds of control flow.	active
 803aa40b-47ee-41fa-b2d7-ab9089d5434d	Calculate the value of == & != expressions with references including null	active
@@ -233,6 +232,7 @@ uuid	text	status
 9e744a15-6d3c-408a-a573-0801501df15c	Explain why we can (and should) use equals with all reference types.	active
 9e856ff2-3bc5-4af3-a872-cc4b6e16cec7	Demonstrate selection sort with cards	active
 9eb1ebb9-1eff-47d4-8184-09b686b93014	Describe a program (e.g. Google docs) abstractly in English	active
+9f31caed-dae3-4523-b48c-d89f51ef232e	Describe the purpose of the Arithmetic Logic Unit (ALU).	active
 9f708d9b-57ef-446d-8a2b-02e7bb00ae51	State when you must use a regular for loop with an ArrayList	active
 a28330b3-6b85-4f6b-b1ea-7421f74cf938	Write correct calls to instance methods on specific object	active
 a28480e9-d91b-4d0e-9e69-9239761dc798	Apply De Morgan's laws to expressions involving relational & equality operators	active
@@ -374,6 +374,7 @@ eb1d85fb-6364-4431-9992-c8760cc3c2d2	Describe ways software or operation failure
 eb6f2c42-225a-4329-8fd7-616436b19874	Calculate the String and int values returned by String method calls	active
 ebeeec2d-a7fe-4a22-abc9-9a9f9a904925	Translate code that uses autoboxing/unboxing to explicit boxing.	active
 ed5c52ed-e90e-4187-b2c0-b9c3c32c16eb	Compile and run HelloWorld.java	active
+eeb70d8b-c8b4-47eb-b9cc-9ff68f37f6a4	Describe the purpose of the Control Unit (CU) on the CPU.	active
 eec94a13-b072-4718-a50b-2e037b87f85b	Write a finding loop	active
 eed0d672-c325-43b4-bee8-11765ed54302	Write a filtering loop with an ArrayList (copying)	active
 ef0b1e3b-5907-4e83-acd1-023782f88b3e	Describe how instance variables are used by instance methods.	active
