@@ -1,4 +1,6 @@
 *.db
+.venv/
+.venv-*/
 .claude/settings.local.json
 /csa/ced.html
 /csp/ced.html
