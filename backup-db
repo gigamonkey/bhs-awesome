@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#
+# Copy the current lesson-planning database to a timestamped backup.
+#
+
+set -eou pipefail
+
+timestamp=$(date -u +%Y-%m-%dT%H%MZ)
+
+mkdir -p "db-backups/$timestamp"
+
+sqlite3 lesson-planning/db.db "VACUUM INTO 'db-backups/$timestamp/db.db'"
+cd db-backups
+ln -sfn "$timestamp" latest
