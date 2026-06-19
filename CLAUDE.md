@@ -129,6 +129,10 @@ uv run load_nodes.py csa/ced-2025-hierarchy.md lesson-planning/db.db
 uv run import_planning.py lesson-planning/db.db lesson-planning/export/
 
 uv run lesson-planning/app.py                # web app: outline, objectives, plan (port 5001)
+# The app also self-serves the data lifecycle: a fresh db is bootstrapped from
+# schema.sql on startup, and the Data page (/data) loads reference hierarchies
+# (load_nodes), restores a snapshot (rebuild_db.populate), and exports. A course's
+# Course outline page downloads the rendered plan (render_outline) at /<course>/outline.md.
 uv run render_outline.py lesson-planning/db.db csa/lesson-plan.md --course csa  # the deliverable
 
 # Extract the IB CS syllabus hierarchy and per-topic hours from the guide PDF
