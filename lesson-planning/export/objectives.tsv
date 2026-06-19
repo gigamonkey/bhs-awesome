@@ -35,7 +35,7 @@ uuid	text	status
 1c9c9436-3b9c-4b18-9177-e2c4db4f562f	Write code using += with ints and Strings.	active
 1cb11bbb-d03c-4d93-bf43-80499e162124	Write arithmetic expressions that include variables	active
 1d9a8d8b-72df-47bc-9e6f-6c2afe7c9b56	Simplify mutually-exclusive consecutive ifs into chained else ifs	active
-1e48386f-8fa6-4302-8881-f8ebcc281550	Express a real-world procedure as an algorithm.	active
+1e48386f-8fa6-4302-8881-f8ebcc281550	Express a real-world procedure as an algorithm in English.	active
 1f43b090-9c40-4c53-91d8-5135741954f5	List the methods all classes inherit from java.lang.Object	active
 1f9ade44-23d6-42fb-bdf2-8f82d54c6aa5	Explain why classes often override equals	active
 20986aef-3a55-48a7-a451-16934698b316	Write correct calls to static & instance methods based on signatures.	active
@@ -251,6 +251,7 @@ a8dcfdf4-2d16-4338-952a-1133d1b345d8	State the purpose of constructor parameters
 a9b7ab78-cc9a-44f4-8309-783b34e54873	Explain what it means for expressions to be equivalent	active
 aa85cfb3-ac83-489f-b718-b04877e65452	Write correct method signatures given a name, return type, and arg types	active
 aaa9c0e2-43a2-4da0-828e-778d0cf3e9de	State the name, return type, and argument types & names given a usage.	active
+aabe54e7-6dfc-4aba-9731-19391e0c0079	Distinguish between compile-time and run-time errors from an error message.	active
 aadeeb54-3cd1-4a6b-ab73-d5313c67ac50	State the valid indexer of an array	active
 ab09ee8c-29df-406c-a3d5-2f0bb5f2a8bb	State what happens if you try to use a negative index or one greater than or equal to the size of an `ArrayList` with `get` or `set`	active
 ab5e0639-5a47-4295-9c9b-bbfd81df8820	State the names and approximate values (and exact expression) of int max.	active
