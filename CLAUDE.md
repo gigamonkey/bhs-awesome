@@ -1,26 +1,32 @@
 # bhs-awesome
 
-Tools for extracting, analyzing, and formatting AP Computer Science A (CSA) and
-AP Computer Science Principles (CSP) curriculum content from PreTeXt XML files
-and the College Board Course and Exam Description (CED) PDFs.
+Tools for formatting and analyzing AP Computer Science (CSA/CSP) curriculum
+*content* — quizzes, flashcard decks, and PreTeXt activity comparisons — plus the
+CSA learning-objectives source data.
+
+Two subsystems were extracted into their own repos and are **not** here anymore:
+
+- **`hierarchy-extractors`** — the curriculum-hierarchy toolkit (CED/IB PDF →
+  markdown → XML/HTML/DB) and its CED/IB source data.
+- **`lesson-planning`** — the course-agnostic lesson-planning app and engine.
+
+`list_files.py` and `just-pretext.sh` are deliberately kept in both this repo and
+`hierarchy-extractors`: each genuinely needs them (here, to sync book trees for
+the activity comparison).
 
 ## Tech Stack
 
-- Python 3.13, lxml, pypdf
+- Python 3.13, lxml
 - Package manager: `uv` (run scripts with `uv run <script>.py`)
 - XML processing throughout; JSON configs for formatting rules
-- `make` + `xsltproc` to render CED XML to HTML
 
 ## Project Structure
 
 - `*.py` — Processing scripts (see below)
 - `.xml-formats/` — JSON configs for `format_xml.py` (`ptx.json`, `quiz.json`, `mcqs.json`)
-- `csa/` — AP CSA CED artifacts: PDF, `ced-2025-hierarchy.md`, `ced.xml`, `ced.html`, `mcqs.quiz`, and `learning-objectives/` (handwriting scans, OCR text, and `objectives.tsv`)
-- `csp/` — AP CSP CED artifacts: PDF, `ced-hierarchy.md`, `ced.xml`, `ced.html`, and `sample.xml` (target schema)
-- `ib/` — IB Computer Science guide: `ib-cs-guide-2025.pdf` and the extracted `ib-hierarchy.md` and `ib-hours.tsv`
+- `csa/` — `mcqs.quiz` and `learning-objectives/` (handwriting scans, OCR text, and the objectives TSVs). The objectives' `node_id`s reference the CSA CED hierarchy, which now lives in `hierarchy-extractors`.
 - `decks/` — Flashcard `.deck` files (XML)
 - `reports/` — Generated analysis reports (e.g., the book comparison)
-- `lesson-planning/` — Lesson-planning system: `schema.sql` (canonical), `db.db` (live working copy, gitignored), `export/` (git-diffable TSV snapshots), and `app.py` + `templates/` (Flask web app). See `plans/lesson-planning.md`
 - `bhsawesome/`, `csawesome/` — Local PreTeXt source trees extracted by `just-pretext.sh` (gitignored)
 - `repos/` — Cloned source book git repos (gitignored)
 - `plans/` — Implementation plans
@@ -35,22 +41,10 @@ and the College Board Course and Exam Description (CED) PDFs.
 | `activity_report.py`    | Analyzes activity element structures and generates statistics. Options: `-d`/`--deep`, `-p`/`--prune`, `--ignore`, `-t`/`--tree`                                                                         |
 | `compare_activities.py` | Compares activities between two PreTeXt root files; writes `a/`, `b/`, and `paired.tsv` to an output dir. Options: `--similarity jaccard\|jaccard-weighted\|lcs`, `-s`/`--shingle-size`                 |
 | `filter_pairs.py`       | Filters a `compare_activities` output dir by threshold; writes `a/` and `b/` with unmatched activities annotated with `pair=` and `similarity=` attributes. Option: `-t`/`--threshold` (default 0.95)   |
-| `hierarchy.py`             | Shared hierarchy-markdown parser used by `build_hierarchy_xml.py` and `build_hierarchy_db.py`. `parse_sections` auto-detects the flavor (CSA/CSP/IB/book) from the first heading and returns a flat list of nodes with verbatim ids and separate `head`/`body`; consumers apply their own id transforms. Exposes `LEVEL_TAGS` (per-level tags per flavor) |
-| `build_hierarchy_xml.py`   | Converts a hierarchy markdown file to XML (auto-detects CSA, CSP, IB, or book flavor from the first heading). Root is `<ced>` for CSA/CSP, `<syllabus>` for IB, and `<book>` for book                     |
-| `build_hierarchy_db.py`    | Loads a hierarchy markdown file (CSA/CSP CED, IB syllabus, or `extract_book_hierarchy.py` book output, auto-detected) into a SQLite table: one row per node, an id column per level (ancestors filled, deeper levels NULL), plus the node's raw markdown text |
-| `load_nodes.py`            | Normalizes a hierarchy markdown file into the lesson-planning `nodes` table (hierarchy, node_id, parent_id, level, is_leaf, ordinal, text) — one uniform, hierarchy-scoped table across CSA/CSP/IB so the app's gap/coverage queries are flavor-agnostic. Registers the hierarchy in `hierarchies` (editable=0, with a kind/type like `ced`/`ib-syllabus` and an opaque readable slug) and upserts its `course` into the `courses` table. `--hierarchy`/`--course`/`--kind`/`--course-title` override the flavor-derived defaults |
-| `import_objectives.py`     | Imports raw objectives into a course's pool, **interning by text** (find-or-create by exact text, so runs are idempotent and identical texts collapse onto one objective; uuids are generated). Two auto-detected inputs: plain text (one objective per line, pool only) or a TSV with an `objective` column (`text` alias) and optional `node_id` (a coverage edge into the course's reference, or `--hierarchy <slug>`; `ek` alias; implies ancestors) and optional `uuid` (a known uuid identifies the objective, so the download→classify→reimport round-trip attaches placements by identity). `--replace` re-seeds the course's pool/coverage; warns on node_ids absent from `nodes` |
-| `export_planning.py`       | Dumps the lesson-planning database's planning tables to sorted, git-diffable `<table>.tsv` snapshots (the DB is the live working copy; the TSVs are the committed state). Reference `nodes`/`hierarchies` and the `courses` table are excluded (regenerated from the hierarchy markdown by load_nodes); the authored OUTLINE hierarchies' nodes/registry are exported, and `coverage` is dumped in full. Prunes stale `<table>.tsv` files for tables no longer exported |
-| `import_planning.py`       | Inverse of `export_planning.py`: reloads the planning tables from the export `<table>.tsv` files (replacing their rows; reference `nodes`/`hierarchies` and `courses` from `load_nodes.py` are kept — outline rows reload by a scoped delete). With `schema.sql` + `load_nodes.py` this rebuilds a DB from version-controlled inputs |
-| `rebuild_db.py`            | One-command rebuild of the lesson-planning DB from scratch: deletes the db, applies `schema.sql`, loads `nodes` from the hierarchy markdown file(s), and reloads the planning tables from the export dir. The built-in default set carries per-file overrides (course/kind/slug) for files whose course isn't implied by flavor — e.g. `csa/bhsawesome-outline.md` → `csa-book`. Options: `--db`, `--schema`, `--export`, and positional hierarchy file(s) (default: the known CED/IB/book files). Export + stop the app first — the old db is deleted |
-| `render_outline.py`        | Renders a course's lesson plan from the lesson-planning db to markdown: ordered lessons with their lesson objectives and rolled-up raw objectives, a traceability appendix (every leaf → covering lesson(s)), and a gap list. The deliverable. Option: `--course` |
-| `extract_book_hierarchy.py`| Extracts the chapter/section/subsection hierarchy from a PreTeXt book (following `.ptx` includes) as a numbered markdown hierarchy (`# Chapter N:`, `## N.M`, `### N.M.K`)                              |
-| `extract_ib_hierarchy.py`  | Extracts the IB Computer Science guide's five-level syllabus hierarchy (theme/topic/subtopic/learning-statement/content) from the guide PDF into a markdown hierarchy (`# Theme X:`, `## A1`, `### A1.1`, `#### A1.1.1`, `##### A1.1.1.1`); content ids are synthesized |
-| `extract_ib_hours.py`      | Extracts per-topic teaching hours from the IB CS guide's syllabus outline table into a TSV (`topic`, `title`, `sl`, `hl`); an HL-only topic shows 0 SL hours                                              |
 | `check_deck.py`         | Checks (and with `--fix`, repairs) the structure of a `.deck` file                                                                                                                                       |
 | `rename_card_tags.py`   | Renames `<front>`/`<back>` to `<question>`/`<answer>` in a deck via text substitution (preserves formatting)                                                                                             |
-| `list_files.py`         | Lists files in a PreTeXt document tree in topological order                                                                                                                                               |
 | `identify.py`           | Adds UUID attributes to XML elements matching XPath expressions                                                                                                                                           |
+| `list_files.py`         | Lists files in a PreTeXt document tree in topological order (used by `just-pretext.sh`)                                                                                                                   |
 | `lcs.py`                | LCS-based string similarity utilities                                                                                                                                                                     |
 | `jaccard.py`            | Jaccard similarity on character k-grams (set and weighted/multiset variants)                                                                                                                             |
 
@@ -59,15 +53,6 @@ and the College Board Course and Exam Description (CED) PDFs.
 `just-pretext.sh <repo> <dest>` pulls a book's git repo and copies its PreTeXt
 source tree (the files reachable from `main.ptx`, per `list_files.py`) into
 `<dest>` (e.g. `bhsawesome/`, `csawesome/`).
-
-## Building CED HTML
-
-The CED pipeline is: `*/ced*hierarchy.md` → (`build_hierarchy_xml.py`) → `*/ced.xml`
-→ (`make` via `ced-to-html.xsl`) → `*/ced.html`. (Only the CSA/CSP `<ced>` output
-is rendered to HTML; IB XML uses a `<syllabus>` root and has no HTML stage.)
-
-`make` renders `csa/ced.xml` and `csp/ced.xml` to `*/ced.html` with `xsltproc`;
-`make clean` removes the generated HTML.
 
 ## Quiz Format
 
@@ -110,36 +95,10 @@ Validate with `check_deck.py`.
 uv run format_xml.py -i csa/mcqs.quiz        # format quiz in place
 uv run extract_key.py csa/mcqs.quiz          # extract answer key as JSON
 
-# Build XML/DB artifacts from a hierarchy markdown file (CSA/CSP/IB/book)
-uv run build_hierarchy_xml.py csa/ced-2025-hierarchy.md csa/ced.xml ap-csa-2025
-uv run build_hierarchy_xml.py ib/ib-hierarchy.md ib/syllabus.xml ib-cs-2025
-uv run build_hierarchy_db.py csa/ced-2025-hierarchy.md ced.db hierarchy
-make                                         # render */ced.xml -> */ced.html
+uv run check_deck.py decks/example.deck      # validate a deck
 
-# Seed the lesson-planning database (nodes + raw objectives + coverage), then snapshot
-uv run load_nodes.py csa/ced-2025-hierarchy.md lesson-planning/db.db
-uv run import_objectives.py csa/learning-objectives/objectives.tsv lesson-planning/db.db
-uv run export_planning.py lesson-planning/db.db lesson-planning/export/
-
-# Rebuild the lesson-planning DB from scratch (schema + nodes + export). One command:
-uv run rebuild_db.py                         # deletes db.db; export + stop the app first
-# ...or the three steps by hand:
-sqlite3 lesson-planning/db.db < lesson-planning/schema.sql
-uv run load_nodes.py csa/ced-2025-hierarchy.md lesson-planning/db.db
-uv run import_planning.py lesson-planning/db.db lesson-planning/export/
-
-uv run lesson-planning/app.py                # web app: outline, objectives, plan (port 5001)
-# The app also self-serves the data lifecycle: a fresh db is bootstrapped from
-# schema.sql on startup, and the Data page (/data) loads reference hierarchies
-# (load_nodes), restores a snapshot (rebuild_db.populate), and exports. A course's
-# Course outline page downloads the rendered plan (render_outline) at /<course>/outline.md.
-uv run render_outline.py lesson-planning/db.db csa/lesson-plan.md --course csa  # the deliverable
-
-# Extract the IB CS syllabus hierarchy and per-topic hours from the guide PDF
-uv run extract_ib_hierarchy.py ib/ib-cs-guide-2025.pdf ib/ib-hierarchy.md
-uv run extract_ib_hours.py ib/ib-cs-guide-2025.pdf ib/ib-hours.tsv
-
-# Compare activities between two books
+# Compare activities between two books (sync the source trees first)
+./just-pretext.sh <repo> bhsawesome
 uv run compare_activities.py bhsawesome/main.ptx csawesome/main.ptx comparison/
 uv run filter_pairs.py comparison/ filtered/ -t 0.90
 ```

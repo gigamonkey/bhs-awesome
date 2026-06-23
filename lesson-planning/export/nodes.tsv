@@ -1,4 +1,0 @@
-hierarchy	node_id	parent_id	level	is_leaf	ordinal	text
-csa-plan	0c85c525-7428-404b-8b07-db7bbf56c2db	c724bd56-909e-4c3e-8f45-820a733d305c	lesson	1	0	What is an algorithm?
-csa-plan	c724bd56-909e-4c3e-8f45-820a733d305c		unit	0	0	Algorithms and Computational Thinking
-csa-plan	8e03aa18-d186-4fd6-8b7d-70ee506cb18c	c724bd56-909e-4c3e-8f45-820a733d305c	lesson	1	1	First Java program

@@ -4,14 +4,11 @@
 .claude/settings.local.json
 .venv-*/
 .venv/
-/csa/ced.html
-/csp/ced.html
 __pycache__
 bhsawesome/
 comparison*/
 csa-activities/
 csawesome/
-db-backups/
 filtered-*
 google-java-format.jar
 repos/
